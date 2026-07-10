@@ -1,0 +1,4 @@
+slug,name_ar,name_en,heading_ar,subheading_ar,price_1,price_2,price_3,upsell_price,rating,reviews_count,cross_sell,image_folder
+air-glow,لمسة إيرغلو — مصفّفة الشعر الهوائية ٥×١,Lamsa AirGlow,صالونكِ في ٥ دقائق,تسريحة الصالون بلمسة هواء… بدون حرارة تتلف شعركِ,199,279,349,99,4.8,1240,"silk-pro,glow-lift",/images/products/air-glow
+silk-pro,لمسة سيلك برو — جهاز إزالة الشعر بتقنية IPL,Lamsa SilkPro,بشرة ناعمة كالحرير بخصوصية تامة,وداعًا لموعد الحلاقة… إزالة شعر بتقنية IPL في بيتكِ وبخصوصية كاملة,199,279,349,99,4.9,1890,"air-glow,glow-lift",/images/products/silk-pro
+glow-lift,لمسة غلو ليفت — جهاز نضارة وشدّ البشرة,Lamsa GlowLift,إشراقة وحيوية كل يوم,نضارة وشدّ للبشرة بلمسة يومية… إطلالة أصغر وأكثر إشراقًا,199,279,349,99,4.8,1105,"silk-pro,air-glow",/images/products/glow-lift

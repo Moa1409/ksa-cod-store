@@ -1,0 +1,48 @@
+# Local development only. Production runs on EasyPanel with an existing Postgres.
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: lamsaglow
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: lamsaglow
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lamsaglow"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      ENV: development
+      DATABASE_URL: postgresql+psycopg://lamsaglow:devpassword@db:5432/lamsaglow
+      CORS_ORIGINS: http://localhost:3000
+      ADMIN_TOKEN: dev-admin-token
+      ENABLE_CAPI: "false"
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+        NEXT_PUBLIC_SITE_URL: http://localhost:3000
+        NEXT_PUBLIC_ENABLE_PIXELS: "false"
+    environment:
+      API_URL: http://backend:8000
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata: {}

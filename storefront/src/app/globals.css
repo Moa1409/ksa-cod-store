@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-tajawal: "Tajawal", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme("colors.noora.cream");
+  color: theme("colors.noora.ink");
+}
+
+@layer components {
+  .container-noora {
+    @apply mx-auto w-full max-w-6xl px-5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-noora-rose px-8 py-4 text-lg font-bold text-white shadow-soft transition hover:bg-noora-plum focus:outline-none focus:ring-4 focus:ring-noora-roseSoft;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-noora-rose px-6 py-3 font-bold text-noora-plum transition hover:bg-noora-roseSoft/40;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full bg-white/70 px-3 py-1 text-sm font-medium text-noora-plum;
+  }
+
+  .card {
+    @apply rounded-3xl bg-white p-6 shadow-soft;
+  }
+}

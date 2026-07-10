@@ -1,0 +1,2 @@
+timestamp,order_number,status,customer_name,phone,phone_e164,items_summary,items_json,num_items,bundle_subtotal,upsell_taken,upsell_slug,upsell_price,total,currency,city,event_id,utm_source,utm_campaign,landing_url,notes
+2026-07-08T16:20:00Z,LG-20260708-0042,new,منيرة,9665XXXXXXXX,+9665XXXXXXXX,لمسة إيرغلو ×2,"[{""slug"":""air-glow"",""qty"":2,""unit_price"":139.5}]",2,279,yes,glow-lift,99,378,SAR,,purchase_9f2c00,tiktok,airglow_ugc_1,https://lamsaglow.shop/product/air-glow,
