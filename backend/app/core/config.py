@@ -5,6 +5,7 @@ from functools import lru_cache
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from app.core.database_url import normalize_database_url
 from app.services.phone import normalize_ksa
 
 
@@ -13,9 +14,16 @@ class Settings(BaseSettings):
 
     ENV: str = "production"
 
-    # Database — SQLAlchemy scheme, e.g.
-    # postgresql+psycopg://lamsaglow:PASS@lamsaglow_database:5432/lamsaglow?sslmode=disable
+    # Database — accepts EasyPanel postgres:// or postgresql+psycopg://
+    # EasyPanel internal: postgres://lamsaglow:PASS@lamsaglow_database:5432/lamsaglow?sslmode=disable
     DATABASE_URL: str = "postgresql+psycopg://lamsaglow:devpassword@localhost:5432/lamsaglow"
+
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def _normalize_db_url(cls, v: object) -> object:
+        if isinstance(v, str):
+            return normalize_database_url(v)
+        return v
 
     # CORS — comma separated list of allowed origins
     CORS_ORIGINS: list[str] = ["https://lamsaglow.shop", "https://www.lamsaglow.shop"]

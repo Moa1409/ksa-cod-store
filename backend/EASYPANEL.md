@@ -21,10 +21,22 @@ Copy from `.env.example` and fill in EasyPanel:
 **Required:**
 ```
 ENV=production
-DATABASE_URL=postgresql+psycopg://lamsaglow:YOUR_PASSWORD@lamsaglow_database:5432/lamsaglow?sslmode=disable
+DATABASE_URL=postgres://lamsaglow:YOUR_PASSWORD@lamsaglow_database:5432/lamsaglow?sslmode=disable
 CORS_ORIGINS=https://lamsaglow.shop,https://www.lamsaglow.shop
 ADMIN_TOKEN=your-long-random-token
+WEB_CONCURRENCY=1
 ```
+
+> Paste EasyPanel's **postgres://** URL directly — the backend auto-converts it. No manual editing needed.
+
+## Database tables show 0?
+Migrations run when the backend container **starts**. If tables are empty:
+
+**Option A (recommended):** Deploy/restart the backend service — migrations run automatically.
+
+**Option B (instant fix):** In EasyPanel → Database → Query, paste and run `scripts/init_db.sql` from this repo.
+
+After success, `/health` returns `"tables": 2, "migrations_ok": true`.
 
 **MaxMind (order geo gate):**
 ```
