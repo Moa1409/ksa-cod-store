@@ -7,7 +7,7 @@ import { Media } from "@/components/Media";
 import { useCart } from "@/context/CartContext";
 import { getProduct, products, type Product } from "@/lib/products";
 import { BASE_PRICE, UPSELL_PRICE, UPSELL_SECONDS } from "@/lib/pricing";
-import { isValidKsaPhone } from "@/lib/phone";
+import { isLegitimateOrderPhone, isValidKsaPhone } from "@/lib/phone";
 import { newEventId, saveLastOrder, submitOrder } from "@/lib/order";
 import { track } from "@/lib/tracking";
 import { formatSar } from "@/lib/utils";
@@ -27,8 +27,9 @@ export function CheckoutModal() {
   const eventIdRef = useRef<string>("");
 
   const phoneValid = isValidKsaPhone(phone);
+  const phoneLegit = phoneValid && isLegitimateOrderPhone(phone);
   const nameValid = name.trim().length >= 2;
-  const canSubmit = phoneValid && nameValid;
+  const canSubmit = phoneLegit && nameValid;
 
   // pick the most relevant upsell: highest-rated product not already in cart
   const upsellProduct: Product | null = useMemo(() => {
@@ -145,6 +146,7 @@ export function CheckoutModal() {
             touched={touched}
             nameValid={nameValid}
             phoneValid={phoneValid}
+            phoneLegit={phoneLegit}
             canSubmit={canSubmit && stage !== "submitting"}
             submitting={stage === "submitting"}
             error={error}
@@ -169,6 +171,7 @@ function FormView(props: {
   touched: boolean;
   nameValid: boolean;
   phoneValid: boolean;
+  phoneLegit: boolean;
   canSubmit: boolean;
   submitting: boolean;
   error: string | null;
@@ -182,7 +185,7 @@ function FormView(props: {
   onSubmit: (e: React.FormEvent) => void;
 }) {
   const {
-    name, phone, touched, nameValid, phoneValid, canSubmit, submitting, error,
+    name, phone, touched, nameValid, phoneValid, phoneLegit, canSubmit, submitting, error,
     subtotal, savings, items, onName, onPhone, onBlur, onClose, onSubmit,
   } = props;
 
@@ -256,13 +259,15 @@ function FormView(props: {
             inputMode="numeric"
             dir="ltr"
             className={`w-full rounded-2xl border bg-white px-4 py-3 text-right outline-none focus:border-brand-primary ${
-              touched && !phoneValid ? "border-ui-error" : "border-brand-rose"
+              touched && !phoneLegit ? "border-ui-error" : "border-brand-rose"
             }`}
             autoComplete="tel"
           />
           {touched && !phoneValid ? (
             <p className="mt-1 text-sm text-ui-error">أدخلي رقم جوال سعودي صحيح يبدأ بـ 05</p>
-          ) : phoneValid ? (
+          ) : touched && phoneValid && !phoneLegit ? (
+            <p className="mt-1 text-sm text-ui-error">رقم الجوال غير مقبول. تأكّدي من إدخال رقمكِ الحقيقي.</p>
+          ) : phoneLegit ? (
             <p className="mt-1 inline-flex items-center gap-1 text-sm text-ui-success">
               <BadgeCheck className="h-4 w-4" /> رقم صحيح
             </p>

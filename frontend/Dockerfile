@@ -34,7 +34,8 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
-    PORT=3000
+    PORT=3000 \
+    API_URL=https://api.lamsaglow.shop
 
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./

@@ -1,3 +1,4 @@
+import { formatApiErrorDetail } from "@/lib/api-error";
 import { getMatchKeys } from "@/lib/tracking";
 
 export type OrderItemPayload = { slug: string; qty: number };
@@ -61,8 +62,8 @@ export async function submitOrder(input: {
     clearTimeout(timeout);
   }
   if (!res.ok) {
-    const detail = await res.json().catch(() => ({}));
-    throw new Error(detail?.detail || "order failed");
+    const data = await res.json().catch(() => ({}));
+    throw new Error(formatApiErrorDetail(data?.detail));
   }
   return res.json();
 }

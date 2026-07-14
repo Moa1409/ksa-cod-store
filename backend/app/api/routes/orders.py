@@ -24,6 +24,10 @@ from app.services.capi.dispatch import dispatch
 from app.services.order_number import generate_order_number
 from app.services.phone import normalize_ksa, to_e164
 from app.services.geoip import check_order_ip, geo_block_message, is_whitelisted_phone
+from app.services.phone_legitimacy import (
+    is_legitimate_order_phone,
+    phone_rejection_message,
+)
 from app.services.sheets import forward_order
 
 log = logging.getLogger(__name__)
@@ -118,10 +122,9 @@ def _process_side_effects(order_id) -> None:
 
 
 @router.post("/orders", response_model=OrderOut, status_code=201)
-@limiter.limit("12/minute")
 def create_order(
-    payload: OrderIn,
     request: Request,
+    payload: OrderIn,
     background: BackgroundTasks,
     db: Session = Depends(get_db),
 ) -> OrderOut:
@@ -144,6 +147,11 @@ def create_order(
                 mask_phone(phone),
             )
             raise HTTPException(status_code=403, detail=geo_block_message(geo))
+
+    # 1c) reject obvious fake / placeholder numbers (test whitelist exempt)
+    if not is_legitimate_order_phone(phone):
+        log.warning("order blocked by phone legitimacy phone=%s", mask_phone(phone))
+        raise HTTPException(status_code=422, detail=phone_rejection_message())
 
     # 2) validate slugs
     for it in payload.items:

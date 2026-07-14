@@ -68,6 +68,9 @@ class Settings(BaseSettings):
 
     ORDER_WHITELIST_PHONES: str = "0550000000"
 
+    # Phones exempt from fake-number checks (testing only)
+    TEST_ORDER_PHONES: str = "0550000000"
+
     @property
     def cors_origins_list(self) -> list[str]:
         return _csv_to_list(self.CORS_ORIGINS)
@@ -80,6 +83,19 @@ class Settings(BaseSettings):
     def whitelist_phones_normalized(self) -> set[str]:
         out: set[str] = set()
         for raw in self.whitelist_phones_list:
+            n = normalize_ksa(raw)
+            if n:
+                out.add(n)
+        return out
+
+    @property
+    def test_order_phones_list(self) -> list[str]:
+        return _csv_to_list(self.TEST_ORDER_PHONES)
+
+    @property
+    def test_order_phones_normalized(self) -> set[str]:
+        out: set[str] = set()
+        for raw in self.test_order_phones_list:
             n = normalize_ksa(raw)
             if n:
                 out.add(n)

@@ -18,6 +18,51 @@ export function isValidKsaPhone(raw: string): boolean {
   return normalizeKsaPhone(raw) !== null;
 }
 
+const DEFAULT_TEST_PHONES = ["0550000000"];
+
+function testPhones(): string[] {
+  const raw =
+    typeof process !== "undefined"
+      ? process.env.NEXT_PUBLIC_TEST_ORDER_PHONES || ""
+      : "";
+  const fromEnv = raw
+    .split(",")
+    .map((p) => p.trim())
+    .filter(Boolean);
+  return fromEnv.length ? fromEnv : DEFAULT_TEST_PHONES;
+}
+
+/** Test numbers skip fake-number checks (must match backend TEST_ORDER_PHONES). */
+export function isTestOrderPhone(raw: string): boolean {
+  const normalized = normalizeKsaPhone(raw);
+  if (!normalized) return false;
+  return testPhones().some((p) => normalizeKsaPhone(p) === normalized);
+}
+
+function isSequential(digits: string): boolean {
+  if (digits.length < 4) return false;
+  const asc = [...digits].every((d, i, a) => i === 0 || Number(d) - Number(a[i - 1]) === 1);
+  const desc = [...digits].every((d, i, a) => i === 0 || Number(a[i - 1]) - Number(d) === 1);
+  return asc || desc;
+}
+
+/** Reject obvious fake/placeholder numbers; real Saudi mobiles pass. */
+export function isLegitimateOrderPhone(raw: string): boolean {
+  const normalized = normalizeKsaPhone(raw);
+  if (!normalized) return false;
+  if (isTestOrderPhone(raw)) return true;
+
+  const local = normalized.slice(3);
+  const suffix = local.slice(1);
+
+  if (local.startsWith("55000000") && local !== "550000000") return false;
+  if (new Set(suffix).size === 1) return false;
+  if (isSequential(suffix)) return false;
+  if ((suffix.match(/0/g) ?? []).length >= 5) return false;
+
+  return true;
+}
+
 export function toE164(raw: string): string | null {
   const n = normalizeKsaPhone(raw);
   return n ? "+" + n : null;
