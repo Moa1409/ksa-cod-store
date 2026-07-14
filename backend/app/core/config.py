@@ -1,12 +1,33 @@
 from __future__ import annotations
 
 from functools import lru_cache
+from typing import Annotated
 
 from pydantic import field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 from app.core.database_url import normalize_database_url
 from app.services.phone import normalize_ksa
+
+
+def _split_csv(v: object) -> object:
+    """Accept comma-separated env strings or already-parsed lists."""
+    if isinstance(v, str):
+        s = v.strip()
+        if not s:
+            return []
+        # JSON array form: ["a","b"]
+        if s.startswith("["):
+            import json
+
+            try:
+                parsed = json.loads(s)
+                if isinstance(parsed, list):
+                    return [str(x).strip() for x in parsed if str(x).strip()]
+            except json.JSONDecodeError:
+                pass
+        return [p.strip() for p in s.split(",") if p.strip()]
+    return v
 
 
 class Settings(BaseSettings):
@@ -26,7 +47,11 @@ class Settings(BaseSettings):
         return v
 
     # CORS — comma separated list of allowed origins
-    CORS_ORIGINS: list[str] = ["https://lamsaglow.shop", "https://www.lamsaglow.shop"]
+    # NoDecode: pydantic-settings must NOT JSON-decode before our CSV splitter
+    CORS_ORIGINS: Annotated[list[str], NoDecode] = [
+        "https://lamsaglow.shop",
+        "https://www.lamsaglow.shop",
+    ]
 
     # Admin token for internal endpoints
     ADMIN_TOKEN: str = "change-me"
@@ -59,21 +84,17 @@ class Settings(BaseSettings):
     MAXMIND_LICENSE_KEY: str | None = None
 
     # Comma-separated KSA phones that bypass geo check (for prod testing)
-    ORDER_WHITELIST_PHONES: list[str] = ["0550000000"]
+    ORDER_WHITELIST_PHONES: Annotated[list[str], NoDecode] = ["0550000000"]
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def _split_origins(cls, v: object) -> object:
-        if isinstance(v, str):
-            return [o.strip() for o in v.split(",") if o.strip()]
-        return v
+        return _split_csv(v)
 
     @field_validator("ORDER_WHITELIST_PHONES", mode="before")
     @classmethod
     def _split_whitelist(cls, v: object) -> object:
-        if isinstance(v, str):
-            return [p.strip() for p in v.split(",") if p.strip()]
-        return v
+        return _split_csv(v)
 
     @property
     def whitelist_phones_normalized(self) -> set[str]:
