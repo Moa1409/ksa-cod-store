@@ -42,9 +42,12 @@ Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection st
 | 3 | `03_orders.sql` | OK |
 | 4 | `04_indexes.sql` | OK |
 | 5 | `05_seed_version.sql` | OK |
-| 6 | `06_list_tables.sql` | Shows `alembic_version` and `orders` |
+| 6 | `06_list_tables.sql` | Shows `alembic_version`, `orders`, `order_items`, `tracking_events` |
+| 7 | `07_order_items.sql` | OK (if upgrading from 0001) |
+| 8 | `08_tracking_events.sql` | OK (if upgrading from 0001) |
+| 9 | `09_seed_version_0002.sql` | OK (if upgrading from 0001) |
 
-5. Click **Structure** tab (or refresh) — **Tables should be 2**
+5. Click **Structure** tab (or refresh) — **Tables should be 4**
 
 > If any step shows an error, stop and fix that step before continuing.
 
@@ -76,5 +79,5 @@ Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection st
 ## Health check
 `GET https://api.lamsaglow.shop/health` should return:
 ```json
-{"status":"ok","db":"ok","tables":2,"migrations_ok":true}
+{"status":"ok","db":"ok","tables":4,"migrations_ok":true}
 ```

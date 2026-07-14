@@ -1,5 +1,8 @@
--- Run this in EasyPanel → Database → lamsaglow → Query tab if tables are still missing.
--- Safe to run multiple times (uses IF NOT EXISTS).
+-- FULL FIX: paste ALL of this into EasyPanel Query tab (after Connect).
+-- Drops broken partial tables, then recreates everything.
+
+DROP TABLE IF EXISTS order_items CASCADE;
+DROP TABLE IF EXISTS tracking_events CASCADE;
 
 CREATE TABLE IF NOT EXISTS alembic_version (
     version_num VARCHAR(32) NOT NULL PRIMARY KEY
@@ -14,7 +17,7 @@ CREATE TABLE IF NOT EXISTS orders (
     phone VARCHAR(20) NOT NULL,
     phone_e164 VARCHAR(20) NOT NULL,
     city VARCHAR(80),
-    items JSONB NOT NULL,
+    items JSONB NOT NULL DEFAULT '[]',
     num_items INTEGER NOT NULL DEFAULT 0,
     bundle_subtotal NUMERIC(10, 2) NOT NULL DEFAULT 0,
     upsell_taken BOOLEAN NOT NULL DEFAULT false,
@@ -41,7 +44,7 @@ CREATE INDEX IF NOT EXISTS ix_orders_phone ON orders (phone);
 CREATE INDEX IF NOT EXISTS ix_orders_created_at ON orders (created_at);
 CREATE INDEX IF NOT EXISTS ix_orders_event_id ON orders (event_id);
 
-CREATE TABLE IF NOT EXISTS order_items (
+CREATE TABLE order_items (
     id UUID PRIMARY KEY,
     order_id UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
     slug VARCHAR(64) NOT NULL,
@@ -52,9 +55,9 @@ CREATE TABLE IF NOT EXISTS order_items (
     sort_order INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE INDEX IF NOT EXISTS ix_order_items_order_id ON order_items (order_id);
+CREATE INDEX ix_order_items_order_id ON order_items (order_id);
 
-CREATE TABLE IF NOT EXISTS tracking_events (
+CREATE TABLE tracking_events (
     id UUID PRIMARY KEY,
     event_name VARCHAR(64) NOT NULL,
     event_id VARCHAR(120) NOT NULL,
@@ -77,12 +80,15 @@ CREATE TABLE IF NOT EXISTS tracking_events (
     capi_result JSONB
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS ix_tracking_events_event_id ON tracking_events (event_id);
-CREATE INDEX IF NOT EXISTS ix_tracking_events_event_name ON tracking_events (event_name);
-CREATE INDEX IF NOT EXISTS ix_tracking_events_event_time ON tracking_events (event_time);
-CREATE INDEX IF NOT EXISTS ix_tracking_events_phone ON tracking_events (phone);
-CREATE INDEX IF NOT EXISTS ix_tracking_events_order_number ON tracking_events (order_number);
+CREATE UNIQUE INDEX ix_tracking_events_event_id ON tracking_events (event_id);
+CREATE INDEX ix_tracking_events_event_name ON tracking_events (event_name);
+CREATE INDEX ix_tracking_events_event_time ON tracking_events (event_time);
+CREATE INDEX ix_tracking_events_phone ON tracking_events (phone);
+CREATE INDEX ix_tracking_events_order_number ON tracking_events (order_number);
 
 INSERT INTO alembic_version (version_num)
 VALUES ('0002_order_items_tracking')
 ON CONFLICT (version_num) DO NOTHING;
+
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public' ORDER BY 1;

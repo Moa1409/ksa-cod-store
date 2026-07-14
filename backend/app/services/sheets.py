@@ -20,6 +20,7 @@ def _items_summary(items: list[dict]) -> str:
 
 def build_sheet_payload(order: Order) -> dict:
     utm = order.utm or {}
+    line_items = order.items_as_dicts()
     return {
         "secret": settings.SHEET_SHARED_SECRET,
         "order": {
@@ -29,8 +30,8 @@ def build_sheet_payload(order: Order) -> dict:
             "customer_name": order.customer_name,
             "phone": order.phone,
             "phone_e164": order.phone_e164,
-            "items_summary": _items_summary(order.items),
-            "items_json": json.dumps(order.items, ensure_ascii=False),
+            "items_summary": _items_summary(line_items),
+            "items_json": json.dumps(line_items, ensure_ascii=False),
             "num_items": order.num_items,
             "bundle_subtotal": float(order.bundle_subtotal),
             "upsell_taken": bool(order.upsell_taken),

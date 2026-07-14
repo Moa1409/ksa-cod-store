@@ -33,5 +33,5 @@ def health(db: Session = Depends(get_db)) -> dict:
         "status": "ok",
         "db": db_ok,
         "tables": tables,
-        "migrations_ok": tables >= 2,
+        "migrations_ok": tables >= 4,
     }

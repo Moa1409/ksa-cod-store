@@ -8,13 +8,15 @@ from slowapi import Limiter
 from slowapi.util import get_remote_address
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.api.deps import client_ip, user_agent
 from app.core.logging import mask_phone
 from app.core.security import require_admin
 from app.db.session import SessionLocal, get_db
 from app.models.order import Order
+from app.models.order_item import OrderItem
+from app.models.tracking_event import TrackingEvent
 from app.schemas.order import OrderIn, OrderOut
 from app.services import catalog
 from app.services.capi.common import ConversionEvent
@@ -22,6 +24,7 @@ from app.services.capi.dispatch import dispatch
 from app.services.order_number import generate_order_number
 from app.services.phone import normalize_ksa, to_e164
 from app.services.geoip import check_order_ip, geo_block_message, is_whitelisted_phone
+from app.services.sheets import forward_order
 
 log = logging.getLogger(__name__)
 limiter = Limiter(key_func=get_remote_address)
@@ -36,15 +39,21 @@ def _process_side_effects(order_id) -> None:
     """Runs in a background task: sheet sync + CAPI Purchase. Own DB session."""
     db = SessionLocal()
     try:
-        order = db.get(Order, order_id)
+        order = db.scalar(
+            select(Order)
+            .where(Order.id == order_id)
+            .options(selectinload(Order.order_items))
+        )
         if not order:
             return
         synced = forward_order(order)
         order.sheet_synced = synced
 
+        line_items = order.items_as_dicts()
+        purchase_event_id = order.event_id or f"purchase_{order.order_number}"
         ev = ConversionEvent(
             event_name="Purchase",
-            event_id=order.event_id or f"purchase_{order.order_number}",
+            event_id=purchase_event_id,
             event_time=int(time.time()),
             value=float(order.total),
             currency=order.currency,
@@ -55,7 +64,7 @@ def _process_side_effects(order_id) -> None:
                     "price": i.get("unit_price"),
                     "name": i.get("name"),
                 }
-                for i in order.items
+                for i in line_items
             ],
             num_items=order.num_items,
             order_id=order.order_number,
@@ -70,7 +79,36 @@ def _process_side_effects(order_id) -> None:
             ttp=order.ttp,
             sc_click_id=order.sc_click_id,
         )
-        order.capi_result = dispatch(ev)
+        capi_result = dispatch(ev)
+        order.capi_result = capi_result
+
+        existing_event = db.scalar(
+            select(TrackingEvent).where(TrackingEvent.event_id == purchase_event_id)
+        )
+        if not existing_event:
+            db.add(
+                TrackingEvent(
+                    event_name="Purchase",
+                    event_id=purchase_event_id,
+                    value=float(order.total),
+                    currency=order.currency,
+                    contents=ev.contents,
+                    num_items=order.num_items,
+                    event_source_url=order.landing_url,
+                    phone=order.phone,
+                    client_ip=order.client_ip,
+                    user_agent=order.user_agent,
+                    fbp=order.fbp,
+                    fbc=order.fbc,
+                    ttp=order.ttp,
+                    sc_click_id=order.sc_click_id,
+                    utm=order.utm,
+                    order_number=order.order_number,
+                    dispatched=True,
+                    capi_result=capi_result,
+                )
+            )
+
         db.add(order)
         db.commit()
     except Exception as exc:  # noqa: BLE001
@@ -187,6 +225,17 @@ def create_order(
             user_agent=(attr.user_agent if attr else None) or user_agent(request),
             landing_url=attr.landing_url if attr else None,
             utm=attr.utm if attr else None,
+            order_items=[
+                OrderItem(
+                    slug=item["slug"],
+                    name=item["name"],
+                    qty=item["qty"],
+                    unit_price=item["unit_price"],
+                    is_upsell=bool(item.get("upsell")),
+                    sort_order=idx,
+                )
+                for idx, item in enumerate(items)
+            ],
         )
         db.add(candidate)
         try:
@@ -218,7 +267,11 @@ def create_order(
 
 @router.get("/orders/{order_number}", dependencies=[Depends(require_admin)])
 def get_order(order_number: str, db: Session = Depends(get_db)) -> dict:
-    order = db.scalar(select(Order).where(Order.order_number == order_number))
+    order = db.scalar(
+        select(Order)
+        .where(Order.order_number == order_number)
+        .options(selectinload(Order.order_items))
+    )
     if not order:
         raise HTTPException(status_code=404, detail="not found")
     return {
@@ -227,7 +280,7 @@ def get_order(order_number: str, db: Session = Depends(get_db)) -> dict:
         "created_at": order.created_at.isoformat() if order.created_at else None,
         "customer_name": order.customer_name,
         "phone": order.phone,
-        "items": order.items,
+        "items": order.items_as_dicts(),
         "num_items": order.num_items,
         "bundle_subtotal": float(order.bundle_subtotal),
         "upsell_taken": order.upsell_taken,

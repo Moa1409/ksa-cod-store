@@ -3,11 +3,16 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Boolean, DateTime, Integer, Numeric, String, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+
+if TYPE_CHECKING:
+    from app.models.order_item import OrderItem
 
 
 class Order(Base):
@@ -53,3 +58,27 @@ class Order(Base):
     sheet_synced: Mapped[bool] = mapped_column(Boolean, default=False)
     capi_result: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     notes: Mapped[str | None] = mapped_column(String(1024), nullable=True)
+
+    order_items: Mapped[list[OrderItem]] = relationship(
+        "OrderItem",
+        back_populates="order",
+        cascade="all, delete-orphan",
+        order_by="OrderItem.sort_order",
+    )
+
+    def items_as_dicts(self) -> list[dict]:
+        """Normalized line items — prefers order_items rows, falls back to legacy JSONB."""
+        if self.order_items:
+            rows: list[dict] = []
+            for row in self.order_items:
+                item = {
+                    "slug": row.slug,
+                    "name": row.name,
+                    "qty": row.qty,
+                    "unit_price": float(row.unit_price),
+                }
+                if row.is_upsell:
+                    item["upsell"] = True
+                rows.append(item)
+            return rows
+        return list(self.items or [])
