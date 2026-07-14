@@ -86,3 +86,7 @@ CREATE INDEX IF NOT EXISTS ix_tracking_events_order_number ON tracking_events (o
 INSERT INTO alembic_version (version_num)
 VALUES ('0002_order_items_tracking')
 ON CONFLICT (version_num) DO NOTHING;
+
+-- Alembic allows only ONE current revision. Remove older heads if present.
+DELETE FROM alembic_version WHERE version_num <> '0002_order_items_tracking';
+

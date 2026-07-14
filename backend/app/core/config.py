@@ -1,33 +1,28 @@
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Annotated
 
 from pydantic import field_validator
-from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from app.core.database_url import normalize_database_url
 from app.services.phone import normalize_ksa
 
 
-def _split_csv(v: object) -> object:
-    """Accept comma-separated env strings or already-parsed lists."""
-    if isinstance(v, str):
-        s = v.strip()
-        if not s:
-            return []
-        # JSON array form: ["a","b"]
-        if s.startswith("["):
-            import json
+def _csv_to_list(value: str) -> list[str]:
+    s = (value or "").strip()
+    if not s:
+        return []
+    if s.startswith("["):
+        import json
 
-            try:
-                parsed = json.loads(s)
-                if isinstance(parsed, list):
-                    return [str(x).strip() for x in parsed if str(x).strip()]
-            except json.JSONDecodeError:
-                pass
-        return [p.strip() for p in s.split(",") if p.strip()]
-    return v
+        try:
+            parsed = json.loads(s)
+            if isinstance(parsed, list):
+                return [str(x).strip() for x in parsed if str(x).strip()]
+        except json.JSONDecodeError:
+            pass
+    return [p.strip() for p in s.split(",") if p.strip()]
 
 
 class Settings(BaseSettings):
@@ -36,7 +31,6 @@ class Settings(BaseSettings):
     ENV: str = "production"
 
     # Database — accepts EasyPanel postgres:// or postgresql+psycopg://
-    # EasyPanel internal: postgres://lamsaglow:PASS@lamsaglow_database:5432/lamsaglow?sslmode=disable
     DATABASE_URL: str = "postgresql+psycopg://lamsaglow:devpassword@localhost:5432/lamsaglow"
 
     @field_validator("DATABASE_URL", mode="before")
@@ -46,60 +40,46 @@ class Settings(BaseSettings):
             return normalize_database_url(v)
         return v
 
-    # CORS — comma separated list of allowed origins
-    # NoDecode: pydantic-settings must NOT JSON-decode before our CSV splitter
-    CORS_ORIGINS: Annotated[list[str], NoDecode] = [
-        "https://lamsaglow.shop",
-        "https://www.lamsaglow.shop",
-    ]
+    # Keep as str so EasyPanel comma-separated values never hit JSON list decoding
+    CORS_ORIGINS: str = "https://lamsaglow.shop,https://www.lamsaglow.shop"
 
-    # Admin token for internal endpoints
     ADMIN_TOKEN: str = "change-me"
 
-    # Google Sheet webhook (Apps Script Web App)
     GOOGLE_SHEET_WEBHOOK_URL: str | None = None
     SHEET_SHARED_SECRET: str | None = None
 
-    # CAPI master switch
     ENABLE_CAPI: bool = True
 
-    # Meta Conversions API
     META_PIXEL_ID: str | None = None
     META_CAPI_TOKEN: str | None = None
     META_TEST_EVENT_CODE: str | None = None
     META_API_VERSION: str = "v21.0"
 
-    # TikTok Events API
     TIKTOK_PIXEL_ID: str | None = None
     TIKTOK_CAPI_TOKEN: str | None = None
     TIKTOK_TEST_EVENT_CODE: str | None = None
 
-    # Snapchat Conversions API
     SNAP_PIXEL_ID: str | None = None
     SNAP_CAPI_TOKEN: str | None = None
 
-    # MaxMind GeoIP2 Insights — order fraud/geo gate (KSA only, block VPN/proxy)
     MAXMIND_ORDER_CHECK_ENABLED: bool = True
     MAXMIND_ACCOUNT_ID: str | None = None
     MAXMIND_LICENSE_KEY: str | None = None
 
-    # Comma-separated KSA phones that bypass geo check (for prod testing)
-    ORDER_WHITELIST_PHONES: Annotated[list[str], NoDecode] = ["0550000000"]
+    ORDER_WHITELIST_PHONES: str = "0550000000"
 
-    @field_validator("CORS_ORIGINS", mode="before")
-    @classmethod
-    def _split_origins(cls, v: object) -> object:
-        return _split_csv(v)
+    @property
+    def cors_origins_list(self) -> list[str]:
+        return _csv_to_list(self.CORS_ORIGINS)
 
-    @field_validator("ORDER_WHITELIST_PHONES", mode="before")
-    @classmethod
-    def _split_whitelist(cls, v: object) -> object:
-        return _split_csv(v)
+    @property
+    def whitelist_phones_list(self) -> list[str]:
+        return _csv_to_list(self.ORDER_WHITELIST_PHONES)
 
     @property
     def whitelist_phones_normalized(self) -> set[str]:
         out: set[str] = set()
-        for raw in self.ORDER_WHITELIST_PHONES:
+        for raw in self.whitelist_phones_list:
             n = normalize_ksa(raw)
             if n:
                 out.add(n)

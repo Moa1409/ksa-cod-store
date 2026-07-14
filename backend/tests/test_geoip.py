@@ -18,7 +18,7 @@ def _geo_settings(monkeypatch):
     monkeypatch.setattr(settings, "MAXMIND_ACCOUNT_ID", "123456")
     monkeypatch.setattr(settings, "MAXMIND_LICENSE_KEY", "test_license")
     monkeypatch.setattr(settings, "ENV", "production")
-    monkeypatch.setattr(settings, "ORDER_WHITELIST_PHONES", ["0550000000"])
+    monkeypatch.setattr(settings, "ORDER_WHITELIST_PHONES", "0550000000")
 
 
 def test_whitelist_phone():

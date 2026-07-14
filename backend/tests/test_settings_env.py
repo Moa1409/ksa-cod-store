@@ -17,7 +17,7 @@ def test_cors_origins_comma_separated(monkeypatch):
         "postgres://u:p@localhost:5432/db?sslmode=disable",
     )
     s = Settings()
-    assert s.CORS_ORIGINS == [
+    assert s.cors_origins_list == [
         "https://lamsaglow.shop",
         "https://www.lamsaglow.shop",
     ]
@@ -30,4 +30,5 @@ def test_whitelist_phones_plain_string(monkeypatch):
         "postgres://u:p@localhost:5432/db?sslmode=disable",
     )
     s = Settings()
-    assert "0550000000" in s.ORDER_WHITELIST_PHONES or "966550000000" in s.whitelist_phones_normalized
+    assert "0550000000" in s.whitelist_phones_list
+    assert s.whitelist_phones_normalized
