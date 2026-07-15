@@ -65,6 +65,8 @@ class Settings(BaseSettings):
     MAXMIND_ORDER_CHECK_ENABLED: bool = True
     MAXMIND_ACCOUNT_ID: str | None = None
     MAXMIND_LICENSE_KEY: str | None = None
+    MAXMIND_REQUIRE_KSA: bool = True
+    MAXMIND_BLOCK_VPN_PROXY: bool = True
 
     ORDER_WHITELIST_PHONES: str = "0550000000"
 

@@ -15,6 +15,17 @@ log = logging.getLogger(__name__)
 
 MAXMIND_INSIGHTS_URL = "https://geoip.maxmind.com/geoip/v2.1/insights/{ip}"
 
+# MaxMind GeoIP2 Insights trait keys — VPN, proxy, Tor, hosting, etc.
+VPN_PROXY_TRAITS: tuple[tuple[str, str], ...] = (
+    ("is_anonymous_vpn", "anonymous_vpn"),
+    ("is_public_proxy", "public_proxy"),
+    ("is_residential_proxy", "residential_proxy"),
+    ("is_tor_exit_node", "tor_exit"),
+    ("is_anonymous", "anonymous"),
+    ("is_hosting_provider", "hosting"),
+    ("is_satellite_provider", "satellite"),
+)
+
 
 @dataclass(frozen=True)
 class GeoCheckResult:
@@ -22,14 +33,15 @@ class GeoCheckResult:
     reason: str | None = None
     country: str | None = None
     blocked_vpn: bool = False
+    trait: str | None = None
 
 
-def _normalize_whitelist_entry(raw: str) -> str | None:
-    return normalize_ksa(raw.strip())
+def maxmind_configured() -> bool:
+    return bool(settings.MAXMIND_ACCOUNT_ID and settings.MAXMIND_LICENSE_KEY)
 
 
 def is_whitelisted_phone(phone_normalized: str) -> bool:
-    """phone_normalized is canonical 9665XXXXXXXX."""
+    """Test phones skip geo / VPN checks (e.g. 0550000000)."""
     return phone_normalized in settings.whitelist_phones_normalized
 
 
@@ -41,29 +53,24 @@ def _is_private_ip(ip: str) -> bool:
         return True
 
 
-def _maxmind_configured() -> bool:
-    return bool(settings.MAXMIND_ACCOUNT_ID and settings.MAXMIND_LICENSE_KEY)
-
-
 def _auth_header() -> str:
     creds = f"{settings.MAXMIND_ACCOUNT_ID}:{settings.MAXMIND_LICENSE_KEY}".encode()
     return "Basic " + base64.b64encode(creds).decode()
 
 
-def _traits_flagged(traits: dict) -> tuple[bool, bool]:
-    """Return (is_suspicious, is_vpn_like)."""
-    vpn_like = any(
-        traits.get(k)
-        for k in (
-            "is_anonymous_vpn",
-            "is_anonymous",
-            "is_public_proxy",
-            "is_tor_exit_node",
-            "is_residential_proxy",
-        )
-    )
-    suspicious = vpn_like or bool(traits.get("is_hosting_provider"))
-    return suspicious, vpn_like
+def _flagged_trait(traits: dict) -> tuple[str | None, bool]:
+    """Return (trait_name, is_vpn_like). VPN/proxy traits vs hosting-only."""
+    vpn_keys = {
+        "is_anonymous_vpn",
+        "is_public_proxy",
+        "is_residential_proxy",
+        "is_tor_exit_node",
+        "is_anonymous",
+    }
+    for key, label in VPN_PROXY_TRAITS:
+        if traits.get(key):
+            return label, key in vpn_keys
+    return None, False
 
 
 @retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=0.4, max=2))
@@ -80,7 +87,7 @@ def _fetch_insights(ip: str) -> dict:
 
 
 def check_order_ip(ip: str | None) -> GeoCheckResult:
-    """Validate order IP: KSA only, block VPN/proxy/hosting."""
+    """Validate order IP via MaxMind Insights: KSA only, block VPN/proxy/hosting."""
     if not settings.MAXMIND_ORDER_CHECK_ENABLED:
         return GeoCheckResult(allowed=True, reason="disabled")
 
@@ -93,8 +100,8 @@ def check_order_ip(ip: str | None) -> GeoCheckResult:
         log.info("geoip: allowing private IP %s in non-prod", ip)
         return GeoCheckResult(allowed=True, reason="private_dev")
 
-    if not _maxmind_configured():
-        log.warning("geoip: MaxMind credentials missing")
+    if not maxmind_configured():
+        log.warning("geoip: MaxMind credentials missing — set MAXMIND_ACCOUNT_ID and MAXMIND_LICENSE_KEY")
         if settings.is_prod:
             return GeoCheckResult(allowed=False, reason="geoip_unconfigured")
         return GeoCheckResult(allowed=True, reason="geoip_skipped_dev")
@@ -112,17 +119,25 @@ def check_order_ip(ip: str | None) -> GeoCheckResult:
 
     country = (data.get("country") or {}).get("iso_code")
     traits = data.get("traits") or {}
-    suspicious, vpn_like = _traits_flagged(traits)
+    trait, vpn_like = _flagged_trait(traits)
 
-    if country != "SA":
+    if settings.MAXMIND_REQUIRE_KSA and country != "SA":
         return GeoCheckResult(allowed=False, reason="not_ksa", country=country)
 
-    if suspicious:
+    if settings.MAXMIND_BLOCK_VPN_PROXY and trait:
+        log.warning(
+            "geoip blocked ip=%s country=%s trait=%s vpn_like=%s",
+            ip,
+            country,
+            trait,
+            vpn_like,
+        )
         return GeoCheckResult(
             allowed=False,
             reason="vpn_or_proxy" if vpn_like else "suspicious_ip",
             country=country,
             blocked_vpn=vpn_like,
+            trait=trait,
         )
 
     return GeoCheckResult(allowed=True, country=country)
@@ -132,7 +147,7 @@ def geo_block_message(result: GeoCheckResult) -> str:
     if result.reason == "not_ksa":
         return "الطلب متاح داخل السعودية فقط."
     if result.reason in {"vpn_or_proxy", "suspicious_ip", "ip_unknown", "private_ip"}:
-        return "تعذّر إتمام الطلب من هذا الاتصال. جرّبي شبكة مختلفة أو تواصلي معنا."
+        return "تعذّر إتمام الطلب من هذا الاتصال. أوقفي VPN أو البروكسي وحاولي مرة أخرى."
     if result.reason in {"geoip_unavailable", "geoip_unconfigured"}:
         return "تعذّر التحقق من الطلب حاليًا. حاولي بعد قليل."
     if result.reason == "missing_ip":

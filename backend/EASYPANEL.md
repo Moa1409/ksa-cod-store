@@ -20,6 +20,17 @@ DATABASE_URL=postgres://lamsaglow:YOUR_PASSWORD@lamsaglow_database:5432/lamsaglo
 CORS_ORIGINS=https://lamsaglow.shop,https://www.lamsaglow.shop
 ADMIN_TOKEN=your-long-random-token
 WEB_CONCURRENCY=1
+
+# MaxMind — block VPN/proxy and non-Saudi orders (GeoIP2 Insights required)
+MAXMIND_ORDER_CHECK_ENABLED=true
+MAXMIND_ACCOUNT_ID=your_account_id
+MAXMIND_LICENSE_KEY=your_license_key
+MAXMIND_REQUIRE_KSA=true
+MAXMIND_BLOCK_VPN_PROXY=true
+
+# Test phone bypasses geo/VPN check (0550000000 only)
+ORDER_WHITELIST_PHONES=0550000000
+TEST_ORDER_PHONES=0550000000
 ```
 
 Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection string** (internal). Paste as-is.
@@ -79,5 +90,7 @@ Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection st
 ## Health check
 `GET https://api.lamsaglow.shop/health` should return:
 ```json
-{"status":"ok","db":"ok","tables":4,"migrations_ok":true}
+{"status":"ok","db":"ok","tables":4,"migrations_ok":true,"geo_check":true,"maxmind":"configured","block_vpn_proxy":true,"require_ksa":true}
 ```
+
+If `"maxmind":"missing"`, add `MAXMIND_ACCOUNT_ID` and `MAXMIND_LICENSE_KEY` in EasyPanel env and redeploy.

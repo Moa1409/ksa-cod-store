@@ -92,9 +92,21 @@ def test_private_ip_blocked_in_prod():
     assert result.allowed is False
 
 
+def test_blocks_public_proxy():
+    payload = {
+        "country": {"iso_code": "SA"},
+        "traits": {"is_public_proxy": True},
+    }
+    with patch("app.services.geoip._fetch_insights", return_value=payload):
+        result = check_order_ip("1.2.3.4")
+    assert result.allowed is False
+    assert result.reason == "vpn_or_proxy"
+    assert result.trait == "public_proxy"
+
+
 def test_geo_block_messages():
     assert "السعودية" in geo_block_message(GeoCheckResult(False, "not_ksa"))
-    assert "شبكة مختلفة" in geo_block_message(GeoCheckResult(False, "vpn_or_proxy"))
+    assert "VPN" in geo_block_message(GeoCheckResult(False, "vpn_or_proxy"))
 
 
 def test_api_failure_blocked_in_prod():

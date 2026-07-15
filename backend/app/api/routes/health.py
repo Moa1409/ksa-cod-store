@@ -5,6 +5,8 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
+from app.core.config import settings
+from app.services.geoip import maxmind_configured
 
 router = APIRouter()
 
@@ -34,4 +36,8 @@ def health(db: Session = Depends(get_db)) -> dict:
         "db": db_ok,
         "tables": tables,
         "migrations_ok": tables >= 4,
+        "geo_check": settings.MAXMIND_ORDER_CHECK_ENABLED,
+        "maxmind": "configured" if maxmind_configured() else "missing",
+        "block_vpn_proxy": settings.MAXMIND_BLOCK_VPN_PROXY,
+        "require_ksa": settings.MAXMIND_REQUIRE_KSA,
     }
