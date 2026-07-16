@@ -93,4 +93,25 @@ Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection st
 {"status":"ok","db":"ok","tables":4,"migrations_ok":true,"geo_check":true,"maxmind":"configured","block_vpn_proxy":true,"require_ksa":true}
 ```
 
+## Google Sheet orders webhook
+
+1. Open your Google Sheet → **Extensions → Apps Script**
+2. Paste `docs/assets/google-apps-script.gs` from the repo (or monorepo `docs/assets/`)
+3. Set `SHARED_SECRET` in the script = same value as backend `SHEET_SHARED_SECRET`
+4. **Deploy → New deployment → Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+5. Copy the **`/exec` URL** and set on EasyPanel backend:
+   ```
+   GOOGLE_SHEET_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+   SHEET_SHARED_SECRET=your-shared-secret
+   ```
+6. Redeploy backend after saving env vars.
+
+### Sheet columns (one row per order)
+`date, order, country, name, phone, product, sku, quantity, totalprice, currency, status`
+
+Example row:
+`16/07/2026, lamsa-20260716-a1b2, KSA, Sara, 966501234567, لمسة إيرغلو/لمسة سيلك برو, LAM-AG-7842/LAM-SP-9156, 1/1, 649, SAR, (empty)`
+
 If `"maxmind":"missing"`, add `MAXMIND_ACCOUNT_ID` and `MAXMIND_LICENSE_KEY` in EasyPanel env and redeploy.

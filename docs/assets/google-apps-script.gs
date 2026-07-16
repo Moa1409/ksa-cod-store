@@ -1,27 +1,37 @@
 /**
  * Lamsa Glow — Orders webhook (Google Apps Script Web App)
  * ---------------------------------------------------------
- * Receives orders from the FastAPI backend and appends one row per order
- * to the "Orders" sheet.
+ * Receives orders from the FastAPI backend and appends one row per order.
+ *
+ * Sheet columns (must match backend build_sheet_payload):
+ *   date, order, country, name, phone, product, sku, quantity, totalprice, currency, status
  *
  * SETUP
- * 1) Create a Google Sheet named "Lamsa Glow — Orders" with a tab "Orders".
+ * 1) Create a Google Sheet with a tab named "Orders" (or change SHEET_NAME).
  * 2) Extensions -> Apps Script -> paste this file.
- * 3) Set SHARED_SECRET below to the SAME value as backend env SHEET_SHARED_SECRET.
- * 4) Deploy -> New deployment -> Web app -> Execute as: Me,
- *    Who has access: Anyone -> copy the /exec URL.
- * 5) Put that URL in backend env GOOGLE_SHEET_WEBHOOK_URL.
- * 6) (Optional) Run setupHeader() once to write the header row.
+ * 3) Set SHARED_SECRET below = backend env SHEET_SHARED_SECRET.
+ * 4) Deploy -> New deployment -> Web app
+ *      Execute as: Me
+ *      Who has access: Anyone
+ *    Copy the /exec URL -> backend GOOGLE_SHEET_WEBHOOK_URL on EasyPanel.
+ * 5) (Optional) Run setupHeader() once to write the header row.
  */
 
-var SHARED_SECRET = 'CHANGE_ME_MATCHES_BACKEND'; // must equal backend SHEET_SHARED_SECRET
+var SHARED_SECRET = 'CHANGE_ME_MATCHES_BACKEND'; // = backend SHEET_SHARED_SECRET
 var SHEET_NAME = 'Orders';
 
 var HEADERS = [
-  'timestamp', 'order_number', 'status', 'customer_name', 'phone', 'phone_e164',
-  'items_summary', 'items_json', 'num_items', 'bundle_subtotal',
-  'upsell_taken', 'upsell_slug', 'upsell_price', 'total', 'currency',
-  'city', 'event_id', 'utm_source', 'utm_campaign', 'landing_url', 'notes'
+  'date',
+  'order',
+  'country',
+  'name',
+  'phone',
+  'product',
+  'sku',
+  'quantity',
+  'totalprice',
+  'currency',
+  'status'
 ];
 
 function getSheet_() {
@@ -57,38 +67,31 @@ function doPost(e) {
     var o = body.order || {};
     var sh = getSheet_();
 
-    // Idempotency: skip if this order_number already exists.
-    if (o.order_number) {
-      var existing = sh.getRange(2, 2, Math.max(sh.getLastRow() - 1, 1), 1).getValues();
-      for (var i = 0; i < existing.length; i++) {
-        if (existing[i][0] === o.order_number) {
-          return json_({ ok: true, duplicate: true });
+    // Idempotency: skip if this order id already exists (column B).
+    if (o.order) {
+      var lastRow = sh.getLastRow();
+      if (lastRow > 1) {
+        var existing = sh.getRange(2, 2, lastRow - 1, 1).getValues();
+        for (var i = 0; i < existing.length; i++) {
+          if (existing[i][0] === o.order) {
+            return json_({ ok: true, duplicate: true });
+          }
         }
       }
     }
 
     var row = [
-      o.timestamp || new Date().toISOString(),
-      o.order_number || '',
-      o.status || 'new',
-      o.customer_name || '',
+      o.date || '',
+      o.order || '',
+      o.country || 'KSA',
+      o.name || '',
       o.phone || '',
-      o.phone_e164 || '',
-      o.items_summary || '',
-      o.items_json || '',
-      o.num_items || 0,
-      o.bundle_subtotal || 0,
-      o.upsell_taken ? 'yes' : 'no',
-      o.upsell_slug || '',
-      o.upsell_price || '',
-      o.total || 0,
+      o.product || '',
+      o.sku || '',
+      o.quantity || '',
+      o.totalprice || 0,
       o.currency || 'SAR',
-      o.city || '',
-      o.event_id || '',
-      o.utm_source || '',
-      o.utm_campaign || '',
-      o.landing_url || '',
-      o.notes || ''
+      o.status || ''
     ];
 
     sh.appendRow(row);
@@ -99,8 +102,7 @@ function doPost(e) {
 }
 
 function doGet() {
-  // Health check for the web app URL.
-  return json_({ ok: true, service: 'lamsa-glow-orders' });
+  return json_({ ok: true, service: 'lamsa-glow-orders', columns: HEADERS });
 }
 
 function json_(obj) {

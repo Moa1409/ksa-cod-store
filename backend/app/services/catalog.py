@@ -17,9 +17,9 @@ UPSELL_PRICE = 199.0
 CURRENCY = "SAR"
 
 CATALOG: dict[str, dict] = {
-    "air-glow": {"slug": "air-glow", "name": "لمسة إيرغلو"},
-    "silk-pro": {"slug": "silk-pro", "name": "لمسة سيلك برو"},
-    "glow-lift": {"slug": "glow-lift", "name": "لمسة غلو ليفت"},
+    "air-glow": {"slug": "air-glow", "name": "لمسة إيرغلو", "sku": "LAM-AG-7842"},
+    "silk-pro": {"slug": "silk-pro", "name": "لمسة سيلك برو", "sku": "LAM-SP-9156"},
+    "glow-lift": {"slug": "glow-lift", "name": "لمسة غلو ليفت", "sku": "LAM-GL-3021"},
 }
 
 
@@ -35,6 +35,10 @@ def is_valid_slug(slug: str) -> bool:
 
 def product_name(slug: str) -> str:
     return CATALOG.get(slug, {}).get("name", slug)
+
+
+def product_sku(slug: str) -> str:
+    return CATALOG.get(slug, {}).get("sku", slug)
 
 
 def product_price(slug: str) -> float:

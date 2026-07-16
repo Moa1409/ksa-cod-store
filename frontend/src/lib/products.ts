@@ -20,6 +20,7 @@ export type Expert = { name: string; title: string; quote: string };
 
 export type Product = {
   slug: string;
+  sku: string;
   name: string;
   nameEn: string;
   heading: string;
@@ -52,6 +53,7 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "air-glow",
+    sku: "LAM-AG-7842",
     name: "لمسة إيرغلو",
     nameEn: "Lamsa AirGlow",
     heading: "صالونكِ في ٥ دقائق",
@@ -161,6 +163,7 @@ export const products: Product[] = [
   },
   {
     slug: "silk-pro",
+    sku: "LAM-SP-9156",
     name: "لمسة سيلك برو",
     nameEn: "Lamsa SilkPro",
     heading: "بشرة ناعمة كالحرير بخصوصية تامة",
@@ -258,6 +261,7 @@ export const products: Product[] = [
   },
   {
     slug: "glow-lift",
+    sku: "LAM-GL-3021",
     name: "لمسة غلو ليفت",
     nameEn: "Lamsa GlowLift",
     heading: "إشراقة وحيوية كل يوم",

@@ -1,50 +1,62 @@
 from __future__ import annotations
 
-import json
 import logging
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from app.core.config import settings
 from app.models.order import Order
-from app.services.catalog import product_name
+from app.services.catalog import product_name, product_sku
 
 log = logging.getLogger(__name__)
 
+SHEET_COUNTRY = "KSA"
+RIYADH = ZoneInfo("Asia/Riyadh")
 
-def _items_summary(items: list[dict]) -> str:
-    parts = [f"{product_name(i['slug'])} \u00d7{i['qty']}" for i in items]
-    return " \u060c ".join(parts)
+
+def format_sheet_date(dt: datetime | None) -> str:
+    """DD/MM/YYYY in Saudi Arabia local time."""
+    if dt is None:
+        dt = datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(RIYADH).strftime("%d/%m/%Y")
+
+
+def _sheet_line_groups(items: list[dict]) -> tuple[str, str, str]:
+    """product / sku / quantity columns — slash-separated per line item."""
+    names: list[str] = []
+    skus: list[str] = []
+    qtys: list[str] = []
+    for item in items:
+        slug = str(item.get("slug") or "")
+        names.append(str(item.get("name") or product_name(slug)))
+        skus.append(product_sku(slug))
+        qtys.append(str(int(item.get("qty") or 0)))
+    return "/".join(names), "/".join(skus), "/".join(qtys)
 
 
 def build_sheet_payload(order: Order) -> dict:
-    utm = order.utm or {}
+    """Payload for Google Apps Script — matches Orders sheet columns."""
     line_items = order.items_as_dicts()
+    product, sku, quantity = _sheet_line_groups(line_items)
     return {
         "secret": settings.SHEET_SHARED_SECRET,
         "order": {
-            "timestamp": order.created_at.isoformat() if order.created_at else "",
-            "order_number": order.order_number,
-            "status": order.status,
-            "customer_name": order.customer_name,
+            "date": format_sheet_date(order.created_at),
+            "order": order.order_number,
+            "country": SHEET_COUNTRY,
+            "name": order.customer_name.strip(),
             "phone": order.phone,
-            "phone_e164": order.phone_e164,
-            "items_summary": _items_summary(line_items),
-            "items_json": json.dumps(line_items, ensure_ascii=False),
-            "num_items": order.num_items,
-            "bundle_subtotal": float(order.bundle_subtotal),
-            "upsell_taken": bool(order.upsell_taken),
-            "upsell_slug": order.upsell_slug or "",
-            "upsell_price": float(order.upsell_price) if order.upsell_price else "",
-            "total": float(order.total),
-            "currency": order.currency,
-            "city": order.city or "",
-            "event_id": order.event_id or "",
-            "utm_source": utm.get("source", ""),
-            "utm_campaign": utm.get("campaign", ""),
-            "landing_url": order.landing_url or "",
-            "notes": order.notes or "",
+            "product": product,
+            "sku": sku,
+            "quantity": quantity,
+            "totalprice": float(order.total),
+            "currency": order.currency or "SAR",
+            "status": "",
         },
     }
 

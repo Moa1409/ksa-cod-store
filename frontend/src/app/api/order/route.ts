@@ -18,7 +18,7 @@ function mockOrder(body: { items?: Item[]; upsell?: { price?: number } }) {
   const total = cartSubtotal(lines) + upsell;
   const rand = Math.random().toString(36).slice(2, 7).toUpperCase();
   return {
-    order_number: `MOCK-${Date.now().toString(36).toUpperCase().slice(-6)}${rand}`,
+    order_number: `lamsa-${Date.now().toString(36).toLowerCase().slice(-6)}${rand.toLowerCase()}`,
     total,
     currency: CURRENCY,
     mock: true,
