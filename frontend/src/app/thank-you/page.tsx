@@ -7,7 +7,7 @@ import { CrossSell } from "@/components/CrossSell";
 import { GuaranteeBand } from "@/components/GuaranteeBand";
 import { SectionHeading } from "@/components/SectionHeading";
 import { products } from "@/lib/products";
-import { BASE_PRICE } from "@/lib/pricing";
+import { allocatedLineTotals, orderTotal } from "@/lib/pricing";
 import { readLastOrder, type LastOrder } from "@/lib/order";
 import { formatSar } from "@/lib/utils";
 
@@ -22,6 +22,12 @@ export default function ThankYouPage() {
 
   const inOrder = new Set(order?.items.map((i) => i.slug) ?? []);
   const crossSlugs = products.filter((p) => !inOrder.has(p.slug)).map((p) => p.slug);
+
+  const orderLines = order?.items.map((i) => ({ slug: i.slug, qty: i.qty })) ?? [];
+  const lineTotals = order ? allocatedLineTotals(orderLines) : [];
+  const displayTotal = order
+    ? orderTotal(orderLines, order.upsell?.price ?? 0)
+    : 0;
 
   return (
     <>
@@ -66,10 +72,10 @@ export default function ThankYouPage() {
             <div className="mt-5 rounded-2xl border border-brand-rose/50 bg-white p-4 text-start">
               <div className="mb-2 font-bold text-brand-plum">ملخّص الطلب</div>
               <ul className="space-y-1.5 text-sm">
-                {order.items.map((it) => (
+                {order.items.map((it, idx) => (
                   <li key={it.slug} className="flex justify-between text-brand-ink/90">
                     <span>{it.name} ×{it.qty}</span>
-                    <span>{formatSar(BASE_PRICE)}</span>
+                    <span>{formatSar(lineTotals[idx] ?? 0)}</span>
                   </li>
                 ))}
                 {order.upsell ? (
@@ -81,7 +87,7 @@ export default function ThankYouPage() {
               </ul>
               <div className="mt-2 flex justify-between border-t border-brand-rose/40 pt-2 text-base font-extrabold text-brand-plum">
                 <span>الإجمالي</span>
-                <span>{formatSar(order.total)}</span>
+                <span>{formatSar(displayTotal)}</span>
               </div>
             </div>
           ) : loaded ? (

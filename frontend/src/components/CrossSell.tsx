@@ -6,7 +6,6 @@ import { Media } from "@/components/Media";
 import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/context/CartContext";
 import { getProduct, type Product } from "@/lib/products";
-import { BASE_PRICE } from "@/lib/pricing";
 import { track } from "@/lib/tracking";
 import { formatSar } from "@/lib/utils";
 
@@ -26,9 +25,9 @@ export function CrossSell({
   function add(p: Product) {
     addItem({ slug: p.slug, name: p.name, emoji: p.emoji }, 1);
     track("AddToCart", {
-      value: BASE_PRICE,
+      value: p.price,
       num_items: 1,
-      contents: [{ id: p.slug, quantity: 1, price: BASE_PRICE, name: p.name }],
+      contents: [{ id: p.slug, quantity: 1, price: p.price, name: p.name }],
     });
   }
 
@@ -42,7 +41,7 @@ export function CrossSell({
               <Media label={p.gallery[0]} emoji={p.emoji} aspect="square" className="h-14 w-14 shrink-0 rounded-xl" />
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm font-bold text-brand-plum">{p.name}</div>
-                <div className="text-xs text-ui-muted">{formatSar(BASE_PRICE)}</div>
+                <div className="text-xs text-ui-muted">{formatSar(p.price)}</div>
               </div>
               <button
                 type="button"
@@ -71,7 +70,7 @@ export function CrossSell({
               {p.name}
             </Link>
             <StarRating value={p.rating} size={12} />
-            <div className="mt-1 font-extrabold text-brand-plum">{formatSar(BASE_PRICE)}</div>
+            <div className="mt-1 font-extrabold text-brand-plum">{formatSar(p.price)}</div>
           </div>
           <button type="button" onClick={() => add(p)} className="btn-secondary shrink-0 px-4 py-2 text-sm">
             <Plus className="h-4 w-4" /> أضيفي

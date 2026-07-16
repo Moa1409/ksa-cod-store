@@ -1,20 +1,55 @@
-from app.services.catalog import bundle_total, unit_price_for
+from app.services.catalog import (
+    BUNDLE_2,
+    BUNDLE_3,
+    CartLine,
+    allocate_unit_prices,
+    bundle_total,
+    cart_subtotal,
+    product_price,
+    unit_price_for,
+)
 from app.services.hashing import hash_phone_meta_snap, hash_phone_tiktok
 from app.services.phone import is_valid_ksa, normalize_ksa, to_e164
 
 
 def test_bundle_tiers():
     assert bundle_total(0) == 0
-    assert bundle_total(1) == 199
-    assert bundle_total(2) == 279
-    assert bundle_total(3) == 349
-    assert bundle_total(4) == 349 + 199
-    assert bundle_total(5) == 349 + 199 * 2
+    assert bundle_total(1) == 379
+    assert bundle_total(2) == BUNDLE_2
+    assert bundle_total(3) == BUNDLE_3
+    assert bundle_total(4) == BUNDLE_3 + 379
+    assert bundle_total(5) == BUNDLE_3 + 379 * 2
 
 
 def test_unit_price():
-    assert unit_price_for(2) == 139.5
-    assert unit_price_for(3) == round(349 / 3, 2)
+    assert unit_price_for(2) == round(BUNDLE_2 / 2, 2)
+    assert unit_price_for(3) == round(BUNDLE_3 / 3, 2)
+
+
+def test_cart_subtotal_mixed():
+    lines = [
+        CartLine(slug="air-glow", qty=1),
+        CartLine(slug="silk-pro", qty=1),
+    ]
+    assert cart_subtotal(lines) == BUNDLE_2
+
+
+def test_cart_subtotal_single_product():
+    lines = [CartLine(slug="silk-pro", qty=1)]
+    assert cart_subtotal(lines) == 399
+
+
+def test_allocate_unit_prices():
+    lines = [CartLine(slug="air-glow", qty=2)]
+    prices = allocate_unit_prices(lines, BUNDLE_2)
+    assert prices == [324.5]
+    assert prices[0] * 2 == BUNDLE_2
+
+
+def test_product_prices():
+    assert product_price("air-glow") == 379
+    assert product_price("silk-pro") == 399
+    assert product_price("glow-lift") == 379
 
 
 def test_phone_normalize_valid():

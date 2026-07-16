@@ -29,7 +29,7 @@ class OrderIn(BaseModel):
     items: list[OrderItemIn]
     upsell: UpsellIn | None = None
     event_id: str | None = None
-    city: str | None = None
+    city: str | None = Field(default=None, min_length=2, max_length=80)
     attribution: AttributionIn | None = None
 
     @field_validator("items")

@@ -153,6 +153,10 @@ def create_order(
         log.warning("order blocked by phone legitimacy phone=%s", mask_phone(phone))
         raise HTTPException(status_code=422, detail=phone_rejection_message())
 
+    city = (payload.city or "").strip() or None
+    if not city:
+        raise HTTPException(status_code=422, detail="من فضلكِ اختاري المدينة")
+
     # 2) validate slugs
     for it in payload.items:
         if not catalog.is_valid_slug(it.slug):
@@ -169,17 +173,18 @@ def create_order(
             )
 
     # 4) re-price server-side (ignore any client totals)
-    num_items = sum(it.qty for it in payload.items)
-    bundle_subtotal = catalog.bundle_total(num_items)
-    unit = catalog.unit_price_for(num_items)
+    lines = [catalog.CartLine(slug=it.slug, qty=it.qty) for it in payload.items]
+    num_items = sum(line.qty for line in lines)
+    bundle_subtotal = catalog.cart_subtotal(lines)
+    unit_prices = catalog.allocate_unit_prices(lines, bundle_subtotal)
     items = [
         {
-            "slug": it.slug,
-            "name": catalog.product_name(it.slug),
-            "qty": it.qty,
-            "unit_price": unit,
+            "slug": line.slug,
+            "name": catalog.product_name(line.slug),
+            "qty": line.qty,
+            "unit_price": unit_prices[idx],
         }
-        for it in payload.items
+        for idx, line in enumerate(lines)
     ]
 
     upsell_taken = False
@@ -187,9 +192,11 @@ def create_order(
     upsell_price = None
     total = bundle_subtotal
     if payload.upsell is not None:
-        # only the fixed 99 upsell is allowed, and only for a product not in cart
-        if payload.upsell.slug not in {i["slug"] for i in items} and catalog.is_valid_slug(
-            payload.upsell.slug
+        # 199 upsell: only when cart has exactly 2 devices (3rd device offer)
+        if (
+            num_items == 2
+            and payload.upsell.slug not in {i["slug"] for i in items}
+            and catalog.is_valid_slug(payload.upsell.slug)
         ):
             upsell_taken = True
             upsell_slug = payload.upsell.slug
@@ -215,7 +222,7 @@ def create_order(
             customer_name=payload.customer_name.strip(),
             phone=phone,
             phone_e164=phone_e164,
-            city=payload.city,
+            city=city,
             items=items,
             num_items=num_items + (1 if upsell_taken else 0),
             bundle_subtotal=bundle_subtotal,

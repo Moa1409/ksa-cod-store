@@ -5,7 +5,7 @@ import { BadgePercent, Banknote, Minus, Plus, ShieldCheck, ShoppingBag, Trash2, 
 import { CrossSell } from "@/components/CrossSell";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/lib/products";
-import { BASE_PRICE, bundleTotal } from "@/lib/pricing";
+import { allocatedLineTotals, BASE_PRICE, marginalPriceForNextUnit, productPrice } from "@/lib/pricing";
 import { track } from "@/lib/tracking";
 import { formatSar } from "@/lib/utils";
 
@@ -32,13 +32,20 @@ export function CartDrawer() {
 
   const inCart = new Set(items.map((i) => i.slug));
   const crossSlugs = products.filter((p) => !inCart.has(p.slug)).map((p) => p.slug);
-  const nextUnitPrice = count > 0 ? bundleTotal(count + 1) - bundleTotal(count) : BASE_PRICE;
+  const cartLines = items.map((i) => ({ slug: i.slug, qty: i.qty }));
+  const lineTotals = allocatedLineTotals(cartLines, subtotal);
+  const nextUnitPrice = count > 0 ? marginalPriceForNextUnit(cartLines) : BASE_PRICE;
 
   function goCheckout() {
     track("InitiateCheckout", {
       value: subtotal,
       num_items: count,
-      contents: items.map((i) => ({ id: i.slug, quantity: i.qty, price: BASE_PRICE, name: i.name })),
+      contents: items.map((i) => ({
+        id: i.slug,
+        quantity: i.qty,
+        price: productPrice(i.slug),
+        name: i.name,
+      })),
     });
     openCheckout();
   }
@@ -78,14 +85,14 @@ export function CartDrawer() {
           ) : (
             <>
               <div className="space-y-3">
-                {items.map((it) => (
+                {items.map((it, idx) => (
                   <div key={it.slug} className="flex items-center gap-3 rounded-2xl border border-brand-rose/50 bg-white p-3">
                     <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand-rose/30 text-2xl">
                       {it.emoji}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="truncate font-bold text-brand-plum">{it.name}</div>
-                      <div className="text-xs text-ui-muted">{formatSar(BASE_PRICE)} / القطعة</div>
+                      <div className="text-xs font-semibold text-brand-plum">{formatSar(lineTotals[idx] ?? 0)}</div>
                       <div className="mt-1 flex items-center gap-2">
                         <button onClick={() => setQty(it.slug, it.qty - 1)} className="grid h-7 w-7 place-items-center rounded-full border border-brand-rose" aria-label="إنقاص">
                           <Minus className="h-3.5 w-3.5" />

@@ -29,6 +29,7 @@ function readUtm(): Record<string, string> | undefined {
 export async function submitOrder(input: {
   customer_name: string;
   phone: string;
+  city: string;
   items: OrderItemPayload[];
   upsell?: UpsellPayload;
   event_id: string;
@@ -37,6 +38,7 @@ export async function submitOrder(input: {
   const body = {
     customer_name: input.customer_name,
     phone: input.phone,
+    city: input.city,
     items: input.items,
     upsell: input.upsell,
     event_id: input.event_id,

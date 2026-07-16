@@ -6,7 +6,8 @@ import { BadgeCheck, BadgePercent, Banknote, Clock, Loader2, Lock, ShieldCheck, 
 import { Media } from "@/components/Media";
 import { useCart } from "@/context/CartContext";
 import { getProduct, products, type Product } from "@/lib/products";
-import { BASE_PRICE, UPSELL_PRICE, UPSELL_SECONDS } from "@/lib/pricing";
+import { allocatedLineTotals, productPrice, UPSELL_PRICE, UPSELL_SECONDS } from "@/lib/pricing";
+import { KSA_CITIES } from "@/lib/cities";
 import { isLegitimateOrderPhone, isValidKsaPhone } from "@/lib/phone";
 import { newEventId, saveLastOrder, submitOrder } from "@/lib/order";
 import { track } from "@/lib/tracking";
@@ -21,6 +22,7 @@ export function CheckoutModal() {
   const [stage, setStage] = useState<Stage>("form");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [seconds, setSeconds] = useState(UPSELL_SECONDS);
@@ -29,15 +31,17 @@ export function CheckoutModal() {
   const phoneValid = isValidKsaPhone(phone);
   const phoneLegit = phoneValid && isLegitimateOrderPhone(phone);
   const nameValid = name.trim().length >= 2;
-  const canSubmit = phoneLegit && nameValid;
+  const cityValid = city.trim().length >= 2;
+  const canSubmit = phoneLegit && nameValid && cityValid;
 
   // pick the most relevant upsell: highest-rated product not already in cart
   const upsellProduct: Product | null = useMemo(() => {
+    if (count !== 2) return null;
     const inCart = new Set(items.map((i) => i.slug));
     const candidates = products.filter((p) => !inCart.has(p.slug));
     if (!candidates.length) return null;
     return [...candidates].sort((a, b) => b.rating - a.rating)[0];
-  }, [items]);
+  }, [items, count]);
 
   useEffect(() => {
     if (!isCheckoutOpen) {
@@ -95,12 +99,18 @@ export function CheckoutModal() {
       const res = await submitOrder({
         customer_name: name.trim(),
         phone,
+        city: city.trim(),
         items: items.map((i) => ({ slug: i.slug, qty: i.qty })),
         upsell,
         event_id: eventId,
       });
 
-      const contents = items.map((i) => ({ id: i.slug, quantity: i.qty, price: BASE_PRICE, name: i.name }));
+      const contents = items.map((i) => ({
+        id: i.slug,
+        quantity: i.qty,
+        price: productPrice(i.slug),
+        name: i.name,
+      }));
       if (upsell && upsellProduct) {
         contents.push({ id: upsellProduct.slug, quantity: 1, price: UPSELL_PRICE, name: upsellProduct.name });
       }
@@ -108,7 +118,7 @@ export function CheckoutModal() {
 
       saveLastOrder({
         order_number: res.order_number,
-        total: res.total,
+        total,
         currency: res.currency,
         event_id: eventId,
         items: items.map((i) => ({ slug: i.slug, name: i.name, qty: i.qty })),
@@ -143,8 +153,10 @@ export function CheckoutModal() {
           <FormView
             name={name}
             phone={phone}
+            city={city}
             touched={touched}
             nameValid={nameValid}
+            cityValid={cityValid}
             phoneValid={phoneValid}
             phoneLegit={phoneLegit}
             canSubmit={canSubmit && stage !== "submitting"}
@@ -155,6 +167,7 @@ export function CheckoutModal() {
             items={items}
             onName={setName}
             onPhone={setPhone}
+            onCity={setCity}
             onBlur={() => setTouched(true)}
             onClose={closeCheckout}
             onSubmit={onSubmitForm}
@@ -168,8 +181,10 @@ export function CheckoutModal() {
 function FormView(props: {
   name: string;
   phone: string;
+  city: string;
   touched: boolean;
   nameValid: boolean;
+  cityValid: boolean;
   phoneValid: boolean;
   phoneLegit: boolean;
   canSubmit: boolean;
@@ -180,14 +195,20 @@ function FormView(props: {
   items: { slug: string; name: string; qty: number; emoji: string }[];
   onName: (v: string) => void;
   onPhone: (v: string) => void;
+  onCity: (v: string) => void;
   onBlur: () => void;
   onClose: () => void;
   onSubmit: (e: React.FormEvent) => void;
 }) {
   const {
-    name, phone, touched, nameValid, phoneValid, phoneLegit, canSubmit, submitting, error,
-    subtotal, savings, items, onName, onPhone, onBlur, onClose, onSubmit,
+    name, phone, city, touched, nameValid, cityValid, phoneValid, phoneLegit, canSubmit, submitting, error,
+    subtotal, savings, items, onName, onPhone, onCity, onBlur, onClose, onSubmit,
   } = props;
+
+  const lineTotals = useMemo(
+    () => allocatedLineTotals(items.map((i) => ({ slug: i.slug, qty: i.qty })), subtotal),
+    [items, subtotal],
+  );
 
   return (
     <div>
@@ -218,9 +239,10 @@ function FormView(props: {
         <div className="mb-4 rounded-2xl border border-brand-rose/50 bg-white p-3">
           <div className="mb-2 text-sm font-bold text-brand-plum">ملخّص الطلب</div>
           <ul className="space-y-1.5 text-sm">
-            {items.map((it) => (
+            {items.map((it, idx) => (
               <li key={it.slug} className="flex justify-between text-brand-ink/90">
                 <span>{it.emoji} {it.name} ×{it.qty}</span>
+                <span>{formatSar(lineTotals[idx] ?? 0)}</span>
               </li>
             ))}
           </ul>
@@ -271,6 +293,24 @@ function FormView(props: {
             <p className="mt-1 inline-flex items-center gap-1 text-sm text-ui-success">
               <BadgeCheck className="h-4 w-4" /> رقم صحيح
             </p>
+          ) : null}
+
+          <label className="mb-1 mt-3 block text-sm font-semibold text-brand-plum">المدينة</label>
+          <select
+            value={city}
+            onChange={(e) => onCity(e.target.value)}
+            onBlur={onBlur}
+            className={`w-full rounded-2xl border bg-white px-4 py-3 outline-none focus:border-brand-primary ${
+              touched && !cityValid ? "border-ui-error" : "border-brand-rose"
+            }`}
+          >
+            <option value="">اختاري مدينتك</option>
+            {KSA_CITIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+          {touched && !cityValid ? (
+            <p className="mt-1 text-sm text-ui-error">اختاري المدينة للتوصيل</p>
           ) : null}
 
           {error ? <p className="mt-3 rounded-xl bg-ui-error/10 p-2 text-sm text-ui-error">{error}</p> : null}

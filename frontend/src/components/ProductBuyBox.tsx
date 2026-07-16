@@ -5,28 +5,30 @@ import { Banknote, Check, Package, ShieldCheck, ShoppingBag, TrendingUp, Truck }
 import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/lib/products";
-import { BASE_PRICE, OFFERS } from "@/lib/pricing";
+import { offersForProduct, productPrice } from "@/lib/pricing";
 import { track } from "@/lib/tracking";
 import { cn, formatSar } from "@/lib/utils";
 
 export function ProductBuyBox({ product }: { product: Product }) {
   const { addItem } = useCart();
-  const [qty, setQty] = useState(2); // pre-select the popular 2-pack
+  const [qty, setQty] = useState(2);
+  const offers = offersForProduct(product.slug);
+  const unitPrice = productPrice(product.slug);
 
   useEffect(() => {
     track("ViewContent", {
-      value: BASE_PRICE,
-      contents: [{ id: product.slug, quantity: 1, price: BASE_PRICE, name: product.name }],
+      value: unitPrice,
+      contents: [{ id: product.slug, quantity: 1, price: unitPrice, name: product.name }],
     });
-  }, [product.slug, product.name]);
+  }, [product.slug, product.name, unitPrice]);
 
   function add() {
     addItem({ slug: product.slug, name: product.name, emoji: product.emoji }, qty);
-    const offer = OFFERS.find((o) => o.qty === qty);
+    const offer = offers.find((o) => o.qty === qty);
     track("AddToCart", {
-      value: offer?.total ?? BASE_PRICE * qty,
+      value: offer?.total ?? unitPrice * qty,
       num_items: qty,
-      contents: [{ id: product.slug, quantity: qty, price: BASE_PRICE, name: product.name }],
+      contents: [{ id: product.slug, quantity: qty, price: unitPrice, name: product.name }],
     });
   }
 
@@ -64,7 +66,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
 
       {/* Offer selector */}
       <div className="mt-4 space-y-2" role="radiogroup" aria-label="اختاري العرض">
-        {OFFERS.map((o) => {
+        {offers.map((o) => {
           const active = o.qty === qty;
           return (
             <button
@@ -129,7 +131,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
       </p>
 
       {/* Sticky mobile bar */}
-      <StickyBar price={OFFERS.find((o) => o.qty === qty)?.total ?? BASE_PRICE} onAdd={add} />
+      <StickyBar price={offers.find((o) => o.qty === qty)?.total ?? unitPrice} onAdd={add} />
     </div>
   );
 }

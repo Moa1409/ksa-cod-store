@@ -6,7 +6,7 @@ import { Media } from "@/components/Media";
 import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/lib/products";
-import { BASE_PRICE } from "@/lib/pricing";
+import { BUNDLE_HINT } from "@/lib/pricing";
 import { track } from "@/lib/tracking";
 import { formatSar } from "@/lib/utils";
 
@@ -18,9 +18,9 @@ export function ProductCard({ product }: { product: Product }) {
     track(
       "AddToCart",
       {
-        value: BASE_PRICE,
+        value: product.price,
         num_items: 1,
-        contents: [{ id: product.slug, quantity: 1, price: BASE_PRICE, name: product.name }],
+        contents: [{ id: product.slug, quantity: 1, price: product.price, name: product.name }],
       },
     );
   }
@@ -41,10 +41,10 @@ export function ProductCard({ product }: { product: Product }) {
         <StarRating value={product.rating} count={product.reviewsCount} size={14} />
         <div className="mt-auto">
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-extrabold text-brand-plum">{formatSar(BASE_PRICE)}</span>
+            <span className="text-2xl font-extrabold text-brand-plum">{formatSar(product.price)}</span>
           </div>
           <p className="text-xs font-semibold text-ui-success">
-            قطعتان ٢٧٩ · ٣ قطع ٣٤٩ ر.س
+            {BUNDLE_HINT}
           </p>
           <button type="button" onClick={add} className="btn-primary mt-3 w-full">
             <ShoppingBag className="h-4 w-4" /> أضيفي إلى السلة

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { bundleTotal, CURRENCY, UPSELL_PRICE } from "@/lib/pricing";
+import { isBackendNetworkError, postBackendJson } from "@/lib/backend-fetch";
+import { cartSubtotal, CURRENCY, UPSELL_PRICE, type CartLine } from "@/lib/pricing";
 import { formatApiErrorDetail } from "@/lib/api-error";
 import { getServerApiUrl } from "@/lib/server-api";
 
@@ -9,9 +10,12 @@ const MOCK_ORDERS = process.env.MOCK_ORDERS === "true";
 type Item = { slug: string; qty: number };
 
 function mockOrder(body: { items?: Item[]; upsell?: { price?: number } }) {
-  const count = (body.items ?? []).reduce((n, it) => n + (Number(it.qty) || 0), 0);
+  const lines: CartLine[] = (body.items ?? []).map((it) => ({
+    slug: String(it.slug),
+    qty: Number(it.qty) || 0,
+  }));
   const upsell = body.upsell ? UPSELL_PRICE : 0;
-  const total = bundleTotal(count) + upsell;
+  const total = cartSubtotal(lines) + upsell;
   const rand = Math.random().toString(36).slice(2, 7).toUpperCase();
   return {
     order_number: `MOCK-${Date.now().toString(36).toUpperCase().slice(-6)}${rand}`,
@@ -37,26 +41,27 @@ export async function POST(req: NextRequest) {
   const ua = req.headers.get("user-agent") ?? "";
 
   try {
-    const res = await fetch(`${API_URL}/api/orders`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await postBackendJson(
+      `${API_URL}/api/orders`,
+      body,
+      {
         "X-Forwarded-For": fwd,
         "User-Agent": ua,
       },
-      body: JSON.stringify(body),
-      cache: "no-store",
-    });
-
-    const data = await res.json().catch(() => ({}));
-
-    if (res.ok) return NextResponse.json(data, { status: res.status });
-
-    console.error(
-      "[/api/order] backend rejected order:",
-      res.status,
-      data?.detail ?? data,
     );
+
+    let data: { detail?: unknown } = {};
+    try {
+      data = JSON.parse(res.body) as { detail?: unknown };
+    } catch {
+      data = {};
+    }
+
+    if (res.status >= 200 && res.status < 300) {
+      return NextResponse.json(JSON.parse(res.body), { status: res.status });
+    }
+
+    console.error("[/api/order] backend rejected order:", res.status, data?.detail ?? res.body);
 
     return NextResponse.json(
       { detail: formatApiErrorDetail(data?.detail) },
@@ -64,6 +69,10 @@ export async function POST(req: NextRequest) {
     );
   } catch (err) {
     console.error("[/api/order] backend unreachable:", err);
+    if (process.env.NODE_ENV === "development" && isBackendNetworkError(err)) {
+      console.warn("[/api/order] dev network fallback — mock order (API unreachable locally)");
+      return NextResponse.json(mockOrder(body as { items?: Item[]; upsell?: { price?: number } }));
+    }
     return NextResponse.json(
       { detail: "تعذّر إرسال الطلب، حاولي مرة أخرى." },
       { status: 502 },

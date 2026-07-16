@@ -49,6 +49,7 @@ def test_create_order_persists_order_items(client):
     payload = {
         "customer_name": "Sara",
         "phone": "0550000000",
+        "city": "الرياض",
         "items": [{"slug": "air-glow", "qty": 2}],
         "event_id": "pytest_order_1",
     }
@@ -57,6 +58,7 @@ def test_create_order_persists_order_items(client):
 
     assert res.status_code == 201, res.text
     data = res.json()
+    assert data["total"] == 649
     order = session.scalar(select(Order).where(Order.order_number == data["order_number"]))
     assert order is not None
     rows = session.scalars(select(OrderItem).where(OrderItem.order_id == order.id)).all()

@@ -21,9 +21,12 @@ services:
     environment:
       ENV: development
       DATABASE_URL: postgresql+psycopg://lamsaglow:devpassword@db:5432/lamsaglow
-      CORS_ORIGINS: http://localhost:3000
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
       ADMIN_TOKEN: dev-admin-token
       ENABLE_CAPI: "false"
+      MAXMIND_ORDER_CHECK_ENABLED: "false"
+      ORDER_WHITELIST_PHONES: "0550000000"
+      TEST_ORDER_PHONES: "0550000000"
     depends_on:
       db:
         condition: service_healthy

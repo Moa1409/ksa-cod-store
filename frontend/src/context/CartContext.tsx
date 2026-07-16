@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { bundleSavings, bundleTotal } from "@/lib/pricing";
+import { cartSavings, cartSubtotal, type CartLine } from "@/lib/pricing";
 
 export type CartItem = {
   slug: string;
@@ -93,8 +93,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   const count = useMemo(() => items.reduce((n, i) => n + i.qty, 0), [items]);
-  const subtotal = useMemo(() => bundleTotal(count), [count]);
-  const savings = useMemo(() => bundleSavings(count), [count]);
+  const cartLines = useMemo<CartLine[]>(
+    () => items.map((i) => ({ slug: i.slug, qty: i.qty })),
+    [items],
+  );
+  const subtotal = useMemo(() => cartSubtotal(cartLines), [cartLines]);
+  const savings = useMemo(() => cartSavings(cartLines), [cartLines]);
 
   const value: CartContextValue = {
     items,
