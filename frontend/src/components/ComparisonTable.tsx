@@ -7,38 +7,38 @@ type Row = { label: string; lamsa: Cell; salon: Cell; cheap: Cell };
 const rows: Row[] = [
   {
     label: "التكلفة على المدى الطويل",
-    lamsa: { tone: "good", text: "دفعة وحدة تكفيكِ سنوات" },
+    lamsa: { tone: "good", text: "روتين منزلي يعيد نفسه بسعر واضح" },
     salon: { tone: "bad", text: "فاتورة تتكرر كل زيارة" },
-    cheap: { tone: "mid", text: "رخيص لكنه يُستبدل بسرعة" },
+    cheap: { tone: "mid", text: "رخيص لكنه يُرمى بعد أسابيع" },
   },
   {
     label: "الخصوصية والراحة",
     lamsa: { tone: "good", text: "في بيتكِ وعلى وقتكِ" },
     salon: { tone: "mid", text: "مواعيد وتنقّل وانتظار" },
-    cheap: { tone: "mid", text: "في البيت بأداء متذبذب" },
+    cheap: { tone: "mid", text: "في البيت بجودة متذبذبة" },
   },
   {
     label: "جودة وأمان معتمد",
-    lamsa: { tone: "good", text: "مطابقة CE · RoHS" },
+    lamsa: { tone: "good", text: "حلال · ISO 22716 · GMP" },
     salon: { tone: "mid", text: "تختلف حسب المكان" },
     cheap: { tone: "bad", text: "غالبًا دون شهادات" },
   },
   {
     label: "النتائج",
-    lamsa: { tone: "good", text: "نتائج ملموسة مع الاستمرار" },
+    lamsa: { tone: "good", text: "نعومة وانتعاش ملحوظان مع الاستمرار" },
     salon: { tone: "good", text: "نتائج احترافية فورية" },
     cheap: { tone: "bad", text: "ضعيفة وغير ثابتة" },
   },
   {
-    label: "استخدام غير محدود",
-    lamsa: { tone: "good", text: "متى ما احتجتِ، بلا تكلفة إضافية" },
+    label: "الولاء وإعادة الشراء",
+    lamsa: { tone: "good", text: "ماسك + مِست + جاميز = روتين شهري" },
     salon: { tone: "bad", text: "تكلفة جديدة كل مرة" },
-    cheap: { tone: "mid", text: "محدود بعمر الجهاز" },
+    cheap: { tone: "mid", text: "ما ترجعين لنفس البراند" },
   },
   {
     label: "ضمان ودفع عند الاستلام",
     lamsa: { tone: "good", text: "ضمان ٣٠ يوم + دفع عند الاستلام" },
-    salon: { tone: "mid", text: "دفع مقدّم بدون ضمان" },
+    salon: { tone: "mid", text: "دفع مقدّم بدون ضمان واضح" },
     cheap: { tone: "bad", text: "نادرًا ما يوجد ضمان" },
   },
 ];
@@ -79,25 +79,23 @@ export function ComparisonTable() {
     <div className="mx-auto max-w-4xl">
       <div className="overflow-x-auto rounded-3xl border border-brand-rose/50 bg-white shadow-card">
         <div className="min-w-[620px]">
-          {/* Header */}
           <div className="grid grid-cols-[1.1fr_1.3fr_1fr_1fr] items-stretch">
             <div className="bg-brand-plum p-3" />
             <div className="bg-gradient-to-b from-brand-primary to-brand-primaryDark p-3 text-center text-white ring-2 ring-brand-gold/60">
               <div className="pill-gold mx-auto mb-1 !bg-white/20 !text-white">الأذكى</div>
               <div className="text-sm font-extrabold sm:text-base">لمسة توهج</div>
-              <div className="text-[11px] text-white/85">من ١٩٩ ر.س · مرة وحدة</div>
+              <div className="text-[11px] text-white/85">من ١٤٩ ر.س · روتين معتمد</div>
             </div>
             <div className="bg-brand-plum p-3 text-center text-brand-cream">
               <div className="text-sm font-bold">الصالون</div>
               <div className="text-[11px] text-brand-cream/70">تكلفة كل زيارة</div>
             </div>
             <div className="bg-brand-plum p-3 text-center text-brand-cream">
-              <div className="text-sm font-bold">أجهزة رخيصة</div>
-              <div className="text-[11px] text-brand-cream/70">رخيصة ومؤقتة</div>
+              <div className="text-sm font-bold">منتجات رخيصة</div>
+              <div className="text-[11px] text-brand-cream/70">بدون شهادات</div>
             </div>
           </div>
 
-          {/* Rows */}
           <div className="divide-y divide-brand-rose/40">
             {rows.map((r) => (
               <div key={r.label} className="grid grid-cols-[1.1fr_1.3fr_1fr_1fr] items-stretch">
@@ -114,7 +112,7 @@ export function ComparisonTable() {
       </div>
 
       <p className="mt-3 text-center text-xs text-ui-muted">
-        مقارنة عامة لغرض التوضيح — الصالونات تقدّم نتائج احترافية فورية، ولمسة توهج تمنحكِ نتائج تدوم بخصوصية وقيمة أعلى.
+        مقارنة عامة لغرض التوضيح — الصالونات تقدّم نتائج احترافية فورية، ولمسة توهج تمنحكِ روتينًا معتمدًا بخصوصية وقيمة أعلى.
       </p>
     </div>
   );

@@ -3,23 +3,35 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 # Server-side catalog + pricing — never trust client totals.
-# Unit prices: AirGlow 379, SilkPro 399, GlowLift 379.
-# Bundles by device count: 2 → 649, 3 → 999. Upsell 3rd device at checkout → 199.
+# Unit: Keratin Bond 219, Hair Mist 149, Keratin Gummies 199.
+# Bundles by count: 2 → 329, 3 → 499. Upsell add-on → 99.
 
 PRODUCT_PRICES: dict[str, float] = {
-    "air-glow": 379.0,
-    "silk-pro": 399.0,
-    "glow-lift": 379.0,
+    "keratin-bond": 219.0,
+    "hair-mist": 149.0,
+    "keratin-gummies": 199.0,
 }
-BUNDLE_2 = 649.0
-BUNDLE_3 = 999.0
-UPSELL_PRICE = 199.0
+BUNDLE_2 = 329.0
+BUNDLE_3 = 499.0
+UPSELL_PRICE = 99.0
 CURRENCY = "SAR"
 
 CATALOG: dict[str, dict] = {
-    "air-glow": {"slug": "air-glow", "name": "لمسة إيرغلو", "sku": "LAM-AG-7842"},
-    "silk-pro": {"slug": "silk-pro", "name": "لمسة سيلك برو", "sku": "LAM-SP-9156"},
-    "glow-lift": {"slug": "glow-lift", "name": "لمسة غلو ليفت", "sku": "LAM-GL-3021"},
+    "keratin-bond": {
+        "slug": "keratin-bond",
+        "name": "لمسة كيراتين بوند",
+        "sku": "LAM-KB-2201",
+    },
+    "hair-mist": {
+        "slug": "hair-mist",
+        "name": "لمسة عطر الشعر",
+        "sku": "LAM-HM-1482",
+    },
+    "keratin-gummies": {
+        "slug": "keratin-gummies",
+        "name": "لمسة كيراتين جاميز",
+        "sku": "LAM-KG-1990",
+    },
 }
 
 

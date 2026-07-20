@@ -13,21 +13,28 @@ import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "المتجر",
-  description: "تسوّقي مجموعة لمسة توهج — أجهزة تجميل منزلية معتمدة. الدفع عند الاستلام وضمان ٣٠ يوم.",
+  description:
+    "تسوّقي روتين لمسة توهج — ماسك كيراتين، عطر شعر حلال، وعلكات تقوية. حلال · ISO 22716 · الدفع عند الاستلام.",
 };
 
 const brandStats = [
   { value: "+٢٥٬٠٠٠", label: "عميلة سعيدة" },
-  { value: "٤.٨/٥", label: "متوسط التقييم" },
+  { value: "٤.٩/٥", label: "متوسط التقييم" },
   { value: "٣٠ يوم", label: "ضمان استرجاع" },
   { value: "٢–٤ أيام", label: "توصيل لكل السعودية" },
 ];
 
-const reviews = [products[1].reviews[0], products[0].reviews[1], products[2].reviews[0]];
+const reviews = [products[0].reviews[0], products[1].reviews[0], products[2].reviews[0]];
 
 const faq = [
-  { q: "كيف تعمل العروض؟", a: "كل ما زادت القطع، زاد التوفير: قطعة ١٩٩ · قطعتان ٢٧٩ · ٣ قطع ٣٤٩ ر.س." },
-  { q: "هل أقدر أدمج منتجات مختلفة؟", a: "نعم! العرض يُحسب على عدد القطع في سلتكِ، فاخلطي المنتجات ووفّري." },
+  {
+    q: "كيف تعمل العروض؟",
+    a: "كل ما زادت القطع، زاد التوفير: قطعة بسعرها · قطعتان ٣٢٩ · ٣ قطع ٤٩٩ ر.س.",
+  },
+  {
+    q: "هل أقدر أدمج منتجات مختلفة؟",
+    a: "نعم! العرض يُحسب على عدد القطع في سلتكِ — اخلطي الماسك والمِست والجاميز ووفّري.",
+  },
   { q: "كيف أدفع؟", a: "الدفع عند الاستلام في كل المملكة." },
 ];
 
@@ -37,9 +44,13 @@ export default function ShopPage() {
       <section className="relative overflow-hidden bg-mesh">
         <span className="blob end-0 top-0 h-64 w-64 bg-brand-rose/50" />
         <div className="container-lg relative py-14 text-center sm:py-20">
-          <div className="eyebrow mx-auto">مجموعتنا الكاملة</div>
-          <h1 className="text-3xl font-extrabold sm:text-5xl">مجموعة <span className="gradient-text">لمسة توهج</span></h1>
-          <p className="mx-auto mt-3 max-w-xl text-brand-ink/80">جمالكِ من كل جانب — بخصوصية وثقة، وبقيمة تدوم.</p>
+          <div className="eyebrow mx-auto">روتين الصالون المعتمد</div>
+          <h1 className="text-3xl font-extrabold sm:text-5xl">
+            مجموعة <span className="gradient-text">لمسة توهج</span>
+          </h1>
+          <p className="mx-auto mt-3 max-w-xl text-brand-ink/80">
+            ترميم · انتعاش · تقوية من الداخل — بخصوصية وثقة وشهادات تطمئنكِ.
+          </p>
         </div>
       </section>
 
@@ -59,17 +70,23 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Bundle explainer */}
       <section className="section bg-white/50">
         <div className="container-lg">
-          <SectionHeading eyebrow="وفّري أكثر" title="كل ما زادت القطع… زاد التوفير" subtitle="اخلطي بين المنتجات — العرض يُحسب على عدد القطع في سلتكِ." />
+          <SectionHeading
+            eyebrow="وفّري أكثر"
+            title="كل ما زادت القطع… زاد التوفير"
+            subtitle="اخلطي بين المنتجات — العرض يُحسب على عدد القطع في سلتكِ."
+          />
           <div className="grid gap-4 sm:grid-cols-3">
             {[
-              { t: "قطعة واحدة", p: "١٩٩ ر.س", note: "ابدئي رحلتكِ", hot: false },
-              { t: "قطعتان", p: "٢٧٩ ر.س", note: "الأكثر طلبًا · وفّري ١١٩", hot: true },
-              { t: "٣ قطع", p: "٣٤٩ ر.س", note: "الأكثر توفيرًا · وفّري ٢٤٨", hot: false },
+              { t: "قطعة واحدة", p: "من ١٤٩ ر.س", note: "ابدئي روتينكِ", hot: false },
+              { t: "قطعتان", p: "٣٢٩ ر.س", note: "الأكثر طلبًا · وفّري أكثر", hot: true },
+              { t: "٣ قطع", p: "٤٩٩ ر.س", note: "الروتين الكامل · الأكثر توفيرًا", hot: false },
             ].map((b) => (
-              <div key={b.t} className={`card p-6 text-center lift ${b.hot ? "border-brand-primary ring-2 ring-brand-primary/30" : ""}`}>
+              <div
+                key={b.t}
+                className={`card p-6 text-center lift ${b.hot ? "border-brand-primary ring-2 ring-brand-primary/30" : ""}`}
+              >
                 {b.hot ? <div className="pill-gold mx-auto mb-2">الأكثر طلبًا</div> : null}
                 <div className="text-lg font-bold text-brand-plum">{b.t}</div>
                 <div className="my-2 text-3xl font-extrabold text-brand-primary">{b.p}</div>

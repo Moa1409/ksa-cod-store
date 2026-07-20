@@ -1,16 +1,16 @@
 // Pricing / offer model — single source of truth (mirrors backend catalog.py).
-// Unit: AirGlow 379, SilkPro 399, GlowLift 379. Bundles: 2 → 649, 3 → 999.
-// The ONLY discounted price on the site is the post-checkout upsell (199) for a 3rd device.
+// Unit: Keratin Bond 219, Hair Mist 149, Keratin Gummies 199.
+// Bundles by count: 2 → 329, 3 → 499. Upsell add-on at checkout → 99.
 
 export const PRODUCT_PRICES: Record<string, number> = {
-  "air-glow": 379,
-  "silk-pro": 399,
-  "glow-lift": 379,
+  "keratin-bond": 219,
+  "hair-mist": 149,
+  "keratin-gummies": 199,
 };
 
-export const BUNDLE_2 = 649;
-export const BUNDLE_3 = 999;
-export const UPSELL_PRICE = 199;
+export const BUNDLE_2 = 329;
+export const BUNDLE_3 = 499;
+export const UPSELL_PRICE = 99;
 export const CURRENCY = "SAR";
 export const UPSELL_SECONDS = 12;
 

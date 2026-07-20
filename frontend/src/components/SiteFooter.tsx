@@ -20,11 +20,11 @@ export function SiteFooter() {
             <Logo />
           </div>
           <p className="mt-4 text-sm text-brand-cream/80">
-            العيادة الجمالية المنزلية — نتائج الصالون بخصوصية وراحة، بتقنية معتمدة.
+            طقوس الصالون المعتمدة في بيتكِ — كيراتين · عطر حلال · تقوية من الداخل.
           </p>
           <div className="mt-4 flex flex-wrap gap-3 text-xs text-brand-cream/80">
             <span className="inline-flex items-center gap-1">
-              <BadgeCheck className="h-4 w-4 text-brand-gold" /> CE · RoHS
+              <BadgeCheck className="h-4 w-4 text-brand-gold" /> حلال · ISO 22716
             </span>
             <span className="inline-flex items-center gap-1">
               <Banknote className="h-4 w-4 text-brand-gold" /> الدفع عند الاستلام

@@ -1,70 +1,69 @@
-# 02 — ICP & Copywriting (KSA dialect)
+# 02 — ICP & Copywriting (KSA dialect) · Certified Salon Rituals
 
 ## Who we sell to (ICP = Saudi women, 22–45)
+
 ### Persona 1 — «ريم», 24, الرياض — student / young pro
-- Follows beauty creators on Snap/TikTok; wants the looks she sees.
-- Salon = expensive + time-consuming; values privacy.
-- Budget-aware but **splurges on beauty**; trusts influencers + reviews.
-- **JTBD:** "خلّيني أطلع حلوة ومرتبة بدون ما أصرف نص مصروفي على الصالون."
+- Sees salon hair on Snap/TikTok; her own hair looks tired under hijab.
+- Splurges on beauty if trust is clear (Halal + reviews + COD).
+- **JTBD:** "خلّيني أطلع مرتّبة وشعري ناعم بدون ما أصرف على الصالون كل أسبوع."
 
 ### Persona 2 — «نوف», 32, working mom
-- No time for salons; wants convenience + privacy at home.
-- Pays premium for **quality, safety, time-saving**.
-- Cautious → needs proof, certificates, guarantee, COD.
-- **JTBD:** "خلّيني أحس بجمالي وأنا مرتاحة ببيتي، بأمان، وبدون تكاليف متكررة."
+- No time for salons; needs safety, certificates, COD.
+- Buys quality once, then reorders ritual products.
+- **JTBD:** "خلّيني أحس بجمالي وأنا مرتاحة ببيتي، بأمان وشهادات واضحة."
 
 ### Persona 3 — «سارة», 28, bride-to-be / event-driven
-- Prepping for wedding/events; wants glow + smooth skin + styled hair.
-- High-intent, deadline-driven → great confirmation/delivery.
-- **JTBD:** "جهّزيني للمناسبة، متوهجة وناعمة، وعلى وقتي."
+- Deadline before wedding/outing → high confirm + delivery.
+- Wants glow + soft hair + fresh scent tonight.
+- **JTBD:** "جهّزيني للمناسبة — شعري ناعم وريحة فريش وعلى وقتي."
 
-## Pain → Emotion → Desire (the messaging engine)
+## Pain → Emotion → Desire (messaging engine)
+
 | Core pain | Unspoken emotion | Desire we sell |
 |---|---|---|
-| شعر مجعّد/باهت، ما يطلع مثل الصالون | إحباط، "ما أطلع حلوة مثلهم" | ثقة وإطلالة مرتبة بسهولة |
-| شعر غير مرغوب، ألم/إحراج الصالون | انزعاج، رغبة بالخصوصية | نعومة، تحكّم، خصوصية، بدون ألم |
-| بشرة تعبانة/باهتة | إحساس بالخفوت | نضارة، إشراقة، حيوية |
-| "الأجهزة الرخيصة ما تشتغل / تأذي" | شك وخوف | آمن، معتمد، مثبت، مضمون |
-| فواتير صالون ما تنتهي | ذنب من الصرف | استثمار ذكي، قيمة تدوم |
+| شعر مجعّد/تالف بعد حرارة وصبغة وحجاب | إحباط، "ما أطلع مثلهم" | نعومة صالون في البيت |
+| ريحة / تفلّت تحت الحجاب | خجل اجتماعي قبل الخروج | انتعاش وثقة |
+| شعر وأظافر ضعيفة | قلق هادئ، بحث عن حل من الداخل | قوة بروتين ٣٠ يوم |
+| "المنتجات الرخيصة نصب / بدون شهادات" | شك عند التأكيد والباب | حلال · ISO · GMP · COD |
+| فواتير صالون ما تنتهي | ذنب من الصرف | استثمار روتين يعيد نفسه |
 
-## Top objections → answers (put on every product page)
-1. «هل فعلاً يشتغل؟» → آلية العمل + شهادات + آلاف التقييمات + UGC + ضمان النتائج.
-2. «هل آمن / بيأذيني؟» → CE/RoHS، تبريد/حساس بشرة، ملاحظات خبراء.
-3. «هل يستاهل السعر؟» → حسبة التوفير مقابل الصالون (مرة وحدة مقابل شهري للأبد).
-4. «أثق بالمتجر؟» → تقييمات سعودية، COD (تدفعين عند الاستلام)، ضمان، إرجاع سهل، علامة حقيقية.
-5. «بيوصل؟ مو نصب؟» → COD، تأكيد بالاتصال، سياسات واضحة، حضور محلي.
+## Top objections → answers (every PDP)
+1. «هل فعلاً يشتغل؟» → آلية المكوّن + خط زمني نتائج + UGC + ضمان.
+2. «هل حلال / آمن؟» → شهادات حلال · ISO 22716 · GMP · COA.
+3. «هل يستاهل السعر؟» → حسبة مقابل جلسة صالون + إعادة شراء أوضح قيمة.
+4. «أثق بالمتجر؟» → تقييمات سعودية، COD، ضمان ٣٠ يوم، شارات سلطة.
+5. «بيوصل؟ مو نصب؟» → تأكيد واتساب، سياسات واضحة، توصيل ٢–٤ أيام.
 
-## Copywriting rules (KSA / Gulf dialect)
-- Write like a trusted Saudi big-sister; **Gulf dialect** for hooks/benefits, MSA acceptable for policies.
-- Feminine address throughout (كِ / ـكِ): «صالونكِ»، «بشرتكِ»، «تستاهلين».
-- Benefit first → then mechanism → then feature. Never feature-only.
-- Short sentences, scannable, emoji sparingly for scannability (✅ ⭐ 🎁 💵).
-- Numerals: Arabic-Indic in body copy where natural (١٩٩) but Western is fine for prices/inputs — be consistent per component (see design system).
-- Always include reassurance near CTAs: «الدفع عند الاستلام».
+## Marketing names (use everywhere)
 
-## Reusable copy blocks
-- **CTA (primary):** «أضيفي إلى السلة» · on offer selection «أضيفي العرض إلى السلة».
-- **COD reassurance:** «لن تدفعي شيئًا الآن — الدفع عند الاستلام.»
-- **Guarantee:** «ضمان استرجاع ٣٠ يوم · ضمان سنة كاملة.»
-- **Scarcity (honest):** «عرض الإطلاق لفترة محدودة» · «الكمية محدودة — نفدت ١٢٧ قطعة هذا الأسبوع».
-- **Social proof aggregate:** «أكثر من ١٢٬٠٠٠ امرأة سعودية تثق بلمسة توهج · ⭐ ٤٫٨/٥».
+1. **لمسة كيراتين بوند — ماسك الكيراتين لترميم الروابط والنعومة**  
+   (Lamsa Keratin Bond) · slug: `keratin-bond` · **219 ر.س**  
+   - Heading: «شعر ناعم مثل الصالون… من أول غسلة»  
+   - Sub: ماسك الكيراتين لترميم الروابط والنعومة — بعد الحرارة والصبغة والحجاب.
 
-## Per-product marketing names (use everywhere)
-1. **لمسة إيرغلو — مصفّفة الشعر الهوائية ٥×١ | صالونكِ في ٥ دقائق** (Lamsa AirGlow)
-2. **لمسة سيلك برو — جهاز إزالة الشعر بتقنية IPL | بشرة ناعمة كالحرير بخصوصية تامة** (Lamsa SilkPro)
-3. **لمسة غلو ليفت — جهاز نضارة وشدّ البشرة | إشراقة وحيوية كل يوم** (Lamsa GlowLift)
+2. **لمسة عطر الشعر — مِست حلال للانتعاش تحت الحجاب**  
+   (Lamsa Hair Mist) · slug: `hair-mist` · **149 ر.س**  
+   - Heading: «ريحة فريش… وثقة قبل ما تطلعين»  
+   - Sub: عطر شعر حلال للانتعاش والثقة تحت الحجاب.
 
-### Product hooks / heading + subheading (for cards & PDP hero)
-**لمسة إيرغلو**
-- Heading: «صالونكِ الخاص… في بيتكِ ✨»
-- Sub: «مصفّفة هوائية ٥×١ — تجفيف، تمليس، تكثيف، ولفّ بلمعان الصالون وحماية أيونية.»
+3. **لمسة كيراتين جاميز — علكات الكيراتين والبيوتين لتقوية الشعر والأظافر**  
+   (Lamsa Keratin Gummies) · slug: `keratin-gummies` · **199 ر.س**  
+   - Heading: «قوة من الداخل… شعر وأظافر أقوى خلال ٣٠ يوم»  
+   - Sub: كيراتين + بيوتين + كولاجين — مكمل حلال بمعايير GMP (مو علاج صلع).
 
-**لمسة سيلك برو**
-- Heading: «بشرة ناعمة كالحرير… بخصوصية تامة»
-- Sub: «جهاز IPL منزلي بتبريد لطيف — قلّلي الشعر غير المرغوب براحة وأمان في بيتكِ.»
+## Bundle / AOV
+- قطعتان **٣٢٩** · ٣ قطع **٤٩٩** · Upsell **٩٩**
+- Hero path: Mask → add Mist → add Gummies (full ritual)
 
-**لمسة غلو ليفت**
-- Heading: «نضارة وإشراقة… كل يوم»
-- Sub: «جهاز نضارة وشدّ للبشرة — روتين العيادة بين يديكِ في دقائق.»
+## Copy rules
+- Gulf dialect for hooks; feminine address (كِ).
+- Benefit → mechanism → feature.
+- Near every CTA: «الدفع عند الاستلام» + شهادات.
+- No medical/hair-loss/whitening claims.
 
-> The AI coder should place these hooks in `products` data and reuse across cards, PDP hero, cart, and thank-you.
+## Reusable blocks
+- **CTA:** «أضيفي إلى السلة»
+- **COD:** «لن تدفعي شيئًا الآن — الدفع عند الاستلام.»
+- **Guarantee:** «ضمان استرجاع ٣٠ يوم.»
+- **Social proof:** «أكثر من ٢٥٬٠٠٠ امرأة سعودية · ⭐ ٤٫٩/٥»
+- **Authority row:** «حلال · ISO 22716 · GMP · COA»

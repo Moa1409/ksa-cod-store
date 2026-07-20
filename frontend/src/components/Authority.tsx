@@ -1,26 +1,26 @@
-import { BadgeCheck, FileCheck2, Globe2, ShieldCheck } from "lucide-react";
+import { BadgeCheck, FileCheck2, FlaskConical, ShieldCheck } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 
 const badges = [
   {
-    icon: ShieldCheck,
-    title: "متوافق مع اشتراطات SFDA",
-    body: "منتجات مطابقة لاشتراطات الاستيراد ومعايير الجودة المعتمدة في المملكة.",
+    icon: BadgeCheck,
+    title: "حلال ١٠٠٪",
+    body: "شهادات حلال من المصنع — لأن الثقة الإيمانية جزء من قرار الشراء في السعودية.",
   },
   {
-    icon: BadgeCheck,
-    title: "شهادة CE الأوروبية",
-    body: "مطابقة لمعايير السلامة الأوروبية للأجهزة.",
+    icon: ShieldCheck,
+    title: "ISO 22716 / GMPC",
+    body: "مصانع تجميل بمعايير GMP العالمية لماسك الكيراتين وعطر الشعر.",
+  },
+  {
+    icon: FlaskConical,
+    title: "COA + علم المكوّنات",
+    body: "شهادة تحليل للدفعة + شرح المكوّنات الفعّالة (كيراتين · بيوتين · كولاجين).",
   },
   {
     icon: FileCheck2,
-    title: "شهادة RoHS",
-    body: "خالية من المواد الضارة وفق معايير RoHS.",
-  },
-  {
-    icon: Globe2,
-    title: "استيراد نظامي",
-    body: "نستورد عبر قنوات نظامية ونقف خلف كل منتج بضمان حقيقي.",
+    title: "GMP للمكملات",
+    body: "علكات الكيراتين من مصانع GMP / ISO 22000 — شفافية بدون وعود طبية مبالغ فيها.",
   },
 ];
 
@@ -30,8 +30,8 @@ export function Authority() {
       <div className="container-lg">
         <SectionHeading
           eyebrow="موثوقية ومعايير"
-          title="جودة تطمئنكِ… ومعايير تثقين فيها"
-          subtitle="نختار منتجاتنا بعناية ونلتزم بالمعايير المعتمدة، عشان تشترين بثقة تامة."
+          title="جودة تطمئنكِ… وشهادات تثقين فيها"
+          subtitle="ما نبيع منتج مجهول المصدر. نبني لمسة توهج على الحلال والمعايير والعلم — عشان تؤكدين الطلب وتستلمين بفخر."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {badges.map(({ icon: Icon, title, body }) => (
@@ -45,7 +45,8 @@ export function Authority() {
           ))}
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-ui-muted">
-          الشهادات تخص مطابقة الأجهزة للمعايير المذكورة. النتائج التجميلية قد تختلف من شخص لآخر.
+          نعرض الشهادات التي نملك نسخها من المصنع فقط. النتائج التجميلية قد تختلف من شخص لآخر. المكملات الغذائية ليست علاجًا
+          طبيًا.
         </p>
       </div>
     </section>

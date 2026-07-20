@@ -14,11 +14,11 @@ from app.services.phone import is_valid_ksa, normalize_ksa, to_e164
 
 def test_bundle_tiers():
     assert bundle_total(0) == 0
-    assert bundle_total(1) == 379
+    assert bundle_total(1) == 149  # cheapest unit (hair-mist)
     assert bundle_total(2) == BUNDLE_2
     assert bundle_total(3) == BUNDLE_3
-    assert bundle_total(4) == BUNDLE_3 + 379
-    assert bundle_total(5) == BUNDLE_3 + 379 * 2
+    assert bundle_total(4) == BUNDLE_3 + 149
+    assert bundle_total(5) == BUNDLE_3 + 149 * 2
 
 
 def test_unit_price():
@@ -28,28 +28,28 @@ def test_unit_price():
 
 def test_cart_subtotal_mixed():
     lines = [
-        CartLine(slug="air-glow", qty=1),
-        CartLine(slug="silk-pro", qty=1),
+        CartLine(slug="keratin-bond", qty=1),
+        CartLine(slug="hair-mist", qty=1),
     ]
     assert cart_subtotal(lines) == BUNDLE_2
 
 
 def test_cart_subtotal_single_product():
-    lines = [CartLine(slug="silk-pro", qty=1)]
-    assert cart_subtotal(lines) == 399
+    lines = [CartLine(slug="keratin-bond", qty=1)]
+    assert cart_subtotal(lines) == 219
 
 
 def test_allocate_unit_prices():
-    lines = [CartLine(slug="air-glow", qty=2)]
+    lines = [CartLine(slug="keratin-bond", qty=2)]
     prices = allocate_unit_prices(lines, BUNDLE_2)
-    assert prices == [324.5]
+    assert prices == [164.5]
     assert prices[0] * 2 == BUNDLE_2
 
 
 def test_product_prices():
-    assert product_price("air-glow") == 379
-    assert product_price("silk-pro") == 399
-    assert product_price("glow-lift") == 379
+    assert product_price("keratin-bond") == 219
+    assert product_price("hair-mist") == 149
+    assert product_price("keratin-gummies") == 199
 
 
 def test_phone_normalize_valid():

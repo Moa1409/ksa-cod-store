@@ -28,17 +28,17 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
-    default: "لمسة توهج | Lamsa Glow — العيادة الجمالية المنزلية",
+    default: "لمسة توهج | Lamsa Glow — طقوس الصالون المعتمدة في بيتكِ",
     template: "%s | لمسة توهج",
   },
   description:
-    "لمسة توهج — أجهزة تجميل منزلية معتمدة تمنحكِ نتائج الصالون بخصوصية وراحة. الدفع عند الاستلام، ضمان ٣٠ يوم، شحن سريع لكل السعودية.",
+    "لمسة توهج — ماسك كيراتين لترميم التلف، عطر شعر حلال للانتعاش تحت الحجاب، وعلكات تقوية الشعر والأظافر. حلال · ISO 22716 · الدفع عند الاستلام.",
   openGraph: {
     type: "website",
     locale: "ar_SA",
     siteName: "لمسة توهج",
     title: "لمسة توهج | Lamsa Glow",
-    description: "العيادة الجمالية المنزلية — نتائج الصالون بخصوصية وراحة، بتقنية معتمدة.",
+    description: "طقوس الصالون المعتمدة في بيتكِ — حلال · ISO 22716 · نتائج تلاحظينها.",
   },
   robots: { index: true, follow: true },
 };

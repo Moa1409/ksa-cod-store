@@ -1,7 +1,7 @@
 import { Award, BadgeCheck, Banknote, ShieldCheck, Truck } from "lucide-react";
 
 const items = [
-  { icon: BadgeCheck, label: "منتج أصلي ومعتمد CE · RoHS" },
+  { icon: BadgeCheck, label: "حلال · ISO 22716 · GMP" },
   { icon: Banknote, label: "ما تدفعين إلا عند الاستلام" },
   { icon: ShieldCheck, label: "استرجاع سهل خلال ٣٠ يوم" },
   { icon: Truck, label: "توصيل موثوق ٢–٤ أيام" },
