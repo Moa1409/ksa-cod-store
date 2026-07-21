@@ -19,7 +19,7 @@ const rows: Row[] = [
   },
   {
     label: "جودة وأمان معتمد",
-    lamsa: { tone: "good", text: "حلال · ISO 22716 · GMP" },
+    lamsa: { tone: "good", text: "ISO 22716 · GMPC · MSDS" },
     salon: { tone: "mid", text: "تختلف حسب المكان" },
     cheap: { tone: "bad", text: "غالبًا دون شهادات" },
   },

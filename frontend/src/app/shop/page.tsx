@@ -14,7 +14,7 @@ import { products } from "@/lib/products";
 export const metadata: Metadata = {
   title: "المتجر",
   description:
-    "تسوّقي روتين لمسة توهج — ماسك كيراتين، عطر شعر حلال، وعلكات تقوية. حلال · ISO 22716 · الدفع عند الاستلام.",
+    "تسوّقي روتين لمسة توهج — ماسك كيراتين، عطر شعر، وعلكات تقوية. ISO 22716 · MSDS · الدفع عند الاستلام.",
 };
 
 const brandStats = [

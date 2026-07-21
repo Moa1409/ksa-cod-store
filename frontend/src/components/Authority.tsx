@@ -4,8 +4,8 @@ import { SectionHeading } from "@/components/SectionHeading";
 const badges = [
   {
     icon: BadgeCheck,
-    title: "حلال ١٠٠٪",
-    body: "شهادات حلال من المصنع — لأن الثقة الإيمانية جزء من قرار الشراء في السعودية.",
+    title: "MSDS مع كل دفعة",
+    body: "ورقة سلامة المكوّنات (MSDS) من المصنع — معيار صناعي واضح يبني ثقة التأكيد والاستلام.",
   },
   {
     icon: ShieldCheck,
@@ -31,7 +31,7 @@ export function Authority() {
         <SectionHeading
           eyebrow="موثوقية ومعايير"
           title="جودة تطمئنكِ… وشهادات تثقين فيها"
-          subtitle="ما نبيع منتج مجهول المصدر. نبني لمسة توهج على الحلال والمعايير والعلم — عشان تؤكدين الطلب وتستلمين بفخر."
+          subtitle="ما نبيع منتج مجهول المصدر. نبني لمسة توهج على المعايير والشهادات والعلم — عشان تؤكدين الطلب وتستلمين بفخر."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {badges.map(({ icon: Icon, title, body }) => (
