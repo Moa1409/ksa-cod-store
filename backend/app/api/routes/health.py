@@ -40,4 +40,6 @@ def health(db: Session = Depends(get_db)) -> dict:
         "maxmind": "configured" if maxmind_configured() else "missing",
         "block_vpn_proxy": settings.MAXMIND_BLOCK_VPN_PROXY,
         "require_ksa": settings.MAXMIND_REQUIRE_KSA,
+        "sheet_webhook": "configured" if settings.GOOGLE_SHEET_WEBHOOK_URL else "missing",
+        "sheet_secret": "configured" if settings.SHEET_SHARED_SECRET else "missing",
     }

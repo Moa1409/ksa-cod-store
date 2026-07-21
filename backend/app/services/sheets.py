@@ -70,8 +70,35 @@ def build_sheet_payload(order: Order) -> dict:
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=8), reraise=True)
 def _post(url: str, payload: dict) -> httpx.Response:
-    resp = httpx.post(url, json=payload, timeout=8.0, follow_redirects=True)
+    """POST to Apps Script, preserving POST across Google's 302 redirect.
+
+    script.google.com/macros/.../exec typically 302s to script.googleusercontent.com.
+    Default HTTP clients turn that into GET and the order never reaches doPost.
+    """
+    with httpx.Client(timeout=15.0, follow_redirects=False) as client:
+        resp = client.post(url, json=payload)
+        # Follow redirect(s) manually with POST (Apps Script web apps).
+        for _ in range(3):
+            if resp.status_code not in (301, 302, 303, 307, 308):
+                break
+            location = resp.headers.get("location")
+            if not location:
+                break
+            resp = client.post(location, json=payload)
+
     resp.raise_for_status()
+
+    # Apps Script returns HTTP 200 even for {ok:false, error:"unauthorized"}
+    try:
+        data = resp.json()
+    except Exception:  # noqa: BLE001
+        text = (resp.text or "").strip()
+        if text and "ok" not in text.lower():
+            raise RuntimeError(f"sheet webhook non-json response: {text[:200]}")
+        return resp
+
+    if isinstance(data, dict) and data.get("ok") is False:
+        raise RuntimeError(f"sheet webhook rejected: {data.get('error') or data}")
     return resp
 
 
@@ -80,9 +107,13 @@ def forward_order(order: Order) -> bool:
     if not settings.GOOGLE_SHEET_WEBHOOK_URL:
         log.warning("GOOGLE_SHEET_WEBHOOK_URL not set; skipping sheet sync")
         return False
+    if not settings.SHEET_SHARED_SECRET:
+        log.warning("SHEET_SHARED_SECRET not set; skipping sheet sync")
+        return False
     try:
         payload = build_sheet_payload(order)
         _post(settings.GOOGLE_SHEET_WEBHOOK_URL, payload)
+        log.info("sheet sync ok for %s", order.order_number)
         return True
     except Exception as exc:  # noqa: BLE001
         log.error("sheet sync failed for %s: %s", order.order_number, exc)
