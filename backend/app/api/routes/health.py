@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.core.config import settings
 from app.services.geoip import maxmind_configured
+from app.services.sheets import ping_sheet_webhook
 
 router = APIRouter()
 
@@ -42,4 +43,5 @@ def health(db: Session = Depends(get_db)) -> dict:
         "require_ksa": settings.MAXMIND_REQUIRE_KSA,
         "sheet_webhook": "configured" if settings.GOOGLE_SHEET_WEBHOOK_URL else "missing",
         "sheet_secret": "configured" if settings.SHEET_SHARED_SECRET else "missing",
+        "sheet_ping": ping_sheet_webhook(),
     }

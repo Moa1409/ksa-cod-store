@@ -118,3 +118,35 @@ def forward_order(order: Order) -> bool:
     except Exception as exc:  # noqa: BLE001
         log.error("sheet sync failed for %s: %s", order.order_number, exc)
         return False
+
+
+def ping_sheet_webhook() -> dict:
+    """Best-effort GET against the Apps Script /exec URL (calls doGet)."""
+    url = settings.GOOGLE_SHEET_WEBHOOK_URL
+    if not url:
+        return {"status": "missing_url"}
+    try:
+        with httpx.Client(timeout=12.0, follow_redirects=True) as client:
+            resp = client.get(url)
+        try:
+            data = resp.json()
+        except Exception:  # noqa: BLE001
+            return {
+                "status": "error",
+                "http": resp.status_code,
+                "error": (resp.text or "")[:200] or f"http_{resp.status_code}",
+            }
+        if isinstance(data, dict) and data.get("ok") is True:
+            return {
+                "status": "ok",
+                "http": resp.status_code,
+                "sheet": data.get("sheet"),
+                "spreadsheet": data.get("spreadsheet"),
+            }
+        return {
+            "status": "error",
+            "http": resp.status_code,
+            "error": str((data or {}).get("error") if isinstance(data, dict) else data)[:200],
+        }
+    except Exception as exc:  # noqa: BLE001
+        return {"status": "error", "error": str(exc)[:200]}
