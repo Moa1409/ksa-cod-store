@@ -18,9 +18,9 @@ def test_build_sheet_payload_multi_product():
         phone_e164="+966501234567",
         city="الرياض",
         items=[
-            {"slug": "keratin-gummies", "name": product_name("keratin-gummies"), "qty": 1, "unit_price": 166.33},
-            {"slug": "keratin-bond", "name": product_name("keratin-bond"), "qty": 1, "unit_price": 166.33},
-            {"slug": "hair-mist", "name": product_name("hair-mist"), "qty": 1, "unit_price": 166.34},
+            {"slug": "hair-skin-nails-gummies", "name": product_name("hair-skin-nails-gummies"), "qty": 1, "unit_price": 166.33},
+            {"slug": "keratin-collagen-mask", "name": product_name("keratin-collagen-mask"), "qty": 1, "unit_price": 166.33},
+            {"slug": "hair-perfume-mist", "name": product_name("hair-perfume-mist"), "qty": 1, "unit_price": 166.34},
         ],
         num_items=3,
         total=499.0,
@@ -36,12 +36,12 @@ def test_build_sheet_payload_multi_product():
     assert row["phone"] == "966501234567"
     assert row["product"] == "/".join(
         [
-            product_name("keratin-gummies"),
-            product_name("keratin-bond"),
-            product_name("hair-mist"),
+            product_name("hair-skin-nails-gummies"),
+            product_name("keratin-collagen-mask"),
+            product_name("hair-perfume-mist"),
         ]
     )
-    assert row["sku"] == "LAM-KG-1990/LAM-KB-2201/LAM-HM-1482"
+    assert row["sku"] == "LAM-HSN-6001/LAM-KCM-4701/LAM-HPM-0881"
     assert row["quantity"] == "1/1/1"
     assert row["totalprice"] == 499.0
     assert row["currency"] == "SAR"

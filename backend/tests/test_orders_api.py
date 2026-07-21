@@ -50,7 +50,7 @@ def test_create_order_persists_order_items(client):
         "customer_name": "Sara",
         "phone": "0550000000",
         "city": "الرياض",
-        "items": [{"slug": "keratin-bond", "qty": 2}],
+        "items": [{"slug": "keratin-collagen-mask", "qty": 2}],
         "event_id": "pytest_order_1",
     }
     with patch("app.services.geoip.check_order_ip"):
@@ -63,4 +63,4 @@ def test_create_order_persists_order_items(client):
     assert order is not None
     rows = session.scalars(select(OrderItem).where(OrderItem.order_id == order.id)).all()
     assert len(rows) == 1
-    assert rows[0].slug == "keratin-bond"
+    assert rows[0].slug == "keratin-collagen-mask"

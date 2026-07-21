@@ -3,13 +3,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 # Server-side catalog + pricing — never trust client totals.
-# Unit: Keratin Bond 219, Hair Mist 149, Keratin Gummies 199.
+# Unit: Keratin Collagen Mask 219, Hair Perfume Mist 149, Hair Skin Nails Gummies 199.
 # Bundles by count: 2 → 329, 3 → 499. Upsell add-on → 99.
 
 PRODUCT_PRICES: dict[str, float] = {
-    "keratin-bond": 219.0,
-    "hair-mist": 149.0,
-    "keratin-gummies": 199.0,
+    "keratin-collagen-mask": 219.0,
+    "hair-perfume-mist": 149.0,
+    "hair-skin-nails-gummies": 199.0,
 }
 BUNDLE_2 = 329.0
 BUNDLE_3 = 499.0
@@ -17,20 +17,20 @@ UPSELL_PRICE = 99.0
 CURRENCY = "SAR"
 
 CATALOG: dict[str, dict] = {
-    "keratin-bond": {
-        "slug": "keratin-bond",
-        "name": "لمسة كيراتين بوند",
-        "sku": "LAM-KB-2201",
+    "keratin-collagen-mask": {
+        "slug": "keratin-collagen-mask",
+        "name": "لمسة كيراتين كولاجين",
+        "sku": "LAM-KCM-4701",
     },
-    "hair-mist": {
-        "slug": "hair-mist",
+    "hair-perfume-mist": {
+        "slug": "hair-perfume-mist",
         "name": "لمسة عطر الشعر",
-        "sku": "LAM-HM-1482",
+        "sku": "LAM-HPM-0881",
     },
-    "keratin-gummies": {
-        "slug": "keratin-gummies",
-        "name": "لمسة كيراتين جاميز",
-        "sku": "LAM-KG-1990",
+    "hair-skin-nails-gummies": {
+        "slug": "hair-skin-nails-gummies",
+        "name": "لمسة علكات الجمال",
+        "sku": "LAM-HSN-6001",
     },
 }
 

@@ -36,20 +36,26 @@
 
 ## Marketing names (use everywhere)
 
-1. **لمسة كيراتين بوند — ماسك الكيراتين لترميم الروابط والنعومة**  
-   (Lamsa Keratin Bond) · slug: `keratin-bond` · **219 ر.س**  
-   - Heading: «شعر ناعم مثل الصالون… من أول غسلة»  
-   - Sub: ماسك الكيراتين لترميم الروابط والنعومة — بعد الحرارة والصبغة والحجاب.
+1. **لمسة كيراتين كولاجين — ماسك الأرغان المغربي بالكولاجين والكيراتين**  
+   (Lamsa Keratin Collagen Mask) · slug: `keratin-collagen-mask` · SKU `LAM-KCM-4701` · **219 ر.س**  
+   - Heading: «شعر ناعم ولامع… من أول غسلة»  
+   - Sub: ماسك الأرغان المغربي بالكولاجين والكيراتين — تغذية وترميم ولمعان صالون في بيتكِ.  
+   - Claims: cosmetic repair / shine / smooth / nourish only — no hair growth, anti-hair-fall, or medical claims.  
+   - Certs: ISO 22716 · GMPC · COA · MSDS
 
-2. **لمسة عطر الشعر — مِست حلال للانتعاش تحت الحجاب**  
-   (Lamsa Hair Mist) · slug: `hair-mist` · **149 ر.س**  
-   - Heading: «ريحة فريش… وثقة قبل ما تطلعين»  
-   - Sub: عطر شعر حلال للانتعاش والثقة تحت الحجاب.
+2. **لمسة عطر الشعر — مِست العسل والورد طويل الثبات**  
+   (Lamsa Hair Perfume Mist) · slug: `hair-perfume-mist` · SKU `LAM-HPM-0881` · **149 ر.س**  
+   - Heading: «ريحة عسل وورد… تدوم تحت الحجاب»  
+   - Sub: مِست عطر الشعر طويل الثبات برائحة العسل والورد — مع زيت الجوجوبا والأرغان.  
+   - Positioning: hijab-friendly light mist.  
+   - Certs: ISO 22716 · GMPC · COA · MSDS
 
-3. **لمسة كيراتين جاميز — علكات الكيراتين والبيوتين لتقوية الشعر والأظافر**  
-   (Lamsa Keratin Gummies) · slug: `keratin-gummies` · **199 ر.س**  
-   - Heading: «قوة من الداخل… شعر وأظافر أقوى خلال ٣٠ يوم»  
-   - Sub: كيراتين + بيوتين + كولاجين — مكمل حلال بمعايير GMP (مو علاج صلع).
+3. **لمسة علكات الجمال — علكات الكولاجين والكيراتين والبيوتين**  
+   (Lamsa Hair Skin Nails Gummies) · slug: `hair-skin-nails-gummies` · SKU `LAM-HSN-6001` · **199 ر.س**  
+   - Heading: «شعر · بشرة · أظافر… دعم يومي من الداخل»  
+   - Sub: كولاجين + كيراتين + بيوتين — ٦٠ علكة لدعم مظهر الشعر والبشرة والأظافر.  
+   - Disclaimer: dietary supplement — no medical / hair-loss claims.  
+   - Certs: GMP · ISO 22000 · HACCP · COA
 
 ## Bundle / AOV
 - قطعتان **٣٢٩** · ٣ قطع **٤٩٩** · Upsell **٩٩**

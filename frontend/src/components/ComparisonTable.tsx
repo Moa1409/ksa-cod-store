@@ -31,7 +31,7 @@ const rows: Row[] = [
   },
   {
     label: "الولاء وإعادة الشراء",
-    lamsa: { tone: "good", text: "ماسك + مِست + جاميز = روتين شهري" },
+    lamsa: { tone: "good", text: "ماسك + مِست + علكات = روتين شهري" },
     salon: { tone: "bad", text: "تكلفة جديدة كل مرة" },
     cheap: { tone: "mid", text: "ما ترجعين لنفس البراند" },
   },

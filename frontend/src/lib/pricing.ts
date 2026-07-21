@@ -1,11 +1,11 @@
 // Pricing / offer model — single source of truth (mirrors backend catalog.py).
-// Unit: Keratin Bond 219, Hair Mist 149, Keratin Gummies 199.
+// Unit: Keratin Collagen Mask 219, Hair Perfume Mist 149, Hair Skin Nails Gummies 199.
 // Bundles by count: 2 → 329, 3 → 499. Upsell add-on at checkout → 99.
 
 export const PRODUCT_PRICES: Record<string, number> = {
-  "keratin-bond": 219,
-  "hair-mist": 149,
-  "keratin-gummies": 199,
+  "keratin-collagen-mask": 219,
+  "hair-perfume-mist": 149,
+  "hair-skin-nails-gummies": 199,
 };
 
 export const BUNDLE_2 = 329;

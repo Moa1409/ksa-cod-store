@@ -20,7 +20,7 @@ export function SiteFooter() {
             <Logo />
           </div>
           <p className="mt-4 text-sm text-brand-cream/80">
-            طقوس الصالون المعتمدة في بيتكِ — كيراتين · عطر شعر · تقوية من الداخل.
+            طقوس الصالون المعتمدة في بيتكِ — كيراتين كولاجين · عطر شعر · علكات الجمال.
           </p>
           <div className="mt-4 flex flex-wrap gap-3 text-xs text-brand-cream/80">
             <span className="inline-flex items-center gap-1">
