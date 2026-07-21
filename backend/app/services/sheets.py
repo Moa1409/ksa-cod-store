@@ -70,25 +70,22 @@ def build_sheet_payload(order: Order) -> dict:
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=8), reraise=True)
 def _post(url: str, payload: dict) -> httpx.Response:
-    """POST to Apps Script, preserving POST across Google's 302 redirect.
+    """POST to Apps Script web app.
 
-    script.google.com/macros/.../exec typically 302s to script.googleusercontent.com.
-    Default HTTP clients turn that into GET and the order never reaches doPost.
+    Google returns 302 to script.googleusercontent.com/macros/echo?...
+    doPost already ran on the first POST; the Location must be fetched with GET
+    to read {ok:true}. Re-POSTing the redirect URL returns 405.
     """
-    with httpx.Client(timeout=15.0, follow_redirects=False) as client:
+    with httpx.Client(timeout=20.0, follow_redirects=False) as client:
         resp = client.post(url, json=payload)
-        # Follow redirect(s) manually with POST (Apps Script web apps).
-        for _ in range(3):
-            if resp.status_code not in (301, 302, 303, 307, 308):
-                break
+        if resp.status_code in (301, 302, 303, 307, 308):
             location = resp.headers.get("location")
             if not location:
-                break
-            resp = client.post(location, json=payload)
+                raise RuntimeError(f"sheet webhook redirect without location ({resp.status_code})")
+            resp = client.get(location)
 
     resp.raise_for_status()
 
-    # Apps Script returns HTTP 200 even for {ok:false, error:"unauthorized"}
     try:
         data = resp.json()
     except Exception:  # noqa: BLE001
