@@ -107,11 +107,11 @@ def forward_order(order: Order) -> bool:
     if not settings.GOOGLE_SHEET_WEBHOOK_URL:
         log.warning("GOOGLE_SHEET_WEBHOOK_URL not set; skipping sheet sync")
         return False
-    if not settings.SHEET_SHARED_SECRET:
-        log.warning("SHEET_SHARED_SECRET not set; skipping sheet sync")
-        return False
     try:
         payload = build_sheet_payload(order)
+        # Secret is optional — if unset, Apps Script must also leave SHARED_SECRET empty.
+        if not settings.SHEET_SHARED_SECRET:
+            log.warning("SHEET_SHARED_SECRET not set; posting without secret")
         _post(settings.GOOGLE_SHEET_WEBHOOK_URL, payload)
         log.info("sheet sync ok for %s", order.order_number)
         return True

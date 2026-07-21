@@ -28,11 +28,11 @@
  * After edits: Deploy → Manage deployments → Edit (pencil) → New version → Deploy.
  */
 
-var SHARED_SECRET = 'CHANGE_ME_MATCHES_BACKEND'; // = backend SHEET_SHARED_SECRET
+var SHARED_SECRET = ''; // optional — leave empty to disable auth (or set same value as backend SHEET_SHARED_SECRET)
 
-// Your CSV tab is "Feuille 1". Change if you rename the sheet tab.
-// Leave empty ('') to always use the first tab.
-var SHEET_NAME = 'Feuille 1';
+// Leave empty to always use the first tab (recommended).
+// Or set exactly to your tab name, e.g. 'Feuille 1'
+var SHEET_NAME = '';
 
 var HEADERS = [
   'date',
@@ -78,8 +78,11 @@ function doPost(e) {
     }
     var body = JSON.parse(e.postData.contents);
 
-    if (!body.secret || body.secret !== SHARED_SECRET) {
-      return json_({ ok: false, error: 'unauthorized' });
+    // Auth only if SHARED_SECRET is set (non-empty).
+    if (SHARED_SECRET) {
+      if (!body.secret || body.secret !== SHARED_SECRET) {
+        return json_({ ok: false, error: 'unauthorized' });
+      }
     }
 
     var o = body.order || {};
@@ -89,7 +92,7 @@ function doPost(e) {
     if (o.order) {
       var lastRow = sh.getLastRow();
       if (lastRow > 1) {
-        var existing = sh.getRange(2, 2, lastRow - 1, 1).getValues();
+        var existing = sh.getRange(2, 2, lastRow, 2).getValues();
         for (var i = 0; i < existing.length; i++) {
           if (String(existing[i][0]) === String(o.order)) {
             return json_({ ok: true, duplicate: true });
@@ -109,7 +112,7 @@ function doPost(e) {
       o.quantity || '',
       o.totalprice != null ? o.totalprice : '',
       o.currency || 'SAR',
-      o.status || '' // left empty for the confirmation team
+      o.status || ''
     ];
 
     sh.appendRow(row);
