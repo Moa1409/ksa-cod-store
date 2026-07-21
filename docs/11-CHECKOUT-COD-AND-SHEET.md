@@ -56,12 +56,14 @@ Backend responds `201 { order_number, total, currency }`. Frontend:
 
 ### Sheet columns (order matters — must match the Apps Script header)
 ```
-timestamp, order_number, status, customer_name, phone, phone_e164,
-items_summary, num_items, bundle_subtotal, upsell_taken, upsell_slug, upsell_price,
-total, currency, city, event_id, utm_source, utm_campaign, landing_url, notes
+date, order, country, name, phone, product, sku, quantity, totalprice, currency, status
 ```
-- `items_summary` = human string e.g. `"لمسة إيرغلو ×2"`. Keep a machine `items_json` column too if useful.
-- `status` starts `"جديد"` / `new`; the confirmation team updates it (تم التأكيد / تم الشحن / ...).
+- `date` = `DD/MM/YYYY` (Asia/Riyadh), e.g. `01/05/2026`
+- `order` = `nama-YYYYMMDD-xxxx` (generated per order)
+- `country` = always `KSA`
+- `phone` = `9665XXXXXXXX` (no `+`)
+- `product` / `sku` / `quantity` = slash-separated for multi-item carts (`product1/product2`, `sku1/sku2`, `2/2/2`)
+- `status` = left **empty** for the confirmation team
 
 ### Webhook contract (backend → Apps Script)
 ```json
@@ -70,38 +72,29 @@ Content-Type: application/json
 {
   "secret": "{SHEET_SHARED_SECRET}",
   "order": {
-    "timestamp": "2026-07-08T16:20:00Z",
-    "order_number": "LG-20260708-0042",
-    "status": "new",
-    "customer_name": "منيرة",
-    "phone": "9665XXXXXXXX",
-    "phone_e164": "+9665XXXXXXXX",
-    "items_summary": "لمسة إيرغلو ×2",
-    "items_json": "[{\"slug\":\"air-glow\",\"qty\":2,\"unit_price\":139.5}]",
-    "num_items": 2,
-    "bundle_subtotal": 279.0,
-    "upsell_taken": true,
-    "upsell_slug": "glow-lift",
-    "upsell_price": 99.0,
-    "total": 378.0,
+    "date": "01/05/2026",
+    "order": "nama-20260501-a1b2",
+    "country": "KSA",
+    "name": "منيرة",
+    "phone": "966504752333",
+    "product": "لمسة كيراتين كولاجين/لمسة عطر الشعر",
+    "sku": "LAM-7K4M92/LAM-3N8P41",
+    "quantity": "1/2",
+    "totalprice": 329,
     "currency": "SAR",
-    "city": "",
-    "event_id": "purchase_9f2c...",
-    "utm_source": "tiktok",
-    "utm_campaign": "airglow_ugc_1",
-    "landing_url": "https://lamsaglow.shop/product/air-glow",
-    "notes": ""
+    "status": ""
   }
 }
 ```
 Apps Script validates `secret`, appends a row in the column order above, returns `{ "ok": true }`.
 
 ### Apps Script deployment steps (put in README + doc 12)
-1. Create a Google Sheet named **`Lamsa Glow — Orders`**; first tab `Orders`.
-2. Paste header row from `orders-sheet-template.csv` (or let the script create it on first run).
+1. Open Google Sheet **Orders Lamsa Store** (tab `Feuille 1` or update `SHEET_NAME` in the script).
+2. Paste header row from `orders-sheet-template.csv` (or run `setupHeader()` once).
 3. Extensions → **Apps Script** → paste `docs/assets/google-apps-script.gs`.
 4. Set the `SHARED_SECRET` constant in the script to match backend `SHEET_SHARED_SECRET`.
 5. Deploy → **New deployment** → type **Web app** → Execute as **Me**, Access **Anyone** → copy the `/exec` URL → set backend `GOOGLE_SHEET_WEBHOOK_URL`.
+6. After any script edit: Deploy → Manage deployments → Edit → New version → Deploy.
 6. Test with a sample order; confirm a row appears.
 
 ### CSV files to deliver

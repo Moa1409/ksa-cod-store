@@ -53,7 +53,7 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "keratin-collagen-mask",
-    sku: "LAM-KCM-4701",
+    sku: "LAM-7K4M92",
     name: "لمسة كيراتين كولاجين",
     nameEn: "Lamsa Keratin Collagen Mask",
     heading: "شعر ناعم ولامع… من أول غسلة",
@@ -202,7 +202,7 @@ export const products: Product[] = [
   },
   {
     slug: "hair-perfume-mist",
-    sku: "LAM-HPM-0881",
+    sku: "LAM-3N8P41",
     name: "لمسة عطر الشعر",
     nameEn: "Lamsa Hair Perfume Mist",
     heading: "ريحة عسل وورد… تدوم تحت الحجاب",
@@ -347,7 +347,7 @@ export const products: Product[] = [
   },
   {
     slug: "hair-skin-nails-gummies",
-    sku: "LAM-HSN-6001",
+    sku: "LAM-9Q2R58",
     name: "لمسة علكات الجمال",
     nameEn: "Lamsa Hair Skin Nails Gummies",
     heading: "شعر · بشرة · أظافر… دعم يومي من الداخل",

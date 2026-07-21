@@ -40,9 +40,16 @@ def _sheet_line_groups(items: list[dict]) -> tuple[str, str, str]:
 
 
 def build_sheet_payload(order: Order) -> dict:
-    """Payload for Google Apps Script — matches Orders sheet columns."""
+    """Payload for Google Apps Script — matches Orders Lamsa Store columns.
+
+    Columns: date, order, country, name, phone, product, sku, quantity,
+    totalprice, currency, status (status left empty for the confirmation team).
+    Multi-item fields use slash separators: product1/product2, sku1/sku2, qty1/qty2.
+    Phone is canonical 9665XXXXXXXX (no +).
+    """
     line_items = order.items_as_dicts()
     product, sku, quantity = _sheet_line_groups(line_items)
+    phone = (order.phone or "").lstrip("+").replace(" ", "")
     return {
         "secret": settings.SHEET_SHARED_SECRET,
         "order": {
@@ -50,12 +57,12 @@ def build_sheet_payload(order: Order) -> dict:
             "order": order.order_number,
             "country": SHEET_COUNTRY,
             "name": order.customer_name.strip(),
-            "phone": order.phone,
+            "phone": phone,
             "product": product,
             "sku": sku,
             "quantity": quantity,
             "totalprice": float(order.total),
-            "currency": order.currency or "SAR",
+            "currency": "SAR",
             "status": "",
         },
     }
