@@ -11,13 +11,13 @@ def test_format_sheet_date():
     assert format_sheet_date(dt) == "01/05/2026"
 
 
-def test_order_number_starts_with_nama():
-    assert generate_order_number().startswith("nama-")
+def test_order_number_starts_with_lamsa():
+    assert generate_order_number().startswith("lamsa-")
 
 
 def test_build_sheet_payload_multi_product():
     order = Order(
-        order_number="nama-20260501-a1b2",
+        order_number="lamsa-20260501-a1b2",
         customer_name="Sara",
         phone="966504752333",
         phone_e164="+966504752333",
@@ -44,7 +44,7 @@ def test_build_sheet_payload_multi_product():
     payload = build_sheet_payload(order)
     row = payload["order"]
     assert row["date"] == "01/05/2026"
-    assert row["order"] == "nama-20260501-a1b2"
+    assert row["order"] == "lamsa-20260501-a1b2"
     assert row["country"] == "KSA"
     assert row["name"] == "Sara"
     assert row["phone"] == "966504752333"

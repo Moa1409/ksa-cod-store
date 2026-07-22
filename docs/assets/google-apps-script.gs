@@ -71,7 +71,7 @@ function testAppendRow() {
   var sh = getSheet_();
   sh.appendRow([
     Utilities.formatDate(new Date(), 'Asia/Riyadh', 'dd/MM/yyyy'),
-    'nama-TEST-' + Date.now(),
+    'lamsa-TEST-' + Date.now(),
     'KSA',
     'Apps Script Test',
     '966550000000',

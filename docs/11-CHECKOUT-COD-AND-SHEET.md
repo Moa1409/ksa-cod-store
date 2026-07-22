@@ -59,7 +59,7 @@ Backend responds `201 { order_number, total, currency }`. Frontend:
 date, order, country, name, phone, product, sku, quantity, totalprice, currency, status
 ```
 - `date` = `DD/MM/YYYY` (Asia/Riyadh), e.g. `01/05/2026`
-- `order` = `nama-YYYYMMDD-xxxx` (generated per order)
+- `order` = `lamsa-YYYYMMDD-xxxx` (generated per order)
 - `country` = always `KSA`
 - `phone` = `9665XXXXXXXX` (no `+`)
 - `product` / `sku` / `quantity` = slash-separated for multi-item carts (`product1/product2`, `sku1/sku2`, `2/2/2`)
@@ -73,7 +73,7 @@ Content-Type: application/json
   "secret": "{SHEET_SHARED_SECRET}",
   "order": {
     "date": "01/05/2026",
-    "order": "nama-20260501-a1b2",
+    "order": "lamsa-20260501-a1b2",
     "country": "KSA",
     "name": "منيرة",
     "phone": "966504752333",
