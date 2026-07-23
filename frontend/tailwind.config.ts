@@ -6,18 +6,18 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          primary: "#B76E79", // rose gold — logo circle, primary CTA
-          primaryDark: "#9E5A65",
-          plum: "#3F2233", // headings, footer, dark sections
-          gold: "#C9A24B", // ratings, badges, trust accents
-          rose: "#E7C9CE", // soft fills, tags
-          cream: "#FBF6F2", // page background
-          ink: "#2A1B24", // body text
+          primary: "#0E6B63", // deep teal — parapharmacy authority / CTA
+          primaryDark: "#0A524C",
+          plum: "#142826", // forest ink — headings, footer
+          gold: "#A8894A", // soft brass — ratings, cert accents
+          rose: "#D7E5E2", // sage mist — soft fills (token kept)
+          cream: "#F3F7F6", // cool pearl background
+          ink: "#1C2B28", // body text
         },
         ui: {
           success: "#2E7D5B",
           error: "#C0392B",
-          muted: "#8A7A82",
+          muted: "#6B7C78",
         },
       },
       fontFamily: {
@@ -30,8 +30,8 @@ const config: Config = {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 8px 30px rgba(63, 34, 51, 0.08)",
-        card: "0 4px 20px rgba(63, 34, 51, 0.06)",
+        soft: "0 8px 30px rgba(20, 40, 38, 0.08)",
+        card: "0 4px 20px rgba(20, 40, 38, 0.06)",
       },
       keyframes: {
         marquee: {

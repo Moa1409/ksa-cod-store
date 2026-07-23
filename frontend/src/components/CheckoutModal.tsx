@@ -363,9 +363,11 @@ function UpsellView({
           <div className="h-full rounded-full bg-gradient-to-l from-ui-error to-brand-gold transition-all duration-1000 ease-linear" style={{ width: `${pct}%` }} />
         </div>
 
-        <div className="pill-gold mx-auto"><BadgePercent className="h-4 w-4" /> خصم {discount}% لمرة واحدة</div>
-        <h2 className="mt-2 text-xl font-extrabold text-brand-plum">أضيفيه لطلبكِ الآن فقط!</h2>
-        <p className="mt-1 text-sm text-brand-ink/80">{product.name} بسعر لن يتكرر مع طلبكِ الحالي</p>
+        <div className="pill-gold mx-auto"><BadgePercent className="h-4 w-4" /> خصم {discount}% — ينتهي مع هذا الطلب</div>
+        <h2 className="mt-2 text-xl font-extrabold text-brand-plum">كمّلي روتينكِ قبل ما يفوتكِ السعر</h2>
+        <p className="mt-1 text-sm text-brand-ink/80">
+          {product.name} بـ {formatSar(UPSELL_PRICE)} فقط مع طلبكِ الحالي — بعدها يرجع السعر العادي.
+        </p>
 
         <div className="mx-auto my-4 max-w-[200px]">
           <div className="rounded-3xl bg-white/50 p-2 ring-1 ring-brand-rose/40">
@@ -382,13 +384,13 @@ function UpsellView({
         </div>
 
         <button onClick={onAccept} className="btn-primary w-full text-lg">
-          نعم، أضيفيه بـ {formatSar(UPSELL_PRICE)}
+          نعم، أضيفيه بـ {formatSar(UPSELL_PRICE)} — أدفع عند الباب
         </button>
         <button onClick={onDecline} className="btn-ghost mt-2 w-full text-ui-muted">
-          لا شكرًا، أكملي طلبي
+          لا، كمّلي طلبي بدون الإضافة
         </button>
         <p className="mt-3 inline-flex items-center gap-1 text-xs text-ui-muted">
-          <Banknote className="h-3.5 w-3.5 text-brand-gold" /> يُضاف للدفع عند الاستلام — بدون أي دفع الآن
+          <Banknote className="h-3.5 w-3.5 text-brand-gold" /> يُضاف على الدفع عند الاستلام — ولا ريال الآن
         </p>
       </div>
     </div>

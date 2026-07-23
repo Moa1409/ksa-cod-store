@@ -1,8 +1,8 @@
 # Lamsa Glow — Build Documentation (index)
 
-**Brand:** لمسة توهج / **Lamsa Glow** · **Domain:** `lamsaglow.shop` · **API:** `api.lamsaglow.shop`
-**Model:** DTC, **branded** dropshipping, **KSA**, **Arabic-first (RTL)**, **COD-only**, high-AOV.
-**Goal:** a 12/10 CRO store that makes generic devices feel like a trusted, premium, certified brand — so we sell at premium prices and maximize **confirmation / delivery / AOV**. Traffic = paid social (TikTok, Snapchat, Meta) via AI/UGC video.
+**Brand:** لمسة توهج / **Lamsa Glow** · **Positioning:** Certified at-home **dermocosmetic parapharmacy** · **Domain:** `lamsaglow.shop` · **API:** `api.lamsaglow.shop`
+**Model:** DTC, branded, KSA, Arabic-first RTL, COD-only, high-AOV (topicals + beauty gummies).
+**Goal:** look and feel like a trusted beauty cabinet (authority + certificates + named actives) so confirmation, delivery, and AOV stay high.
 
 ## How to use these docs (read in order)
 | # | File | What it defines |

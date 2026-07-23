@@ -67,9 +67,11 @@
 - Near every CTA: «الدفع عند الاستلام» + شهادات.
 - No medical/hair-loss/whitening claims.
 
-## Reusable blocks
-- **CTA:** «أضيفي إلى السلة»
-- **COD:** «لن تدفعي شيئًا الآن — الدفع عند الاستلام.»
-- **Guarantee:** «ضمان استرجاع ٣٠ يوم.»
-- **Social proof:** «أكثر من ٢٥٬٠٠٠ امرأة سعودية · ⭐ ٤٫٩/٥»
-- **Authority row:** «حلال · ISO 22716 · GMP · COA»
+## Reusable blocks (store live copy — Jul 2026)
+- **CTA:** «أضيفي للسلة — ادفعي عند الاستلام»
+- **COD:** «افحصي ثم ادفعي عند الباب — ولا ريال الآن.»
+- **Guarantee:** «ضمان ٣٠ يوم — المخاطرة علينا.»
+- **Social proof:** «+٢٥٬٠٠٠ امرأة سعودية · ⭐ ٤٫٩/٥»
+- **Authority row:** «ISO 22716 · GMPC · MSDS · COA» (علكات: GMP · ISO 22000 · HACCP · COA)
+- **Hero emotion:** pain under hijab → salon-like softness/freshness → certs + COD
+- **No Halal badge** until certificate on file; no medical / hair-growth claims.

@@ -1,10 +1,26 @@
 import { Banknote, PackageCheck, RotateCcw, ShieldCheck } from "lucide-react";
 
 const items = [
-  { icon: Banknote, t: "الدفع عند الاستلام", d: "ما تدفعين ولا ريال إلا لمّا يوصلكِ الطلب لباب بيتكِ." },
-  { icon: PackageCheck, t: "افحصيه قبل الدفع", d: "افتحي الطلب وتأكدي منه وقت الاستلام قبل ما تدفعين." },
-  { icon: ShieldCheck, t: "استرجاع خلال ٣٠ يوم", d: "ما عجبكِ؟ رجّعيه واسترجعي مبلغكِ بدون تعقيد." },
-  { icon: RotateCcw, t: "خدمة عملاء سعودية", d: "فريق يرد عليكِ بالعربي ويتابع طلبكِ خطوة بخطوة." },
+  {
+    icon: Banknote,
+    t: "الدفع عند الاستلام",
+    d: "ما نسحب ولا ريال قبل ما يوصلكِ الطلب لباب بيتكِ — افتحي، شوفي، وبعدين ادفعي.",
+  },
+  {
+    icon: PackageCheck,
+    t: "افحصيه قبل الدفع",
+    d: "حقّكِ تفحصين المنتج عند المندوب. إذا فيه شيء مو واضح، لا تدفعين.",
+  },
+  {
+    icon: ShieldCheck,
+    t: "ضمان ٣٠ يوم",
+    d: "ما حسّيتي إنه يستاهل؟ رجّعي خلال ٣٠ يوم — المخاطرة علينا مو عليكِ.",
+  },
+  {
+    icon: RotateCcw,
+    t: "دعم بالعربي",
+    d: "فريق سعودي يفهم لهجتكِ ويتابع التأكيد والتوصيل خطوة بخطوة.",
+  },
 ];
 
 export function GuaranteeBand() {
@@ -13,9 +29,13 @@ export function GuaranteeBand() {
       <div className="container-lg">
         <div className="overflow-hidden rounded-3xl border border-brand-gold/30 bg-white p-6 shadow-card sm:p-10">
           <div className="mb-6 text-center">
-            <div className="eyebrow mx-auto">ضمان راحة البال</div>
-            <h2 className="text-2xl font-extrabold sm:text-3xl">تسوّقي وأنتِ مطمئنة… المخاطرة كلها علينا</h2>
-            <p className="mt-2 text-brand-ink/75">ما تخسرين شيء: تستلمين، تفحصين، وبعدين تدفعين.</p>
+            <div className="eyebrow mx-auto">ثقة صيدلية تجميلية</div>
+            <h2 className="text-2xl font-extrabold sm:text-3xl">
+              خايفة من المنتجات الأونلاين؟ هويتنا اتنبنت ضد هالإحساس
+            </h2>
+            <p className="mt-2 text-brand-ink/75">
+              شهادات اعتماد واضحة · مكوّنات فعّالة بالاسم · دفع بعد الاستلام · ضمان ٣٠ يوم.
+            </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {items.map(({ icon: Icon, t, d }) => (

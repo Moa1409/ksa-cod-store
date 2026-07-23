@@ -12,9 +12,9 @@ export function PainPoints({
     <section className="section">
       <div className="container-lg">
         <SectionHeading
-          eyebrow="نفهمكِ"
-          title="نعرف تمامًا وش تحسّين فيه…"
-          subtitle="لأنكِ تستاهلين حل يريّح بالكِ، صمّمنا لكِ الأفضل."
+          eyebrow="إحساسكِ… مو بس شعركِ"
+          title="نحس فيكِ قبل ما نبيع لكِ"
+          subtitle="مو عشان نذكّركِ بالمشكلة — عشان نقولكِ: في حل مرتّب، معتمد، وبخصوصيتكِ."
         />
         <div className="mx-auto grid max-w-3xl gap-3">
           {pains.map((p) => (
@@ -28,7 +28,7 @@ export function PainPoints({
         </div>
         <p className="mt-6 text-center text-lg font-bold text-brand-primary">
           <Heart className="me-1 inline h-5 w-5 fill-brand-primary" />
-          ولهذا صمّمنا {productName} — عشانكِ.
+          عشان كذا صمّمنا {productName} — لمسة توهج تريّح بالكِ.
         </p>
       </div>
     </section>

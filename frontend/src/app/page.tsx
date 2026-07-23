@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Banknote, Check, Home, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { Banknote, Check, FlaskConical, Home, ShieldCheck, Star } from "lucide-react";
 import { Authority } from "@/components/Authority";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { CreatorWall } from "@/components/CreatorWall";
@@ -7,6 +7,7 @@ import { DeliveryPromise } from "@/components/DeliveryPromise";
 import { ExpertQuote } from "@/components/ExpertQuote";
 import { FAQ } from "@/components/FAQ";
 import { GuaranteeBand } from "@/components/GuaranteeBand";
+import { HowToRitualStrip } from "@/components/HowToUse";
 import { Marquee } from "@/components/Marquee";
 import { Media } from "@/components/Media";
 import { ProductCard } from "@/components/ProductCard";
@@ -18,17 +19,33 @@ import { TrustBar } from "@/components/TrustBar";
 import { products } from "@/lib/products";
 
 const pillars = [
-  { icon: Sparkles, title: "نتائج الصالون", body: "نعومة ولمعان وانتعاش تلاحظينها من أول استخدام." },
-  { icon: ShieldCheck, title: "معتمد وموثوق", body: "ISO 22716 · GMPC · MSDS — شهادات تطمئنكِ قبل الدفع." },
-  { icon: Home, title: "خصوصية وراحة", body: "طقس صالون في بيتكِ — بدون مواعيد ولا إحراج." },
-  { icon: Banknote, title: "قيمة وولاء", body: "اشتري مرّة… وأعيدي الطلب كل شهر بروتين يبني ثقتكِ." },
+  {
+    icon: ShieldCheck,
+    title: "معايير الصيدلية التجميلية",
+    body: "ISO 22716 · GMPC · MSDS · COA · GMP — شهادات قبل ما تدفعين، مو بعد ما تندمين.",
+  },
+  {
+    icon: FlaskConical,
+    title: "مكوّنات فعّالة مكتوبة بوضوح",
+    body: "كيراتين · كولاجين · أرغان · بيوتين — تشوفين الاسم والدور، بدون سحر فاضي.",
+  },
+  {
+    icon: Home,
+    title: "عناية بخصوصيتكِ",
+    body: "تحت الحجاب، في بيتكِ، على وقتكِ — روتين صيدلية تجميلية مو حجز صالون كل أسبوع.",
+  },
+  {
+    icon: Banknote,
+    title: "ثقة عند الباب",
+    body: "ادفعي بعد ما تستلمين وتفحصين + ضمان ٣٠ يوم — المخاطرة علينا.",
+  },
 ];
 
 const brandStats = [
-  { value: "+٢٥٬٠٠٠", label: "عميلة سعودية" },
-  { value: "٤.٩/٥", label: "متوسط التقييم" },
-  { value: "ISO", label: "22716 · GMPC · MSDS" },
-  { value: "٢–٤ أيام", label: "توصيل لكل السعودية" },
+  { value: "+٢٥٬٠٠٠", label: "امرأة سعودية وثقت فينا" },
+  { value: "٤.٩/٥", label: "من تقييمات حقيقية" },
+  { value: "ISO", label: "22716 · GMPC · GMP" },
+  { value: "٢–٤ أيام", label: "لباب بيتكِ في كل المملكة" },
 ];
 
 const homeReviews = [
@@ -39,16 +56,25 @@ const homeReviews = [
 ];
 
 const homeFaq = [
-  { q: "كيف أدفع؟", a: "الدفع عند الاستلام — تستلمين طلبكِ وتدفعين المندوب مباشرة." },
-  { q: "متى يوصل الطلب؟", a: "شحن سريع لكل مدن المملكة، والتوصيل عادةً ٢–٤ أيام عمل." },
   {
-    q: "هل المنتجات معتمدة؟",
-    a: "نعم — نتعامل مع مصانع ISO 22716/GMPC (للتجميل) وGMP للمكملات، ونطلب شهادات التحليل (COA) وسلامة المكوّنات (MSDS) قبل الشحن. نعرض فقط ما نملكه فعليًا.",
+    q: "وش يعني «صيدلية تجميلية»؟ هل أنتم صيدلية طبية؟",
+    a: "لا — إحنا عناية تجميلية Dermocosmetic بأسلوب الصيدلية: مكوّنات فعّالة مكتوبة بوضوح، وشهادات اعتماد (مثل ISO وGMP) نقدر نثبتها. مو علاج طبي ولا وصفة دواء.",
   },
-  { q: "هل يوجد ضمان؟", a: "ضمان استرجاع ٣٠ يوم — إذا ما عجبكِ المنتج ترجعينه." },
   {
-    q: "هل النتائج مضمونة؟",
-    a: "النتائج تختلف من شخص لآخر. نقدّم تركيبات وعلوم واضحة + آلاف التقييمات — بدون وعود طبية مبالغ فيها.",
+    q: "كيف أدفع؟ أبغى أتأكد إنه مو نصب",
+    a: "الدفع عند الاستلام فقط — تفتحين الطلب، تفحصينه، وبعدين تدفعين المندوب. ما نسحب ولا ريال قبل ما يوصلكِ.",
+  },
+  {
+    q: "هل المنتجات معتمدة فعلًا؟",
+    a: "نعم — شهادات اعتماد ISO 22716/GMPC للتجميل، وGMP/ISO 22000/HACCP للعلكات، مع COA وMSDS. نعرض اللي نملكه فقط — بدون شارات وهميّة.",
+  },
+  {
+    q: "وش لو ما عجبني؟",
+    a: "ضمان استرجاع ٣٠ يوم. جرّبي براحتكِ — إذا ما حسّيتي بالفرق اللي تستاهلينه، ترجّعين.",
+  },
+  {
+    q: "هل النتائج مضمونة ١٠٠٪؟",
+    a: "نكون صادقين: النتائج تختلف. اللي نقدّمه علم مكوّنات، شهادات، وتقييمات سعوديات — بدون وعود طبية مبالغ فيها.",
   },
 ];
 
@@ -56,50 +82,50 @@ export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden bg-mesh">
-        <span className="blob end-0 top-0 h-80 w-80 bg-brand-rose/50" />
-        <span className="blob start-10 bottom-0 h-72 w-72 bg-brand-gold/30" />
+        <span className="blob end-0 top-0 h-80 w-80 bg-brand-primary/20" />
+        <span className="blob start-10 bottom-0 h-72 w-72 bg-brand-gold/25" />
         <div className="container-lg relative grid items-center gap-8 py-14 sm:py-20 md:grid-cols-2">
           <div className="order-1">
-            <div className="relative">
-              <Media label="لمسة توهج — طقوس صالون معتمدة" emoji="✨" aspect="hero" />
-              <div className="glass absolute -start-2 bottom-4 rounded-2xl px-4 py-3 shadow-soft">
-                <div className="flex items-center gap-1 text-brand-gold">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-brand-gold" />
-                  ))}
-                </div>
-                <div className="text-xs font-bold text-brand-plum">+٢٥٬٠٠٠ عميلة سعودية · ISO 22716</div>
-              </div>
-            </div>
+            <Media label="لمسة توهج — صيدليتكِ التجميلية" emoji="🌿" aspect="hero" />
           </div>
           <div className="order-2">
-            <div className="eyebrow">طقوس الصالون المعتمدة في بيتكِ</div>
-            <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
-              صالونكِ الخاص… <span className="gradient-text">بلمسة توهج</span>، في بيتكِ.
+            <p className="font-display text-2xl font-bold tracking-tight text-brand-plum sm:text-3xl">
+              لمسة توهج
+            </p>
+            <p className="mt-1 text-sm font-bold tracking-wide text-brand-primary">
+              صيدليتكِ التجميلية المعتمدة… في بيتكِ
+            </p>
+            <h1 className="mt-3 text-3xl font-extrabold leading-tight sm:text-5xl">
+              عناية واضحة بمعايير تثقين فيها —{" "}
+              <span className="gradient-text">مو برطمان تيك توك</span>
             </h1>
             <p className="mt-4 text-lg text-brand-ink/85">
-              ماسك كيراتين كولاجين · عطر شعر عسل وورد · علكات الشعر والبشرة والأظافر — روتين نعومة ولمعان وانتعاش تحت الحجاب، بشهادات تطمئنكِ والدفع عند الاستلام.
+              ماسك كيراتين كولاجين · عطر شعر للحجاب · علكات جمال من الداخل — روتين عناية واحد: مكوّنات فعّالة مكتوبة
+              بوضوح، شهادات اعتماد (ISO · GMP)، والدفع عند الباب.
             </p>
             <ul className="mt-5 grid gap-2 sm:grid-cols-2">
               {[
-                "ISO 22716 · GMPC · MSDS",
-                "نعومة وانتعاش من أول استخدام",
-                "ما تدفعين إلا عند الاستلام",
-                "استرجاع سهل خلال ٣٠ يوم",
+                "ISO 22716 · GMPC · MSDS · COA · GMP",
+                "كيراتين · كولاجين · أرغان · بيوتين",
+                "ادفعي بعد الاستلام والفحص",
+                "+٢٥٬٠٠٠ عميلة · ⭐ ٤٫٩ · ضمان ٣٠ يوم",
               ].map((x) => (
                 <li key={x} className="flex items-center gap-2 font-semibold text-brand-plum">
-                  <Check className="h-4 w-4 text-ui-success" /> {x}
+                  <Check className="h-4 w-4 shrink-0 text-ui-success" /> {x}
                 </li>
               ))}
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/shop" className="btn-primary text-lg">
-                تسوّقي الآن
+                تسوّقي الروتين المعتمد
               </Link>
               <Link href="#collection" className="btn-secondary text-lg">
-                اكتشفي الروتين
+                اعرفي المنتجات
               </Link>
             </div>
+            <p className="mt-3 text-sm font-semibold text-brand-plum/80">
+              الدفع عند الاستلام · توصيل ٢–٤ أيام · افحصي قبل ما تدفعين
+            </p>
           </div>
         </div>
       </section>
@@ -116,13 +142,13 @@ export default function HomePage() {
         <div className="container-lg">
           <SectionHeading
             eyebrow="ليش لمسة توهج؟"
-            title="مو متجر عشوائي… بل روتين صالون معتمد تملكينه"
-            subtitle="نعالج المشكلة العاطفية (التعب، التجعّد، الريحة تحت الحجاب) بالعلم والشهادات — عشان تؤكدين وتستلمين بثقة."
+            title="لأن الجمال يستاهل سلطة… مو ضجّة"
+            subtitle="نفس وجع الحجاب والحرارة والصبغة — بس بإطار صيدلية تجميلية: دليل، مكوّن، وشهادة قبل أي ريال."
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map(({ icon: Icon, title, body }) => (
               <div key={title} className="card p-6 text-center lift">
-                <div className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-full bg-brand-rose/40">
+                <div className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-full bg-brand-rose/60">
                   <Icon className="h-7 w-7 text-brand-primary" />
                 </div>
                 <h3 className="text-lg font-bold">{title}</h3>
@@ -137,8 +163,8 @@ export default function HomePage() {
         <div className="container-lg">
           <SectionHeading
             eyebrow="روتين لمسة توهج"
-            title="ثلاثة منتجات… مشكلة واحدة: شعر مرتّب وثقة كل يوم"
-            subtitle="ماسك كيراتين كولاجين · عطر شعر عسل وورد · علكات الشعر والبشرة والأظافر — اختاري بطلتكِ أو خذي الروتين كامل."
+            title="ثلاث ركائز… عناية متكاملة"
+            subtitle="من برا (ترميم) · على الشعر (انتعاش) · من جوّا (دعم ٣٠ يوم) — اختاري قطعة أو خذي الروتين كامل."
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p) => (
@@ -148,23 +174,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      <HowToRitualStrip products={products} />
+
       <section className="section bg-white/50">
         <div className="container-lg">
-          <SectionHeading eyebrow="المقارنة" title="لمسة توهج مقابل البدائل" />
+          <SectionHeading
+            eyebrow="الحسبة الصح"
+            title="صالون كل أسبوع؟ ولا روتين عناية تملكينه؟"
+            subtitle="فلوسكِ، وقتكِ، خصوصيتكِ، وثقتكِ عند الباب — شوفي الفرق."
+          />
           <ComparisonTable />
         </div>
       </section>
 
       <section className="section">
         <div className="container-lg">
-          <SectionHeading eyebrow="من نحن" title="بدأت الفكرة من احتياج كل امرأة سعودية" />
-          <Section imageLabel="قصتنا" emoji="💗" reverse>
+          <SectionHeading eyebrow="قصتنا" title="بدأنا من سؤال كل سعودية واعية" />
+          <Section imageLabel="قصتنا" emoji="🌿" reverse>
             <p className="text-lg">
-              أسّسنا لمسة توهج لأن الشعر تحت الحجاب والحرارة يحتاج روتين صالون حقيقي — مو سيروم مجهول المصدر. اخترنا
-              تركيبات كيراتين وعطور شعر ومكملات GMP، ودعمناها بشهادات ودفع عند الاستلام لأن ثقتكِ هي أول بيع لنا.
+              «ليش أدفع صالون كل شوي؟ وليش المنتجات الرخيصة أونلاين ما تطمْن؟» من هنا وُلدت لمسة توهج — صيدلية تجميلية
+              معتمدة في البيت: ماسك بشهادة ISO، عطر شعر مصمّم للحجاب، وعلكات بشهادة GMP. نكتب المكوّن الفعّال بوضوح، نعرض الشهادة،
+              وتدفعين بعد ما تستلمين.
             </p>
             <Link href="/about" className="btn-secondary mt-5">
-              اقرئي قصتنا
+              اقرئي هويتنا
             </Link>
           </Section>
         </div>
@@ -172,7 +205,11 @@ export default function HomePage() {
 
       <section className="section bg-white/50">
         <div className="container-lg">
-          <SectionHeading eyebrow="رأي الخبراء" title="موصى به من مختصّات" />
+          <SectionHeading
+            eyebrow="رأي المختصّات"
+            title="سلطة الخبرة… مو رأي إعلان"
+            subtitle="نفس منطق العناية اللي تعتمدها الخبيرات — بشرط مصنع بمعايير والتزام صادق."
+          />
           <ExpertQuote expert={products[0].expert} />
         </div>
       </section>
@@ -183,10 +220,19 @@ export default function HomePage() {
       <section className="section">
         <div className="container-lg">
           <SectionHeading
-            eyebrow="تقييمات موثّقة"
-            title="وش يقولون عنّا؟"
-            subtitle="تقييمات من عميلاتنا في كل مدن السعودية."
+            eyebrow="دليل اجتماعي"
+            title="سعوديات أكّدن لأن الدليل كان واضح"
+            subtitle="رياض · جدة · دمام · خبر — تقييمات من عميلات استلمن ودفعن عند الباب."
           />
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-2 text-sm font-bold text-brand-plum">
+            <span className="inline-flex items-center gap-1 rounded-full bg-brand-gold/15 px-3 py-1">
+              <Star className="h-4 w-4 fill-brand-gold text-brand-gold" /> ٤٫٩/٥ متوسط
+            </span>
+            <span className="rounded-full bg-brand-rose/60 px-3 py-1">+٢٥٬٠٠٠ عميلة سعودية</span>
+            <span className="rounded-full bg-white px-3 py-1 ring-1 ring-brand-primary/20">
+              شهادات + COD + ضمان ٣٠ يوم
+            </span>
+          </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {homeReviews.map((r, i) => (
               <ReviewCard key={i} review={r} />
@@ -204,7 +250,7 @@ export default function HomePage() {
 
       <section className="section bg-white/50">
         <div className="container-lg">
-          <SectionHeading eyebrow="جاوبناكِ" title="الأسئلة الشائعة" />
+          <SectionHeading eyebrow="جاوبناكِ بصراحة" title="كل اعتراض عند التأكيد… جاوبناه" />
           <FAQ items={homeFaq} />
         </div>
       </section>
@@ -214,15 +260,18 @@ export default function HomePage() {
           <div className="relative overflow-hidden rounded-3xl bg-brand-plum p-8 text-center text-brand-cream sm:p-14">
             <span className="blob end-10 top-0 h-52 w-52 bg-brand-primary/40" />
             <div className="relative">
-              <h2 className="text-2xl font-extrabold text-brand-cream sm:text-4xl">جاهزة تبدئين روتينكِ؟</h2>
+              <p className="font-display text-xl font-bold text-brand-gold sm:text-2xl">لمسة توهج</p>
+              <h2 className="mt-2 text-2xl font-extrabold text-brand-cream sm:text-4xl">
+                جاهزة لروتين عناية تستاهلين تثقين فيه؟
+              </h2>
               <p className="mt-3 text-brand-cream/85">
-                ابدئي بالماسك أو خذي الروتين الكامل — عرض القطع المتعددة يوفّر لكِ أكثر.
+                ابدئي بالماسك، أو خذي الروتين الكامل بـ ٤٩٩ ر.س — استلمي، افحصي، وادفعي عند الباب.
               </p>
               <Link href="/shop" className="btn-primary mt-7 text-lg">
-                تسوّقي الآن
+                اطلبي الآن — الدفع عند الاستلام
               </Link>
               <div className="mt-4 text-sm text-brand-cream/70">
-                ما تدفعين إلا عند الاستلام · ISO 22716 · استرجاع ٣٠ يوم · توصيل ٢–٤ أيام
+                ISO 22716 · GMPC · MSDS · COA · GMP · ضمان ٣٠ يوم · توصيل ٢–٤ أيام
               </div>
             </div>
           </div>

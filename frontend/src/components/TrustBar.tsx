@@ -1,11 +1,11 @@
 import { Award, BadgeCheck, Banknote, ShieldCheck, Truck } from "lucide-react";
 
 const items = [
-  { icon: BadgeCheck, label: "ISO 22716 · GMPC · MSDS" },
-  { icon: Banknote, label: "ما تدفعين إلا عند الاستلام" },
-  { icon: ShieldCheck, label: "استرجاع سهل خلال ٣٠ يوم" },
-  { icon: Truck, label: "توصيل موثوق ٢–٤ أيام" },
-  { icon: Award, label: "+٢٥٬٠٠٠ عميلة سعودية" },
+  { icon: BadgeCheck, label: "ISO 22716 · GMPC · GMP · MSDS · COA" },
+  { icon: Banknote, label: "ادفعي بعد الاستلام والفحص" },
+  { icon: ShieldCheck, label: "ضمان ٣٠ يوم — المخاطرة علينا" },
+  { icon: Truck, label: "توصيل ٢–٤ أيام لكل المملكة" },
+  { icon: Award, label: "+٢٥٬٠٠٠ سعودية · ⭐ ٤٫٩" },
 ];
 
 export function TrustBar() {

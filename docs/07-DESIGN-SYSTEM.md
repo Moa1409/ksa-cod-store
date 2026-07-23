@@ -1,31 +1,30 @@
 # 07 — Design System (colors, logo, type, imagery, RTL)
 
-Aesthetic: **premium, feminine, clean, trustworthy** — "luxe beauty clinic," not "cheap gadget shop." Lots of whitespace, soft shadows, rounded corners, elegant serif/display headings + clean Arabic body.
+Aesthetic: **dermocosmetic parapharmacy** — clinical clarity + feminine warmth. Clean whitespace, soft shadows, rounded corners. Feels like a trusted beauty cabinet, not a TikTok gadget shop. See `01-BRAND-AND-POSITIONING.md`.
 
 ## Brand color system
-Signature brand color (the "L" circle + primary CTA) = **Rose Gold**. Deep **Plum** = authority/headings/dark UI. **Gold** = trust accents. **Cream** = background.
+Signature = **Deep Teal** (authority / CTA). **Forest Ink** = headings & footer. **Soft Brass** = trust/ratings. **Sage Mist** = soft fills. **Cool Pearl** = background.
 
 | Token | Hex | Use |
 |---|---|---|
-| `brand.primary` (Rose Gold) | `#B76E79` | logo circle, primary CTA, links, active states |
-| `brand.primaryDark` | `#9E5A65` | CTA hover/pressed |
-| `brand.plum` | `#3F2233` | headings, footer, dark sections, ink-on-cream |
-| `brand.gold` | `#C9A24B` | ratings stars, badges, trust accents, dividers |
-| `brand.rose` (soft) | `#E7C9CE` | soft fills, tags, section backgrounds |
-| `brand.cream` | `#FBF6F2` | page background |
-| `brand.ink` | `#2A1B24` | body text |
+| `brand.primary` (Deep Teal) | `#0E6B63` | logo circle, primary CTA, links, active states |
+| `brand.primaryDark` | `#0A524C` | CTA hover/pressed |
+| `brand.plum` (Forest Ink) | `#142826` | headings, footer, dark sections |
+| `brand.gold` (Soft Brass) | `#A8894A` | ratings stars, badges, trust accents |
+| `brand.rose` (Sage Mist) | `#D7E5E2` | soft fills, tags, section washes |
+| `brand.cream` (Cool Pearl) | `#F3F7F6` | page background |
+| `brand.ink` | `#1C2B28` | body text |
 | `ui.success` | `#2E7D5B` | COD/validation success |
 | `ui.error` | `#C0392B` | form errors |
-| `ui.muted` | `#8A7A82` | secondary text |
+| `ui.muted` | `#6B7C78` | secondary text |
 
-Semantic: bg=cream, text=ink, headings=plum, primary action=rose gold, trust/rating=gold.
-Contrast: ensure WCAG AA (rose-gold text only on light; on rose-gold buttons use cream/white text).
+Semantic: bg=pearl, text=ink, headings=forest ink, primary action=deep teal, trust/rating=brass.
+Contrast: white/cream text on teal buttons; teal text only on light surfaces (WCAG AA).
 
 ## Logo lockup (header, RTL — on the right)
-- **Circle badge:** solid `brand.primary` (#B76E79) filled circle, letter **"L"** centered in **cream** (`#FBF6F2`), elegant serif. Size ~40px (mobile) / 48px (desktop).
-- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in `brand.plum`, display/serif; beneath in small caps «LAMSA GLOW» letter-spaced, `ui.muted`.
-- Provide as an SVG React component `<Logo/>` (scalable, currentColor-friendly). Include a favicon + `apple-touch-icon` derived from the circle badge.
-- Placeholder SVG concept:
+- **Circle badge:** solid `brand.primary` (#0E6B63) filled circle, letter **"L"** centered in pearl (`#F3F7F6`). Size ~40px (mobile) / 48px (desktop).
+- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in forest ink; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
+- Provide as an SVG React component `<Logo/>`. Include favicon + `apple-touch-icon` from the circle badge.
 ```
 [ ● L ]  لمسة توهج
          LAMSA GLOW

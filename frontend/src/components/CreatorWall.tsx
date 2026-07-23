@@ -1,16 +1,23 @@
 import { Play } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 
-const labels = ["فيديو عميلة", "قبل / بعد", "تجربة حقيقية", "ريفيو صانعة محتوى", "أثناء الاستخدام", "لقطة سناب"];
+const labels = [
+  "تجربة تحت الحجاب",
+  "قبل / بعد الغسلة",
+  "رذّة قبل الخروج",
+  "ريفيو صانعة محتوى",
+  "فتح العلبة عند الباب",
+  "لقطة سناب من عميلة",
+];
 
 export function CreatorWall() {
   return (
     <section className="section">
       <div className="container-lg">
         <SectionHeading
-          eyebrow="شفناكم تحبونها"
-          title="شوهدت على تيك توك وسناب شات"
-          subtitle="آلاف الفيديوهات والتجارب من عميلاتنا وصانعات المحتوى في السعودية."
+          eyebrow="دليل اجتماعي من أرض الواقع"
+          title="مو بس إحنا نقول… شوفي البنات اللي جرّبن"
+          subtitle="سناب · تيك توك · انستغرام — تجارب سعوديات يتكلمن لهجتكِ عن النعومة والانتعاش والثقة عند الباب."
         />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {labels.map((l) => (
@@ -33,6 +40,7 @@ export function CreatorWall() {
           <span className="chip">TikTok</span>
           <span className="chip">Snapchat</span>
           <span className="chip">Instagram</span>
+          <span className="chip">+٢٥٬٠٠٠ عميلة</span>
         </div>
       </div>
     </section>

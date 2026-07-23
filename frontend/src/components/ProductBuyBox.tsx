@@ -49,6 +49,13 @@ export function ProductBuyBox({ product }: { product: Product }) {
         ))}
       </ul>
 
+      <a
+        href="#howto"
+        className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-primary underline-offset-4 hover:underline"
+      >
+        شوفي طريقة الاستخدام خطوة بخطوة ←
+      </a>
+
       {/* Stock urgency */}
       <div className="mt-5 rounded-2xl border border-brand-gold/30 bg-brand-gold/10 p-3">
         <div className="flex items-center justify-between text-xs font-bold text-brand-plum">
@@ -112,22 +119,22 @@ export function ProductBuyBox({ product }: { product: Product }) {
       </div>
 
       <button type="button" onClick={add} className="btn-primary mt-4 w-full text-lg">
-        <ShoppingBag className="h-5 w-5" /> أضيفي إلى السلة
+        <ShoppingBag className="h-5 w-5" /> أضيفي للسلة — ادفعي عند الاستلام
       </button>
 
       <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-semibold text-brand-plum">
         <span className="inline-flex items-center gap-1">
-          <Banknote className="h-4 w-4 text-brand-gold" /> ما تدفعين إلا عند الاستلام
+          <Banknote className="h-4 w-4 text-brand-gold" /> افحصي ثم ادفعي عند الباب
         </span>
         <span className="inline-flex items-center gap-1">
-          <ShieldCheck className="h-4 w-4 text-brand-gold" /> استرجاع خلال ٣٠ يوم
+          <ShieldCheck className="h-4 w-4 text-brand-gold" /> ضمان ٣٠ يوم
         </span>
         <span className="inline-flex items-center gap-1">
           <Truck className="h-4 w-4 text-brand-gold" /> توصيل ٢–٤ أيام
         </span>
       </div>
       <p className="mt-2 text-center text-xs text-ui-muted">
-        نأكّد طلبكِ برسالة قبل الشحن · افحصي المنتج قبل ما تدفعين · منتج أصلي بضمان
+        تأكيد قبل الشحن · ISO / MSDS / COA · بدون تحويل مسبق · رجّعي خلال ٣٠ يوم إذا ما عجبكِ
       </p>
 
       {/* Sticky mobile bar */}
@@ -145,7 +152,7 @@ function StickyBar({ price, onAdd }: { price: number; onAdd: () => void }) {
           <div className="text-lg font-extrabold text-brand-plum">{formatSar(price)}</div>
         </div>
         <button type="button" onClick={onAdd} className="btn-primary flex-1">
-          <ShoppingBag className="h-5 w-5" /> أضيفي إلى السلة
+          <ShoppingBag className="h-5 w-5" /> أضيفي — COD
         </button>
       </div>
     </div>

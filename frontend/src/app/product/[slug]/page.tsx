@@ -9,6 +9,7 @@ import { DeliveryPromise } from "@/components/DeliveryPromise";
 import { ExpertQuote } from "@/components/ExpertQuote";
 import { FAQ } from "@/components/FAQ";
 import { GuaranteeBand } from "@/components/GuaranteeBand";
+import { HowToUse } from "@/components/HowToUse";
 import { Media } from "@/components/Media";
 import { PainPoints } from "@/components/PainPoints";
 import { ProductBuyBox } from "@/components/ProductBuyBox";
@@ -116,6 +117,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
+      {/* How to use — confirmation + AOV ritual */}
+      <div id="howto">
+        <HowToUse product={product} howto={product.howto} />
+      </div>
+
       {/* Science */}
       <section className="section bg-white/50">
         <div className="container-lg">
@@ -174,7 +180,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </span>
             ))}
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-white px-5 py-3 font-bold text-brand-plum lift">
-              <Award className="h-5 w-5 text-brand-gold" /> ضمان سنة
+              <Award className="h-5 w-5 text-brand-gold" /> ضمان ٣٠ يوم
             </span>
           </div>
         </div>

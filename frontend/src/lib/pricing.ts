@@ -104,19 +104,19 @@ export function unitPrice(count: number): number {
 export function offersForProduct(slug: string): Offer[] {
   const unit = productPrice(slug);
   return [
-    { qty: 1, total: unit, label: "قطعة واحدة" },
+    { qty: 1, total: unit, label: "قطعة واحدة — جرّبي بطلتكِ" },
     {
       qty: 2,
       total: BUNDLE_2,
-      label: "قطعتان",
-      badge: "الأكثر طلبًا",
+      label: "قطعتان — الأكثر تأكيدًا",
+      badge: "اختيار العميلات",
       savings: Math.max(0, unit * 2 - BUNDLE_2),
     },
     {
       qty: 3,
       total: BUNDLE_3,
-      label: "٣ قطع",
-      badge: "الأكثر توفيرًا",
+      label: "٣ قطع — الروتين الكامل",
+      badge: "وفّري أكثر",
       savings: Math.max(0, unit * 3 - BUNDLE_3),
     },
   ];

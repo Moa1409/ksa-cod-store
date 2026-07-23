@@ -47,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
             {BUNDLE_HINT}
           </p>
           <button type="button" onClick={add} className="btn-primary mt-3 w-full">
-            <ShoppingBag className="h-4 w-4" /> أضيفي إلى السلة
+            <ShoppingBag className="h-4 w-4" /> أضيفي — ادفعين عند الباب
           </button>
         </div>
       </div>
