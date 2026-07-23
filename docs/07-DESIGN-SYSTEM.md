@@ -1,29 +1,29 @@
 # 07 — Design System (colors, logo, type, imagery, RTL)
 
-Aesthetic: **cocoa brown × beige × gold** — warm salon vanity with soft sand light. Clean, premium, no medical green.
+Aesthetic: **cocoa brown × beige × soft gold** — salon warmth with luminous «توهج». Header/footer/logo share one chrome system. No medical green.
 
 ## Brand color system
-Signature = **Cocoa Brown** (CTA/logo). **Deep Chocolate** = header/footer/headings. **Soft Gold** = توهج / stars / checks. **Warm Beige** = fills. **Light Beige** = background.
+Signature = **Cocoa Brown** (logo + CTA). **Deep Espresso** = footer/headings. **Soft Gold** = glow / icons / trust. **Sand Beige** = soft fills. **Warm Beige** = page + header.
 
 | Token | Hex | Use |
 |---|---|---|
-| `brand.primary` (Cocoa) | `#6F4E37` | logo circle, primary CTA, accent links |
-| `brand.primaryDark` | `#543928` | CTA hover/pressed |
-| `brand.plum` (Chocolate) | `#241910` | headings, footer, dark sections |
-| `brand.gold` (Soft Gold) | `#C6A15B` | ratings, certs, check icons, positive copy |
-| `brand.rose` (Warm Beige) | `#EDE4D8` | soft fills, tags, section washes |
-| `brand.cream` (Light Beige) | `#F7F1E8` | page background |
-| `brand.ink` | `#2A2118` | body text |
+| `brand.primary` (Cocoa) | `#6B4E3D` | logo circle, primary CTA, accent links |
+| `brand.primaryDark` | `#523A2C` | CTA hover/pressed |
+| `brand.plum` (Espresso) | `#2A211B` | headings, footer, dark sections |
+| `brand.gold` (Soft Gold) | `#C6A15B` | ratings, certs, checks, glow accents |
+| `brand.rose` (Sand) | `#EDE6DC` | soft fills, tags, section washes |
+| `brand.cream` (Beige) | `#F7F2EA` | page + header background |
+| `brand.ink` | `#2C241E` | body text |
 | `ui.success` | `#C6A15B` | same as gold |
 | `ui.error` | `#C0392B` | form errors |
-| `ui.muted` | `#8A7B6B` | secondary text |
+| `ui.muted` | `#8B7E70` | secondary text |
 
-Semantic: bg=beige, text=ink, headings=chocolate, CTA=cocoa, glow/trust=gold.
-Contrast: light beige/white text on cocoa buttons; cocoa text only on light surfaces (WCAG AA).
+Semantic: bg=beige, text=ink, headings=espresso, CTA/logo=cocoa, glow/trust=gold.
+Contrast: beige text on cocoa/espresso; cocoa text on beige/white (WCAG AA).
 
 ## Logo lockup (header, RTL — on the right)
-- **Circle badge:** solid `brand.primary` (#6F4E37) filled circle, letter **"L"** centered in light beige (`#F7F1E8`). Size ~40px (mobile) / 48px (desktop).
-- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in deep chocolate; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
+- **Circle badge:** solid cocoa (`#6B4E3D`) with soft gold ring, letter **"L"** in beige. Size ~40px (mobile) / 48px (desktop).
+- **Wordmark:** «لمسة توهج» in espresso; beneath «LAMSA GLOW» in soft gold, letter-spaced.
 - Provide as an SVG React component `<Logo/>`. Include favicon + `apple-touch-icon` from the circle badge.
 ```
 [ ● L ]  لمسة توهج

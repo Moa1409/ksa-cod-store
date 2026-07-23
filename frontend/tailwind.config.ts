@@ -6,19 +6,19 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          // لمسة توهج — cocoa brown × beige × gold
-          primary: "#6F4E37", // cocoa brown — CTAs, logo
-          primaryDark: "#543928",
-          plum: "#241910", // deep chocolate — headings, footer
-          gold: "#C6A15B", // soft gold — stars, checks, trust
-          rose: "#EDE4D8", // warm beige fills (token name kept)
-          cream: "#F7F1E8", // light beige page
-          ink: "#2A2118", // body
+          // لمسة توهج — cocoa brown × beige × soft gold
+          primary: "#6B4E3D", // cocoa brown — logo, CTAs, accent links
+          primaryDark: "#523A2C",
+          plum: "#2A211B", // deep espresso — footer, headings
+          gold: "#C6A15B", // soft gold — icons, stars, trust, glow
+          rose: "#EDE6DC", // sand beige — soft fills (token name kept)
+          cream: "#F7F2EA", // warm beige page background
+          ink: "#2C241E", // body copy
         },
         ui: {
-          success: "#C6A15B", // gold — never green
+          success: "#C6A15B",
           error: "#C0392B",
-          muted: "#8A7B6B",
+          muted: "#8B7E70",
         },
       },
       fontFamily: {
@@ -31,8 +31,8 @@ const config: Config = {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 8px 32px rgba(36, 25, 16, 0.09)",
-        card: "0 4px 22px rgba(36, 25, 16, 0.06)",
+        soft: "0 8px 32px rgba(42, 33, 27, 0.09)",
+        card: "0 4px 22px rgba(42, 33, 27, 0.06)",
       },
       keyframes: {
         marquee: {
