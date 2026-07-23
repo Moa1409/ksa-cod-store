@@ -54,6 +54,13 @@ class Order(Base):
     landing_url: Mapped[str | None] = mapped_column(String(1024), nullable=True)
     utm: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
 
+    # MaxMind geo snapshot (at order time)
+    geo_country: Mapped[str | None] = mapped_column(String(8), nullable=True)
+    geo_allowed: Mapped[bool | None] = mapped_column(Boolean, nullable=True, index=True)
+    geo_vpn: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    geo_reason: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    geo_trait: Mapped[str | None] = mapped_column(String(64), nullable=True)
+
     # ops
     sheet_synced: Mapped[bool] = mapped_column(Boolean, default=False)
     capi_result: Mapped[dict | None] = mapped_column(JSONB, nullable=True)

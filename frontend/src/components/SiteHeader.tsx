@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Mail, Menu, ShoppingBag, X } from "lucide-react";
 import { CollapsibleMenu } from "@/components/CollapsibleMenu";
 import { Logo } from "@/components/Logo";
@@ -17,8 +18,11 @@ const nav = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const { count, openCart, hydrated } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  if (pathname?.startsWith("/admin")) return null;
 
   function closeMenu() {
     setMenuOpen(false);

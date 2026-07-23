@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BadgeCheck, Banknote, Mail, ShieldCheck } from "lucide-react";
 import { CollapsibleMenu } from "@/components/CollapsibleMenu";
 import { Logo } from "@/components/Logo";
@@ -12,6 +13,9 @@ function FooterLinks({ children }: { children: React.ReactNode }) {
 }
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <footer className="mt-8 bg-brand-plum text-brand-cream">
       <div className="container-lg grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">

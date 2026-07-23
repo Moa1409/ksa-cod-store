@@ -44,6 +44,9 @@ class Settings(BaseSettings):
     CORS_ORIGINS: str = "https://lamsaglow.shop,https://www.lamsaglow.shop"
 
     ADMIN_TOKEN: str = "change-me"
+    ADMIN_USERNAME: str = "admin"
+    ADMIN_PASSWORD: str = "change-me-admin-password"
+    ADMIN_SESSION_SECRET: str = "change-me-session-secret-long-random"
 
     GOOGLE_SHEET_WEBHOOK_URL: str | None = None
     SHEET_SHARED_SECRET: str | None = None

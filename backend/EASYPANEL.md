@@ -19,6 +19,10 @@ ENV=production
 DATABASE_URL=postgres://lamsaglow:YOUR_PASSWORD@lamsaglow_database:5432/lamsaglow?sslmode=disable
 CORS_ORIGINS=https://lamsaglow.shop,https://www.lamsaglow.shop
 ADMIN_TOKEN=your-long-random-token
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your-strong-password
+ADMIN_SESSION_SECRET=another-long-random-secret
+
 WEB_CONCURRENCY=1
 
 # MaxMind — block VPN/proxy and non-Saudi orders (GeoIP2 Insights required)

@@ -135,18 +135,31 @@ def create_order(
     phone_e164 = to_e164(payload.phone) or ("+" + phone)
 
     # 1b) geo / VPN gate (skipped for whitelisted test numbers)
-    if not is_whitelisted_phone(phone):
-        geo = check_order_ip(client_ip(request))
+    ip = client_ip(request)
+    geo = check_order_ip(ip)
+    if is_whitelisted_phone(phone):
+        # Still snapshot geo for admin, but never block whitelist phones
+        geo_country = geo.country
+        geo_allowed = True
+        geo_vpn = bool(geo.blocked_vpn)
+        geo_reason = "whitelist"
+        geo_trait = geo.trait
+    else:
         if not geo.allowed:
             log.warning(
                 "order blocked by geoip ip=%s reason=%s country=%s vpn=%s phone=%s",
-                client_ip(request),
+                ip,
                 geo.reason,
                 geo.country,
                 geo.blocked_vpn,
                 mask_phone(phone),
             )
             raise HTTPException(status_code=403, detail=geo_block_message(geo))
+        geo_country = geo.country
+        geo_allowed = True
+        geo_vpn = bool(geo.blocked_vpn)
+        geo_reason = geo.reason
+        geo_trait = geo.trait
 
     # 1c) reject obvious fake / placeholder numbers (test whitelist exempt)
     if not is_legitimate_order_phone(phone):
@@ -236,10 +249,15 @@ def create_order(
             fbc=attr.fbc if attr else None,
             ttp=attr.ttp if attr else None,
             sc_click_id=attr.sc_click_id if attr else None,
-            client_ip=client_ip(request),
+            client_ip=ip,
             user_agent=(attr.user_agent if attr else None) or user_agent(request),
             landing_url=attr.landing_url if attr else None,
             utm=attr.utm if attr else None,
+            geo_country=geo_country,
+            geo_allowed=geo_allowed,
+            geo_vpn=geo_vpn,
+            geo_reason=geo_reason,
+            geo_trait=geo_trait,
             order_items=[
                 OrderItem(
                     slug=item["slug"],
@@ -282,6 +300,8 @@ def create_order(
 
 @router.get("/orders/{order_number}", dependencies=[Depends(require_admin)])
 def get_order(order_number: str, db: Session = Depends(get_db)) -> dict:
+    from app.services.admin_analytics import serialize_order
+
     order = db.scalar(
         select(Order)
         .where(Order.order_number == order_number)
@@ -289,18 +309,4 @@ def get_order(order_number: str, db: Session = Depends(get_db)) -> dict:
     )
     if not order:
         raise HTTPException(status_code=404, detail="not found")
-    return {
-        "order_number": order.order_number,
-        "status": order.status,
-        "created_at": order.created_at.isoformat() if order.created_at else None,
-        "customer_name": order.customer_name,
-        "phone": order.phone,
-        "items": order.items_as_dicts(),
-        "num_items": order.num_items,
-        "bundle_subtotal": float(order.bundle_subtotal),
-        "upsell_taken": order.upsell_taken,
-        "total": float(order.total),
-        "currency": order.currency,
-        "sheet_synced": order.sheet_synced,
-        "capi_result": order.capi_result,
-    }
+    return serialize_order(order, detail=True)
