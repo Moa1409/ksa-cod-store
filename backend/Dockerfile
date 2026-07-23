@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # EasyPanel "Deploy" can reuse a cached image. Bump CACHEBUST in EasyPanel env to force a real rebuild.
-ARG CACHEBUST=admin-2026-07-23b
+ARG CACHEBUST=admin-2026-07-23c
 RUN echo "cachebust=$CACHEBUST"
 
 COPY . .
