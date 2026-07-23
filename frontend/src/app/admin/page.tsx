@@ -201,7 +201,9 @@ export default function AdminPage() {
           <div className="text-center">
             <div className="font-display text-2xl font-bold text-brand-plum">لمسة توهج</div>
             <div className="mt-1 text-sm font-bold text-brand-primary">لوحة تحكم COD</div>
-            <p className="mt-2 text-sm text-ui-muted">دخول المسؤول — المقاييس للسعودية فقط (بدون VPN)</p>
+            <p className="mt-2 text-sm text-ui-muted">
+              دخول المسؤول — المقاييس للسعودية فقط (MaxMind · بدون VPN)
+            </p>
           </div>
           <label className="mt-6 block text-sm font-bold text-brand-plum">
             اسم المستخدم
