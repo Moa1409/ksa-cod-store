@@ -6,20 +6,19 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          // لمسة توهج — salon wine × candlelight glow (no medical green)
-          primary: "#8E3550", // deep wine rose — CTAs, logo, accent links
-          primaryDark: "#6C283C",
-          plum: "#161014", // near-black plum — header/footer/headings
-          gold: "#C9A05A", // candlelight — توهج, stars, trust, positive checks
-          rose: "#F6EEF1", // soft petal washes
-          cream: "#FBF8F6", // luminous ivory page
-          ink: "#1F171A", // body copy
+          // لمسة توهج — cocoa brown × beige × gold
+          primary: "#6F4E37", // cocoa brown — CTAs, logo
+          primaryDark: "#543928",
+          plum: "#241910", // deep chocolate — headings, footer
+          gold: "#C6A15B", // soft gold — stars, checks, trust
+          rose: "#EDE4D8", // warm beige fills (token name kept)
+          cream: "#F7F1E8", // light beige page
+          ink: "#2A2118", // body
         },
         ui: {
-          // Positive states use candlelight gold — never pharmacy green
-          success: "#C9A05A",
+          success: "#C6A15B", // gold — never green
           error: "#C0392B",
-          muted: "#8E7C82",
+          muted: "#8A7B6B",
         },
       },
       fontFamily: {
@@ -32,8 +31,8 @@ const config: Config = {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 8px 32px rgba(22, 16, 20, 0.09)",
-        card: "0 4px 22px rgba(22, 16, 20, 0.06)",
+        soft: "0 8px 32px rgba(36, 25, 16, 0.09)",
+        card: "0 4px 22px rgba(36, 25, 16, 0.06)",
       },
       keyframes: {
         marquee: {

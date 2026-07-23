@@ -54,8 +54,8 @@ Same shelf logic as a French-style parapharmacy: **clear active ingredients · r
 |---|---|
 | **Archetype** | The Trusted Specialist (parapharmacy) + warm sister expert |
 | **Personality** | Calm · precise · caring · never shaming · never overselling medicine |
-| **Look** | Salon wine × candlelight glow — luminous ivory, wine CTAs, gold radiance (no medical green) |
-| **Feel** | “Vanity glow with certified formulas” — salon first, parapharma trust second |
+| **Look** | Cocoa brown × beige × soft gold — warm salon vanity, sand light, no medical green |
+| **Feel** | “Quiet luxury beauty cabinet” — warm, trusted, feminine |
 | **Proof stack** | ISO 22716 · GMPC · MSDS · COA · GMP · Saudi reviews · COD · 30-day guarantee |
 
 ### Keep from prior positioning (still true)
@@ -68,7 +68,7 @@ Same shelf logic as a French-style parapharmacy: **clear active ingredients · r
 ### Elevate / change
 - Frame as **parapharmacy / dermocosmetic care ritual**, not only “salon at home”
 - Authority language first (certificates, standards, formulation clarity)
-- Visual system: **deep wine rose + candlelight gold** named for «توهج» — never medical teal/green
+- Visual system: **cocoa brown + beige + gold** — warm salon sand tones, never medical teal/green
 - Gummies sit naturally as **inner beauty support** next to topicals (one brand story)
 
 ---
@@ -99,28 +99,28 @@ Confidence · put-together · freshness before going out · smart self-care · t
 
 ---
 
-## Color system (salon wine × توهج glow)
+## Color system (brown × beige × gold)
 
-Signature: **Deep Wine Rose** = salon CTA / brand mark.  
-**Near-black Plum** = headings & footer.  
-**Candlelight Gold** = توهج / ratings / checks / certificates.  
-**Petal** = soft fills.  
-**Luminous Ivory** = page background.
+Signature: **Cocoa Brown** = salon CTA / brand mark.  
+**Deep Chocolate** = headings & footer.  
+**Soft Gold** = توهج / ratings / checks / certificates.  
+**Warm Beige** = soft fills.  
+**Light Beige** = page background.
 
 | Token | Hex | Role |
 |---|---|---|
-| `brand.primary` | `#8E3550` | Wine rose — CTA, logo, accent links |
-| `brand.primaryDark` | `#6C283C` | Hover / pressed |
-| `brand.plum` | `#161014` | Headings, footer, dark bands |
-| `brand.gold` | `#C9A05A` | Stars, certs, positive checks (replaces green) |
-| `brand.rose` | `#F6EEF1` | Soft petal fills |
-| `brand.cream` | `#FBF8F6` | Luminous ivory background |
-| `brand.ink` | `#1F171A` | Body text |
-| `ui.success` | `#C9A05A` | Same as gold — never pharmacy green |
+| `brand.primary` | `#6F4E37` | Cocoa — CTA, logo, accent links |
+| `brand.primaryDark` | `#543928` | Hover / pressed |
+| `brand.plum` | `#241910` | Headings, footer, dark bands |
+| `brand.gold` | `#C6A15B` | Stars, certs, positive checks |
+| `brand.rose` | `#EDE4D8` | Warm beige fills |
+| `brand.cream` | `#F7F1E8` | Light beige background |
+| `brand.ink` | `#2A2118` | Body text |
+| `ui.success` | `#C6A15B` | Same as gold |
 | `ui.error` | `#C0392B` | Errors |
-| `ui.muted` | `#8E7C82` | Secondary text |
+| `ui.muted` | `#8A7B6B` | Secondary text |
 
-**Why this palette:** Wine reads salon vanity and lipstick ritual; candlelight gold is the literal «توهج»; ivory stays luminous and clean; zero teal/green so it never feels like a hospital pharmacy.
+**Why this palette:** Brown + beige reads warm salon and quiet luxury; gold carries «توهج»; sand tones stay soft and feminine without pharmacy green.
 
 ---
 

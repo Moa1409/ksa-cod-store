@@ -1,29 +1,29 @@
 # 07 — Design System (colors, logo, type, imagery, RTL)
 
-Aesthetic: **salon wine × candlelight glow** — «لمسة توهج». Feminine vanity first, certified-care clarity second. No medical green. Soft ivory light, wine CTAs, gold radiance.
+Aesthetic: **cocoa brown × beige × gold** — warm salon vanity with soft sand light. Clean, premium, no medical green.
 
 ## Brand color system
-Signature = **Deep Wine Rose** (salon). **Near-black Plum** = header/footer/headings. **Candlelight Gold** = توهج / stars / checks / trust. **Petal** = soft fills. **Luminous Ivory** = background.
+Signature = **Cocoa Brown** (CTA/logo). **Deep Chocolate** = header/footer/headings. **Soft Gold** = توهج / stars / checks. **Warm Beige** = fills. **Light Beige** = background.
 
 | Token | Hex | Use |
 |---|---|---|
-| `brand.primary` (Wine) | `#8E3550` | logo circle, primary CTA, accent links |
-| `brand.primaryDark` | `#6C283C` | CTA hover/pressed |
-| `brand.plum` (Near-black) | `#161014` | headings, footer, dark sections |
-| `brand.gold` (Candlelight) | `#C9A05A` | ratings, certs, check icons, positive copy |
-| `brand.rose` (Petal) | `#F6EEF1` | soft fills, tags, section washes |
-| `brand.cream` (Ivory) | `#FBF8F6` | page background |
-| `brand.ink` | `#1F171A` | body text |
-| `ui.success` | `#C9A05A` | same as gold — never pharmacy green |
+| `brand.primary` (Cocoa) | `#6F4E37` | logo circle, primary CTA, accent links |
+| `brand.primaryDark` | `#543928` | CTA hover/pressed |
+| `brand.plum` (Chocolate) | `#241910` | headings, footer, dark sections |
+| `brand.gold` (Soft Gold) | `#C6A15B` | ratings, certs, check icons, positive copy |
+| `brand.rose` (Warm Beige) | `#EDE4D8` | soft fills, tags, section washes |
+| `brand.cream` (Light Beige) | `#F7F1E8` | page background |
+| `brand.ink` | `#2A2118` | body text |
+| `ui.success` | `#C6A15B` | same as gold |
 | `ui.error` | `#C0392B` | form errors |
-| `ui.muted` | `#8E7C82` | secondary text |
+| `ui.muted` | `#8A7B6B` | secondary text |
 
-Semantic: bg=ivory, text=ink, headings=plum, CTA=wine, glow/trust/positive=candlelight gold.
-Contrast: white/ivory on wine buttons; wine text only on light surfaces (WCAG AA).
+Semantic: bg=beige, text=ink, headings=chocolate, CTA=cocoa, glow/trust=gold.
+Contrast: light beige/white text on cocoa buttons; cocoa text only on light surfaces (WCAG AA).
 
 ## Logo lockup (header, RTL — on the right)
-- **Circle badge:** solid `brand.primary` (#8E3550) filled circle, letter **"L"** centered in ivory (`#FBF8F6`). Size ~40px (mobile) / 48px (desktop).
-- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in near-black plum; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
+- **Circle badge:** solid `brand.primary` (#6F4E37) filled circle, letter **"L"** centered in light beige (`#F7F1E8`). Size ~40px (mobile) / 48px (desktop).
+- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in deep chocolate; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
 - Provide as an SVG React component `<Logo/>`. Include favicon + `apple-touch-icon` from the circle badge.
 ```
 [ ● L ]  لمسة توهج
