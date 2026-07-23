@@ -3,7 +3,7 @@ FROM node:20-alpine AS build
 WORKDIR /app
 
 # Helps Next/webpack on low-RAM builders (EasyPanel)
-ENV NODE_OPTIONS="--max-old-space-size=1536" \
+ENV NODE_OPTIONS="--max-old-space-size=2048" \
     NEXT_TELEMETRY_DISABLED=1
 
 COPY package.json package-lock.json* ./

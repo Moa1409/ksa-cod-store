@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
@@ -16,7 +17,9 @@ from app.core.logging import configure_logging
 configure_logging()
 log = logging.getLogger(__name__)
 
-app = FastAPI(title="Lamsa Glow API", version="1.0.0")
+ADMIN_HTML = Path(__file__).resolve().parent / "static" / "admin.html"
+
+app = FastAPI(title="Lamsa Glow API", version="1.1.0")
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
@@ -33,6 +36,16 @@ app.include_router(health.router, tags=["health"])
 app.include_router(orders.router, prefix="/api", tags=["orders"])
 app.include_router(events.router, prefix="/api", tags=["events"])
 app.include_router(admin.router, prefix="/api", tags=["admin"])
+
+
+@app.get("/admin", include_in_schema=False)
+@app.get("/admin/", include_in_schema=False)
+@app.get("/admin.html", include_in_schema=False)
+def admin_dashboard_page() -> FileResponse:
+    """COD admin UI — served from API so it works even if the Next.js app is stale."""
+    if not ADMIN_HTML.is_file():
+        raise HTTPException(status_code=404, detail="admin.html missing")
+    return FileResponse(ADMIN_HTML, media_type="text/html; charset=utf-8")
 
 
 @app.exception_handler(Exception)

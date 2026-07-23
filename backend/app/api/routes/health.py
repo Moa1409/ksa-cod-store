@@ -1,4 +1,4 @@
-from __future__ import annotations  # redeploy-nudge
+from __future__ import annotations  # redeploy-nudge-admin-v2
 
 from fastapi import APIRouter, Depends
 from sqlalchemy import text
@@ -11,10 +11,12 @@ from app.services.sheets import ping_sheet_webhook
 
 router = APIRouter()
 
+BUILD_ID = "admin-2026-07-23"
+
 
 @router.get("/")
 def root() -> dict:
-    return {"service": "lamsa-glow-api", "status": "ok"}
+    return {"service": "lamsa-glow-api", "status": "ok", "build": BUILD_ID, "admin": True}
 
 
 @router.get("/health")
@@ -34,6 +36,8 @@ def health(db: Session = Depends(get_db)) -> dict:
         db_ok = "error"
     return {
         "status": "ok",
+        "build": BUILD_ID,
+        "admin": True,
         "db": db_ok,
         "tables": tables,
         "migrations_ok": tables >= 4,

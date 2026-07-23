@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>لمسة توهج · Admin COD</title>
+  <style>
+    :root {
+      --teal: #0e6b63;
+      --teal-dark: #0a524c;
+      --ink: #142826;
+      --pearl: #f3f7f6;
+      --muted: #6b7c78;
+      --gold: #a8894a;
+      --err: #c0392b;
+      --ok: #2e7d5b;
+      --line: #d7e5e2;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: var(--pearl);
+      color: var(--ink);
+    }
+    .hidden { display: none !important; }
+    #login-view {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background:
+        radial-gradient(60% 50% at 100% 0%, rgba(14,107,99,.12), transparent 60%),
+        var(--pearl);
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 30px rgba(20,40,38,.08);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 420px;
+    }
+    h1 { margin: 0; font-size: 1.5rem; }
+    .sub { color: var(--teal); font-weight: 700; margin-top: .25rem; }
+    .muted { color: var(--muted); font-size: .875rem; }
+    label { display: block; font-weight: 700; font-size: .875rem; margin-top: 1rem; }
+    input, select, textarea, button {
+      font: inherit;
+    }
+    input, select, textarea {
+      width: 100%;
+      margin-top: .35rem;
+      padding: .65rem .75rem;
+      border: 1px solid var(--line);
+      border-radius: .75rem;
+      background: #fff;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      border: 0;
+      border-radius: 999px;
+      padding: .75rem 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--teal);
+      color: #fff;
+    }
+    .btn:hover { background: var(--teal-dark); }
+    .btn:disabled { opacity: .55; cursor: not-allowed; }
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .err { color: var(--err); font-size: .875rem; margin-top: .75rem; }
+    #app-view { min-height: 100vh; }
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 1rem;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between; }
+    .tabs { display: flex; gap: .5rem; margin-top: .75rem; }
+    .tab {
+      border-radius: 999px;
+      padding: .4rem 1rem;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      background: rgba(255,255,255,.1);
+      color: #fff;
+    }
+    .tab.active { background: var(--teal); }
+    main { padding: 1rem; }
+    .grid { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .metric {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+    .metric .k { font-size: .75rem; color: var(--muted); font-weight: 700; }
+    .metric .v { font-size: 1.4rem; font-weight: 800; margin-top: .25rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+    th, td { padding: .65rem .5rem; border-bottom: 1px solid var(--line); text-align: start; }
+    th { background: var(--ink); color: #fff; }
+    tr.clickable { cursor: pointer; }
+    tr.clickable:hover { background: rgba(215,229,226,.45); }
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,.4);
+      display: grid; place-items: center; padding: 1rem; z-index: 50;
+    }
+    .modal {
+      background: #fff; width: 100%; max-width: 480px; max-height: 90vh;
+      overflow: auto; border-radius: 1.25rem; padding: 1.25rem;
+    }
+    .flex-between { display: flex; justify-content: space-between; gap: .5rem; }
+    code { direction: ltr; unicode-bidi: embed; }
+  </style>
+</head>
+<body>
+  <div id="login-view">
+    <form class="card" id="login-form">
+      <h1>لمسة توهج</h1>
+      <div class="sub">لوحة تحكم COD</div>
+      <p class="muted">المقاييس للسعودية فقط (MaxMind · بدون VPN)</p>
+      <label>اسم المستخدم
+        <input id="username" autocomplete="username" required value="admin" />
+      </label>
+      <label>كلمة المرور
+        <input id="password" type="password" autocomplete="current-password" required />
+      </label>
+      <div id="login-error" class="err hidden"></div>
+      <button class="btn" style="width:100%;margin-top:1.25rem" type="submit">دخول</button>
+    </form>
+  </div>
+
+  <div id="app-view" class="hidden">
+    <header>
+      <div class="wrap">
+        <div class="row">
+          <div>
+            <strong>لمسة توهج · Admin</strong>
+            <div class="muted" style="color:#c9d5d2">COD · KSA only</div>
+          </div>
+          <div class="row" style="gap:.5rem">
+            <label class="muted" style="color:#fff">من
+              <input type="date" id="from" style="width:auto;margin:0 .25rem" />
+            </label>
+            <label class="muted" style="color:#fff">إلى
+              <input type="date" id="to" style="width:auto;margin:0 .25rem" />
+            </label>
+            <button type="button" class="btn btn-ghost" id="btn-refresh">تحديث</button>
+            <button type="button" class="btn btn-ghost" id="btn-logout">خروج</button>
+          </div>
+        </div>
+        <div class="tabs">
+          <button type="button" class="tab active" data-tab="overview">نظرة عامة</button>
+          <button type="button" class="tab" data-tab="orders">الطلبات</button>
+        </div>
+      </div>
+    </header>
+    <main class="wrap">
+      <div id="error" class="err hidden"></div>
+      <section id="tab-overview"></section>
+      <section id="tab-orders" class="hidden"></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal-bg hidden">
+    <div class="modal" id="modal-body"></div>
+  </div>
+
+<script>
+(function () {
+  const TOKEN_KEY = "lg_admin_token";
+  const API = (location.hostname.startsWith("api.") || location.port === "8000")
+    ? ""
+    : "https://api.lamsaglow.shop";
+
+  const STATUS_AR = {
+    new: "جديد", confirmed: "مؤكّد", shipped: "مشحون",
+    delivered: "مُسلّم", cancelled: "ملغي", returned: "راجع"
+  };
+
+  function $(id) { return document.getElementById(id); }
+  function show(el, on) { el.classList.toggle("hidden", !on); }
+  function money(n) {
+    return new Intl.NumberFormat("ar-SA", { style: "currency", currency: "SAR", maximumFractionDigits: 0 }).format(Number(n || 0));
+  }
+  function iso(d) { return d.toISOString().slice(0, 10); }
+  function defaultRange() {
+    const to = new Date();
+    const from = new Date();
+    from.setDate(to.getDate() - 29);
+    return { from: iso(from), to: iso(to) };
+  }
+
+  function getToken() { return sessionStorage.getItem(TOKEN_KEY); }
+  function setToken(t) { sessionStorage.setItem(TOKEN_KEY, t); }
+  function clearToken() { sessionStorage.removeItem(TOKEN_KEY); }
+
+  async function api(path, opts = {}) {
+    const headers = Object.assign({ "Content-Type": "application/json" }, opts.headers || {});
+    const t = getToken();
+    if (t) headers.Authorization = "Bearer " + t;
+    const res = await fetch(API + path, Object.assign({}, opts, { headers }));
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401) {
+      clearToken();
+      boot();
+      throw new Error("unauthorized");
+    }
+    if (!res.ok) throw new Error(typeof data.detail === "string" ? data.detail : ("HTTP " + res.status));
+    return data;
+  }
+
+  async function login(e) {
+    e.preventDefault();
+    show($("login-error"), false);
+    try {
+      const data = await fetch(API + "/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: $("username").value.trim(),
+          password: $("password").value
+        })
+      }).then(async (r) => {
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(j.detail || "فشل الدخول");
+        return j;
+      });
+      setToken(data.token);
+      boot();
+    } catch (err) {
+      $("login-error").textContent = err.message || "فشل الدخول";
+      show($("login-error"), true);
+    }
+  }
+
+  async function loadOverview() {
+    const from = $("from").value;
+    const to = $("to").value;
+    const m = await api("/api/admin/metrics?from=" + from + "&to=" + to);
+    const el = $("tab-overview");
+    el.innerHTML = `
+      <div class="grid">
+        <div class="metric"><div class="k">مشاهدات</div><div class="v">${m.traffic.page_views}</div></div>
+        <div class="metric"><div class="k">نقرات</div><div class="v">${m.traffic.clicks}</div></div>
+        <div class="metric"><div class="k">جلسات</div><div class="v">${m.traffic.unique_sessions}</div></div>
+        <div class="metric"><div class="k">محظور/غير KSA</div><div class="v">${m.traffic.blocked_or_non_ksa_events}</div></div>
+        <div class="metric"><div class="k">طلبات</div><div class="v">${m.orders.count}</div></div>
+        <div class="metric"><div class="k">إيراد</div><div class="v">${money(m.orders.revenue)}</div></div>
+        <div class="metric"><div class="k">AOV</div><div class="v">${money(m.orders.aov)}</div></div>
+        <div class="metric"><div class="k">تحويل جلسة→طلب</div><div class="v">${m.conversion.session_to_order_pct}%</div></div>
+      </div>
+      <div class="panel" style="padding:1rem;margin-top:1rem">
+        <strong>حالات الطلبات</strong>
+        <div class="muted" style="margin:.5rem 0">Upsell: ${m.orders.upsells} (${m.orders.upsell_rate}%)</div>
+        <ul>${Object.keys(m.orders.by_status).length ? Object.entries(m.orders.by_status).map(([s,n]) =>
+          `<li class="flex-between"><span>${STATUS_AR[s]||s}</span><strong>${n}</strong></li>`).join("") : "<li class='muted'>لا طلبات</li>"}</ul>
+      </div>
+      <div class="panel" style="padding:1rem">
+        <strong>أكثر المنتجات</strong>
+        <ul>${m.top_products.length ? m.top_products.map(p =>
+          `<li class="flex-between"><span>${p.name}</span><span class="muted">×${p.qty} · ${money(p.revenue)}</span></li>`).join("") : "<li class='muted'>—</li>"}</ul>
+      </div>
+      <p class="muted">${m.traffic.note || ""}</p>`;
+  }
+
+  let page = 1;
+  async function loadOrders() {
+    const from = $("from").value;
+    const to = $("to").value;
+    const status = ($("order-status") && $("order-status").value) || "";
+    const q = ($("order-q") && $("order-q").value) || "";
+    const sp = new URLSearchParams({ from, to, page: String(page), page_size: "25", valid_geo_only: "true" });
+    if (status) sp.set("status", status);
+    if (q) sp.set("q", q);
+    const data = await api("/api/admin/orders?" + sp.toString());
+    const el = $("tab-orders");
+    el.innerHTML = `
+      <div class="toolbar">
+        <input id="order-q" placeholder="بحث رقم/اسم/جوال/مدينة" value="${q.replace(/"/g, "&quot;")}" style="flex:1;min-width:180px" />
+        <select id="order-status">
+          <option value="">كل الحالات</option>
+          ${Object.keys(STATUS_AR).map(s => `<option value="${s}" ${s===status?"selected":""}>${STATUS_AR[s]}</option>`).join("")}
+        </select>
+        <button type="button" class="btn" id="btn-search">تطبيق</button>
+      </div>
+      <div class="panel">
+        <table>
+          <thead><tr>
+            <th>الطلب</th><th>العميلة</th><th>المدينة</th><th>الإجمالي</th><th>الحالة</th><th>Geo</th>
+          </tr></thead>
+          <tbody>
+            ${data.orders.map(o => `
+              <tr class="clickable" data-order="${o.order_number}">
+                <td><code>${o.order_number}</code></td>
+                <td><strong>${o.customer_name}</strong><div class="muted"><code>${o.phone}</code></div></td>
+                <td>${o.city || "—"}</td>
+                <td><strong>${money(o.total)}</strong></td>
+                <td>${STATUS_AR[o.status] || o.status}</td>
+                <td class="muted">${(o.geo && o.geo.country) || "—"}${(o.geo && o.geo.vpn) ? " · VPN" : ""}</td>
+              </tr>`).join("") || `<tr><td colspan="6" class="muted" style="text-align:center;padding:2rem">لا طلبات</td></tr>`}
+          </tbody>
+        </table>
+        <div class="flex-between" style="padding:.75rem">
+          <span class="muted">${data.total} طلب · صفحة ${data.page}</span>
+          <div>
+            <button type="button" class="btn" id="prev" ${page<=1?"disabled":""}>السابق</button>
+            <button type="button" class="btn" id="next" ${page*25>=data.total?"disabled":""}>التالي</button>
+          </div>
+        </div>
+      </div>`;
+    $("btn-search").onclick = () => { page = 1; safe(loadOrders); };
+    $("prev").onclick = () => { page = Math.max(1, page - 1); safe(loadOrders); };
+    $("next").onclick = () => { page += 1; safe(loadOrders); };
+    el.querySelectorAll("tr[data-order]").forEach(tr => {
+      tr.onclick = () => openOrder(tr.getAttribute("data-order"));
+    });
+  }
+
+  async function openOrder(num) {
+    const o = await api("/api/admin/orders/" + encodeURIComponent(num));
+    const modal = $("modal");
+    const body = $("modal-body");
+    body.innerHTML = `
+      <div class="flex-between">
+        <div><div class="muted">تفاصيل الطلب</div><strong><code>${o.order_number}</code></strong></div>
+        <button type="button" class="btn" id="close-modal">إغلاق</button>
+      </div>
+      <p><span class="muted">الاسم:</span> <strong>${o.customer_name}</strong></p>
+      <p><span class="muted">الجوال:</span> <code>${o.phone}</code></p>
+      <p><span class="muted">المدينة:</span> ${o.city || "—"}</p>
+      <p><span class="muted">الإجمالي:</span> <strong>${money(o.total)}</strong></p>
+      <p><span class="muted">Geo:</span> ${(o.geo && o.geo.country) || "—"} · allowed=${o.geo && o.geo.allowed} · vpn=${o.geo && o.geo.vpn}</p>
+      <div><strong>المنتجات</strong>
+        <ul>${o.items.map(i => `<li class="flex-between"><span>${i.name} ×${i.qty}${i.upsell?" (upsell)":""}</span><span>${money(i.unit_price * i.qty)}</span></li>`).join("")}</ul>
+      </div>
+      <label>الحالة
+        <select id="edit-status">${Object.keys(STATUS_AR).map(s => `<option value="${s}" ${s===o.status?"selected":""}>${STATUS_AR[s]}</option>`).join("")}</select>
+      </label>
+      <label>ملاحظات
+        <textarea id="edit-notes" rows="3">${(o.notes || "").replace(/</g, "&lt;")}</textarea>
+      </label>
+      <button type="button" class="btn" style="width:100%;margin-top:1rem" id="save-order">حفظ</button>`;
+    show(modal, true);
+    $("close-modal").onclick = () => show(modal, false);
+    $("save-order").onclick = async () => {
+      await api("/api/admin/orders/" + encodeURIComponent(num), {
+        method: "PATCH",
+        body: JSON.stringify({ status: $("edit-status").value, notes: $("edit-notes").value })
+      });
+      show(modal, false);
+      await loadOrders();
+    };
+  }
+
+  function setTab(name) {
+    document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+    show($("tab-overview"), name === "overview");
+    show($("tab-orders"), name === "orders");
+    if (name === "overview") safe(loadOverview);
+    else safe(loadOrders);
+  }
+
+  async function safe(fn) {
+    show($("error"), false);
+    try { await fn(); }
+    catch (e) {
+      if (e.message === "unauthorized") return;
+      $("error").textContent = e.message || "خطأ";
+      show($("error"), true);
+    }
+  }
+
+  function boot() {
+    const authed = !!getToken();
+    show($("login-view"), !authed);
+    show($("app-view"), authed);
+    if (!authed) return;
+    const r = defaultRange();
+    if (!$("from").value) $("from").value = r.from;
+    if (!$("to").value) $("to").value = r.to;
+    setTab("overview");
+  }
+
+  $("login-form").addEventListener("submit", login);
+  $("btn-logout").onclick = () => { clearToken(); boot(); };
+  $("btn-refresh").onclick = () => {
+    const active = document.querySelector(".tab.active");
+    setTab(active ? active.dataset.tab : "overview");
+  };
+  document.querySelectorAll(".tab").forEach(t => t.onclick = () => setTab(t.dataset.tab));
+  $("modal").addEventListener("click", (e) => { if (e.target.id === "modal") show($("modal"), false); });
+
+  boot();
+})();
+</script>
+</body>
+</html>
