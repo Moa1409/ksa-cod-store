@@ -54,8 +54,8 @@ Same shelf logic as a French-style parapharmacy: **clear active ingredients · r
 |---|---|
 | **Archetype** | The Trusted Specialist (parapharmacy) + warm sister expert |
 | **Personality** | Calm · precise · caring · never shaming · never overselling medicine |
-| **Look** | Cocoa brown × beige × soft gold — warm salon vanity, sand light, no medical green |
-| **Feel** | “Quiet luxury beauty cabinet” — warm, trusted, feminine |
+| **Look** | Clean clinical-beauty — cool pearl surfaces, deep teal authority, soft brass trust accents |
+| **Feel** | “I could pick this from a dermocosmetic shelf” — not a flashy gadget store |
 | **Proof stack** | ISO 22716 · GMPC · MSDS · COA · GMP · Saudi reviews · COD · 30-day guarantee |
 
 ### Keep from prior positioning (still true)
@@ -68,7 +68,7 @@ Same shelf logic as a French-style parapharmacy: **clear active ingredients · r
 ### Elevate / change
 - Frame as **parapharmacy / dermocosmetic care ritual**, not only “salon at home”
 - Authority language first (certificates, standards, formulation clarity)
-- Visual system: **cocoa brown + beige + gold** — warm salon sand tones, never medical teal/green
+- Visual system shifts from rose-gold salon pink → **deep teal clinical beauty**
 - Gummies sit naturally as **inner beauty support** next to topicals (one brand story)
 
 ---
@@ -99,28 +99,28 @@ Confidence · put-together · freshness before going out · smart self-care · t
 
 ---
 
-## Color system (brown × beige × gold)
+## Color system (parapharmacy clinical-beauty)
 
-Signature: **Cocoa Brown** = salon CTA / brand mark.  
-**Deep Chocolate** = headings & footer.  
-**Soft Gold** = توهج / ratings / checks / certificates.  
-**Warm Beige** = soft fills.  
-**Light Beige** = page background.
+Signature: **Deep Teal** = trust / authority / primary CTA.  
+**Forest Ink** = headings & footer.  
+**Soft Brass** = ratings / certificate accents.  
+**Sage Mist** = soft fills.  
+**Cool Pearl** = page background (not warm terracotta cream).
 
 | Token | Hex | Role |
 |---|---|---|
-| `brand.primary` | `#6F4E37` | Cocoa — CTA, logo, accent links |
-| `brand.primaryDark` | `#543928` | Hover / pressed |
-| `brand.plum` | `#241910` | Headings, footer, dark bands |
-| `brand.gold` | `#C6A15B` | Stars, certs, positive checks |
-| `brand.rose` | `#EDE4D8` | Warm beige fills |
-| `brand.cream` | `#F7F1E8` | Light beige background |
-| `brand.ink` | `#2A2118` | Body text |
-| `ui.success` | `#C6A15B` | Same as gold |
+| `brand.primary` | `#0E6B63` | Deep teal — CTA, logo, links |
+| `brand.primaryDark` | `#0A524C` | Hover / pressed |
+| `brand.plum` | `#142826` | Headings, footer, dark bands |
+| `brand.gold` | `#A8894A` | Stars, cert badges, trust accents |
+| `brand.rose` | `#D7E5E2` | Soft sage fills (token name kept for code) |
+| `brand.cream` | `#F3F7F6` | Cool pearl page background |
+| `brand.ink` | `#1C2B28` | Body text |
+| `ui.success` | `#2E7D5B` | Success / COD |
 | `ui.error` | `#C0392B` | Errors |
-| `ui.muted` | `#8A7B6B` | Secondary text |
+| `ui.muted` | `#6B7C78` | Secondary text |
 
-**Why this palette:** Brown + beige reads warm salon and quiet luxury; gold carries «توهج»; sand tones stay soft and feminine without pharmacy green.
+**Why this palette:** Teal reads “pharmacy / clinical care” in KSA & global dermocosmetic culture; pearl + sage stay clean and feminine without cheap pink dropship vibes; brass keeps premium warmth for beauty.
 
 ---
 

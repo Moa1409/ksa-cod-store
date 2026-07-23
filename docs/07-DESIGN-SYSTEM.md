@@ -1,29 +1,29 @@
 # 07 — Design System (colors, logo, type, imagery, RTL)
 
-Aesthetic: **cocoa brown × beige × soft gold** — salon warmth with luminous «توهج». Header/footer/logo share one chrome system. No medical green.
+Aesthetic: **dermocosmetic parapharmacy** — clinical clarity + feminine warmth. Clean whitespace, soft shadows, rounded corners. Feels like a trusted beauty cabinet, not a TikTok gadget shop. See `01-BRAND-AND-POSITIONING.md`.
 
 ## Brand color system
-Signature = **Cocoa Brown** (logo + CTA). **Deep Espresso** = footer/headings. **Soft Gold** = glow / icons / trust. **Sand Beige** = soft fills. **Warm Beige** = page + header.
+Signature = **Deep Teal** (authority / CTA). **Forest Ink** = headings & footer. **Soft Brass** = trust/ratings. **Sage Mist** = soft fills. **Cool Pearl** = background.
 
 | Token | Hex | Use |
 |---|---|---|
-| `brand.primary` (Cocoa) | `#6B4E3D` | logo circle, primary CTA, accent links |
-| `brand.primaryDark` | `#523A2C` | CTA hover/pressed |
-| `brand.plum` (Espresso) | `#2A211B` | headings, footer, dark sections |
-| `brand.gold` (Soft Gold) | `#C6A15B` | ratings, certs, checks, glow accents |
-| `brand.rose` (Sand) | `#EDE6DC` | soft fills, tags, section washes |
-| `brand.cream` (Beige) | `#F7F2EA` | page + header background |
-| `brand.ink` | `#2C241E` | body text |
-| `ui.success` | `#C6A15B` | same as gold |
+| `brand.primary` (Deep Teal) | `#0E6B63` | logo circle, primary CTA, links, active states |
+| `brand.primaryDark` | `#0A524C` | CTA hover/pressed |
+| `brand.plum` (Forest Ink) | `#142826` | headings, footer, dark sections |
+| `brand.gold` (Soft Brass) | `#A8894A` | ratings stars, badges, trust accents |
+| `brand.rose` (Sage Mist) | `#D7E5E2` | soft fills, tags, section washes |
+| `brand.cream` (Cool Pearl) | `#F3F7F6` | page background |
+| `brand.ink` | `#1C2B28` | body text |
+| `ui.success` | `#2E7D5B` | COD/validation success |
 | `ui.error` | `#C0392B` | form errors |
-| `ui.muted` | `#8B7E70` | secondary text |
+| `ui.muted` | `#6B7C78` | secondary text |
 
-Semantic: bg=beige, text=ink, headings=espresso, CTA/logo=cocoa, glow/trust=gold.
-Contrast: beige text on cocoa/espresso; cocoa text on beige/white (WCAG AA).
+Semantic: bg=pearl, text=ink, headings=forest ink, primary action=deep teal, trust/rating=brass.
+Contrast: white/cream text on teal buttons; teal text only on light surfaces (WCAG AA).
 
 ## Logo lockup (header, RTL — on the right)
-- **Circle badge:** solid cocoa (`#6B4E3D`) with soft gold ring, letter **"L"** in beige. Size ~40px (mobile) / 48px (desktop).
-- **Wordmark:** «لمسة توهج» in espresso; beneath «LAMSA GLOW» in soft gold, letter-spaced.
+- **Circle badge:** solid `brand.primary` (#0E6B63) filled circle, letter **"L"** centered in pearl (`#F3F7F6`). Size ~40px (mobile) / 48px (desktop).
+- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in forest ink; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
 - Provide as an SVG React component `<Logo/>`. Include favicon + `apple-touch-icon` from the circle badge.
 ```
 [ ● L ]  لمسة توهج

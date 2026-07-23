@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { Banknote, Check, Package, ShieldCheck, ShoppingBag, TrendingUp, Truck } from "lucide-react";
@@ -44,7 +44,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
       <ul className="mt-4 space-y-1.5">
         {product.bullets.map((b) => (
           <li key={b} className="flex items-start gap-2 text-sm text-brand-ink/90">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" /> {b}
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-ui-success" /> {b}
           </li>
         ))}
       </ul>
@@ -106,7 +106,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
                     </span>
                   ) : null}
                   {o.savings ? (
-                    <span className="mt-0.5 block text-xs font-semibold text-brand-gold">
+                    <span className="mt-0.5 block text-xs font-semibold text-ui-success">
                       وفّري {formatSar(o.savings)}
                     </span>
                   ) : null}

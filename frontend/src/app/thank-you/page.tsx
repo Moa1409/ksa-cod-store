@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -36,8 +36,8 @@ export default function ThankYouPage() {
       <span className="blob start-0 bottom-0 h-56 w-56 bg-brand-gold/25" />
       <div className="container-lg relative mx-auto max-w-2xl">
         <div className="card p-6 text-center sm:p-8">
-          <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-brand-gold/10">
-            <CheckCircle2 className="h-12 w-12 text-brand-gold" />
+          <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-ui-success/10">
+            <CheckCircle2 className="h-12 w-12 text-ui-success" />
           </div>
           <div className="eyebrow mx-auto mt-4">تم بنجاح</div>
           <h1 className="mt-1 text-2xl font-extrabold sm:text-3xl">

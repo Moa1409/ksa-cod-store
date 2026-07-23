@@ -6,19 +6,18 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          // Luxury salon: warm brown × beige × light gold (zero green)
-          primary: "#8B5E3C", // warm caramel brown — logo + CTAs
-          primaryDark: "#6B452C",
-          plum: "#3D2B1F", // chocolate — footer + headings
-          gold: "#D4B56A", // light gold — accents, icons, glow
-          rose: "#F0E6D8", // soft beige fills
-          cream: "#FAF6F0", // light beige page / header
-          ink: "#3D2B1F",
+          primary: "#0E6B63", // deep teal — parapharmacy authority / CTA
+          primaryDark: "#0A524C",
+          plum: "#142826", // forest ink — headings, footer
+          gold: "#A8894A", // soft brass — ratings, cert accents
+          rose: "#D7E5E2", // sage mist — soft fills (token kept)
+          cream: "#F3F7F6", // cool pearl background
+          ink: "#1C2B28", // body text
         },
         ui: {
-          success: "#D4B56A",
+          success: "#2E7D5B",
           error: "#C0392B",
-          muted: "#9A8778",
+          muted: "#6B7C78",
         },
       },
       fontFamily: {
@@ -31,8 +30,8 @@ const config: Config = {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 8px 32px rgba(61, 43, 31, 0.1)",
-        card: "0 4px 22px rgba(61, 43, 31, 0.07)",
+        soft: "0 8px 30px rgba(20, 40, 38, 0.08)",
+        card: "0 4px 20px rgba(20, 40, 38, 0.06)",
       },
       keyframes: {
         marquee: {

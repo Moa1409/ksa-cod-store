@@ -107,7 +107,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <ul className="mt-4 space-y-2">
                   {product.bullets.slice(0, 3).map((x) => (
                     <li key={x} className="flex items-start gap-2 text-brand-ink/90">
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-brand-gold" /> {x}
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-ui-success" /> {x}
                     </li>
                   ))}
                 </ul>

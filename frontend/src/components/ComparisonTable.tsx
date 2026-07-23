@@ -1,4 +1,4 @@
-﻿import { Check, Minus, X } from "lucide-react";
+import { Check, Minus, X } from "lucide-react";
 
 type Tone = "good" | "mid" | "bad";
 type Cell = { tone: Tone; text: string };
@@ -46,8 +46,8 @@ const rows: Row[] = [
 function ToneIcon({ tone }: { tone: Tone }) {
   if (tone === "good")
     return (
-      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-gold/15">
-        <Check className="h-4 w-4 text-brand-gold" />
+      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ui-success/15">
+        <Check className="h-4 w-4 text-ui-success" />
       </span>
     );
   if (tone === "mid")
@@ -81,12 +81,10 @@ export function ComparisonTable() {
         <div className="min-w-[620px]">
           <div className="grid grid-cols-[1.1fr_1.3fr_1fr_1fr] items-stretch">
             <div className="bg-brand-plum p-3" />
-            <div className="bg-gradient-to-b from-brand-primary via-[#7A5233] to-brand-primaryDark p-3 text-center text-brand-cream ring-2 ring-brand-gold/70">
-              <div className="pill-gold mx-auto mb-1 !border-brand-gold/40 !bg-brand-gold/25 !text-brand-cream">
-                الصيدلية التجميلية
-              </div>
+            <div className="bg-gradient-to-b from-brand-primary to-brand-primaryDark p-3 text-center text-white ring-2 ring-brand-gold/60">
+              <div className="pill-gold mx-auto mb-1 !bg-white/20 !text-white">الصيدلية التجميلية</div>
               <div className="text-sm font-extrabold sm:text-base">لمسة توهج</div>
-              <div className="text-[11px] text-brand-cream/90">شهادات · مكوّنات · COD</div>
+              <div className="text-[11px] text-white/85">شهادات · مكوّنات · COD</div>
             </div>
             <div className="bg-brand-plum p-3 text-center text-brand-cream">
               <div className="text-sm font-bold">صالون كل أسبوع</div>

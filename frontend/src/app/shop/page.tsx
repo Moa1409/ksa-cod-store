@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Authority } from "@/components/Authority";
 import { CreatorWall } from "@/components/CreatorWall";
 import { DeliveryPromise } from "@/components/DeliveryPromise";
@@ -97,7 +97,7 @@ export default function ShopPage() {
                 {b.hot ? <div className="pill-gold mx-auto mb-2">اختيار العميلات</div> : null}
                 <div className="text-lg font-bold text-brand-plum">{b.t}</div>
                 <div className="my-2 text-3xl font-extrabold text-brand-primary">{b.p}</div>
-                <div className="text-sm font-semibold text-brand-gold">{b.note}</div>
+                <div className="text-sm font-semibold text-ui-success">{b.note}</div>
               </div>
             ))}
           </div>

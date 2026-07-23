@@ -18,10 +18,9 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-8 bg-brand-plum text-brand-cream">
-      <div className="h-1 bg-gradient-to-l from-transparent via-brand-gold to-transparent" />
       <div className="container-lg grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="rounded-2xl border border-brand-gold/30 bg-brand-cream p-3 [width:fit-content]">
+          <div className="rounded-2xl bg-brand-cream/95 p-3 [width:fit-content]">
             <Logo />
           </div>
           <p className="mt-4 text-sm text-brand-cream/80">

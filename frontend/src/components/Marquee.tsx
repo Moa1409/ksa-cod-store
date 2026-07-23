@@ -1,4 +1,4 @@
-﻿const recent = [
+const recent = [
   "نوف من الرياض أكّدت الماسك قبل ٣ دقائق",
   "ريم من جدة طلبت الروتين الكامل قبل ٧ دقائق",
   "سارة من الدمام أضافت عطر الشعر قبل ١١ دقيقة",
@@ -14,7 +14,7 @@ export function Marquee() {
       <div className="flex w-max animate-marquee gap-8 whitespace-nowrap px-4 text-sm text-brand-plum">
         {items.map((t, i) => (
           <span key={i} className="inline-flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-brand-gold" />
+            <span className="h-2 w-2 rounded-full bg-ui-success" />
             {t}
           </span>
         ))}

@@ -29,7 +29,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-gold/35 bg-brand-cream/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-brand-rose/50 bg-brand-cream/90 backdrop-blur">
       <div className="container-lg flex items-center justify-between gap-3 py-3">
         <Logo />
 
@@ -67,7 +67,7 @@ export function SiteHeader() {
           >
             <ShoppingBag className="h-5 w-5 text-brand-plum" />
             {hydrated && count > 0 ? (
-              <span className="absolute -end-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand-primary px-1 text-xs font-bold text-brand-cream ring-1 ring-brand-gold/40">
+              <span className="absolute -end-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-brand-primary px-1 text-xs font-bold text-white">
                 {count}
               </span>
             ) : null}
