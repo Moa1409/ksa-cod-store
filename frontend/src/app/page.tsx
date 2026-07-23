@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Banknote, Check, FlaskConical, Home, ShieldCheck, Star } from "lucide-react";
 import { Authority } from "@/components/Authority";
 import { ComparisonTable } from "@/components/ComparisonTable";
@@ -111,7 +111,7 @@ export default function HomePage() {
                 "+٢٥٬٠٠٠ عميلة · ⭐ ٤٫٩ · ضمان ٣٠ يوم",
               ].map((x) => (
                 <li key={x} className="flex items-center gap-2 font-semibold text-brand-plum">
-                  <Check className="h-4 w-4 shrink-0 text-ui-success" /> {x}
+                  <Check className="h-4 w-4 shrink-0 text-brand-gold" /> {x}
                 </li>
               ))}
             </ul>

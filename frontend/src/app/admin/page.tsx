@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import {
@@ -468,7 +468,7 @@ export default function AdminPage() {
                         </td>
                         <td className="px-3 py-3">
                           {o.sheet_synced ? (
-                            <CheckCircle2 className="h-4 w-4 text-ui-success" />
+                            <CheckCircle2 className="h-4 w-4 text-brand-gold" />
                           ) : (
                             <span className="text-ui-muted">—</span>
                           )}

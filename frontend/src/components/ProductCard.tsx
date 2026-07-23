@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Flame, ShoppingBag } from "lucide-react";
@@ -43,7 +43,7 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-extrabold text-brand-plum">{formatSar(product.price)}</span>
           </div>
-          <p className="text-xs font-semibold text-ui-success">
+          <p className="text-xs font-semibold text-brand-gold">
             {BUNDLE_HINT}
           </p>
           <button type="button" onClick={add} className="btn-primary mt-3 w-full">

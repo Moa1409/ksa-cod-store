@@ -6,18 +6,20 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          primary: "#0E6B63", // deep teal — parapharmacy authority / CTA
-          primaryDark: "#0A524C",
-          plum: "#142826", // forest ink — headings, footer
-          gold: "#A8894A", // soft brass — ratings, cert accents
-          rose: "#D7E5E2", // sage mist — soft fills (token kept)
-          cream: "#F3F7F6", // cool pearl background
-          ink: "#1C2B28", // body text
+          // لمسة توهج — salon wine × candlelight glow (no medical green)
+          primary: "#8E3550", // deep wine rose — CTAs, logo, accent links
+          primaryDark: "#6C283C",
+          plum: "#161014", // near-black plum — header/footer/headings
+          gold: "#C9A05A", // candlelight — توهج, stars, trust, positive checks
+          rose: "#F6EEF1", // soft petal washes
+          cream: "#FBF8F6", // luminous ivory page
+          ink: "#1F171A", // body copy
         },
         ui: {
-          success: "#2E7D5B",
+          // Positive states use candlelight gold — never pharmacy green
+          success: "#C9A05A",
           error: "#C0392B",
-          muted: "#6B7C78",
+          muted: "#8E7C82",
         },
       },
       fontFamily: {
@@ -30,8 +32,8 @@ const config: Config = {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 8px 30px rgba(20, 40, 38, 0.08)",
-        card: "0 4px 20px rgba(20, 40, 38, 0.06)",
+        soft: "0 8px 32px rgba(22, 16, 20, 0.09)",
+        card: "0 4px 22px rgba(22, 16, 20, 0.06)",
       },
       keyframes: {
         marquee: {

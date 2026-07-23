@@ -1,4 +1,4 @@
-import { Check, Minus, X } from "lucide-react";
+﻿import { Check, Minus, X } from "lucide-react";
 
 type Tone = "good" | "mid" | "bad";
 type Cell = { tone: Tone; text: string };
@@ -46,8 +46,8 @@ const rows: Row[] = [
 function ToneIcon({ tone }: { tone: Tone }) {
   if (tone === "good")
     return (
-      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ui-success/15">
-        <Check className="h-4 w-4 text-ui-success" />
+      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-gold/15">
+        <Check className="h-4 w-4 text-brand-gold" />
       </span>
     );
   if (tone === "mid")

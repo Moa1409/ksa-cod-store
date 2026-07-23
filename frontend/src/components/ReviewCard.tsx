@@ -1,4 +1,4 @@
-import { BadgeCheck } from "lucide-react";
+﻿import { BadgeCheck } from "lucide-react";
 import { StarRating } from "@/components/StarRating";
 import type { Review } from "@/lib/products";
 
@@ -14,7 +14,7 @@ export function ReviewCard({ review }: { review: Review }) {
         <span className="font-semibold text-brand-plum">{review.name}</span>
         <span className="text-ui-muted">· {review.city}</span>
         {review.verified ? (
-          <span className="ms-auto inline-flex items-center gap-1 text-xs font-semibold text-ui-success">
+          <span className="ms-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-gold">
             <BadgeCheck className="h-4 w-4" /> موثّقة
           </span>
         ) : null}

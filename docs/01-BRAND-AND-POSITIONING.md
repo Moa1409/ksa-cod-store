@@ -54,8 +54,8 @@ Same shelf logic as a French-style parapharmacy: **clear active ingredients · r
 |---|---|
 | **Archetype** | The Trusted Specialist (parapharmacy) + warm sister expert |
 | **Personality** | Calm · precise · caring · never shaming · never overselling medicine |
-| **Look** | Clean clinical-beauty — cool pearl surfaces, deep teal authority, soft brass trust accents |
-| **Feel** | “I could pick this from a dermocosmetic shelf” — not a flashy gadget store |
+| **Look** | Salon wine × candlelight glow — luminous ivory, wine CTAs, gold radiance (no medical green) |
+| **Feel** | “Vanity glow with certified formulas” — salon first, parapharma trust second |
 | **Proof stack** | ISO 22716 · GMPC · MSDS · COA · GMP · Saudi reviews · COD · 30-day guarantee |
 
 ### Keep from prior positioning (still true)
@@ -68,7 +68,7 @@ Same shelf logic as a French-style parapharmacy: **clear active ingredients · r
 ### Elevate / change
 - Frame as **parapharmacy / dermocosmetic care ritual**, not only “salon at home”
 - Authority language first (certificates, standards, formulation clarity)
-- Visual system shifts from rose-gold salon pink → **deep teal clinical beauty**
+- Visual system: **deep wine rose + candlelight gold** named for «توهج» — never medical teal/green
 - Gummies sit naturally as **inner beauty support** next to topicals (one brand story)
 
 ---
@@ -99,28 +99,28 @@ Confidence · put-together · freshness before going out · smart self-care · t
 
 ---
 
-## Color system (parapharmacy clinical-beauty)
+## Color system (salon wine × توهج glow)
 
-Signature: **Deep Teal** = trust / authority / primary CTA.  
-**Forest Ink** = headings & footer.  
-**Soft Brass** = ratings / certificate accents.  
-**Sage Mist** = soft fills.  
-**Cool Pearl** = page background (not warm terracotta cream).
+Signature: **Deep Wine Rose** = salon CTA / brand mark.  
+**Near-black Plum** = headings & footer.  
+**Candlelight Gold** = توهج / ratings / checks / certificates.  
+**Petal** = soft fills.  
+**Luminous Ivory** = page background.
 
 | Token | Hex | Role |
 |---|---|---|
-| `brand.primary` | `#0E6B63` | Deep teal — CTA, logo, links |
-| `brand.primaryDark` | `#0A524C` | Hover / pressed |
-| `brand.plum` | `#142826` | Headings, footer, dark bands |
-| `brand.gold` | `#A8894A` | Stars, cert badges, trust accents |
-| `brand.rose` | `#D7E5E2` | Soft sage fills (token name kept for code) |
-| `brand.cream` | `#F3F7F6` | Cool pearl page background |
-| `brand.ink` | `#1C2B28` | Body text |
-| `ui.success` | `#2E7D5B` | Success / COD |
+| `brand.primary` | `#8E3550` | Wine rose — CTA, logo, accent links |
+| `brand.primaryDark` | `#6C283C` | Hover / pressed |
+| `brand.plum` | `#161014` | Headings, footer, dark bands |
+| `brand.gold` | `#C9A05A` | Stars, certs, positive checks (replaces green) |
+| `brand.rose` | `#F6EEF1` | Soft petal fills |
+| `brand.cream` | `#FBF8F6` | Luminous ivory background |
+| `brand.ink` | `#1F171A` | Body text |
+| `ui.success` | `#C9A05A` | Same as gold — never pharmacy green |
 | `ui.error` | `#C0392B` | Errors |
-| `ui.muted` | `#6B7C78` | Secondary text |
+| `ui.muted` | `#8E7C82` | Secondary text |
 
-**Why this palette:** Teal reads “pharmacy / clinical care” in KSA & global dermocosmetic culture; pearl + sage stay clean and feminine without cheap pink dropship vibes; brass keeps premium warmth for beauty.
+**Why this palette:** Wine reads salon vanity and lipstick ritual; candlelight gold is the literal «توهج»; ivory stays luminous and clean; zero teal/green so it never feels like a hospital pharmacy.
 
 ---
 

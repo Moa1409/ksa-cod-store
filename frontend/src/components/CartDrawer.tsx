@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { BadgePercent, Banknote, Minus, Plus, ShieldCheck, ShoppingBag, Trash2, X } from "lucide-react";
@@ -131,7 +131,7 @@ export function CartDrawer() {
         {items.length > 0 ? (
           <div className="border-t border-brand-rose/50 p-4">
             {savings > 0 ? (
-              <div className="mb-1 flex justify-between text-sm font-semibold text-ui-success">
+              <div className="mb-1 flex justify-between text-sm font-semibold text-brand-gold">
                 <span>وفّرتِ</span>
                 <span>{formatSar(savings)}</span>
               </div>

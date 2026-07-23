@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -247,7 +247,7 @@ function FormView(props: {
             ))}
           </ul>
           {savings > 0 ? (
-            <div className="mt-2 flex justify-between text-sm font-semibold text-ui-success">
+            <div className="mt-2 flex justify-between text-sm font-semibold text-brand-gold">
               <span>وفّرتِ</span>
               <span>{formatSar(savings)}</span>
             </div>
@@ -290,7 +290,7 @@ function FormView(props: {
           ) : touched && phoneValid && !phoneLegit ? (
             <p className="mt-1 text-sm text-ui-error">رقم الجوال غير مقبول. تأكّدي من إدخال رقمكِ الحقيقي.</p>
           ) : phoneLegit ? (
-            <p className="mt-1 inline-flex items-center gap-1 text-sm text-ui-success">
+            <p className="mt-1 inline-flex items-center gap-1 text-sm text-brand-gold">
               <BadgeCheck className="h-4 w-4" /> رقم صحيح
             </p>
           ) : null}
@@ -378,7 +378,7 @@ function UpsellView({
         <div className="mb-4 flex items-center justify-center gap-3">
           <span className="text-ui-muted line-through">{formatSar(product.price)}</span>
           <span className="text-3xl font-extrabold text-brand-primary">{formatSar(UPSELL_PRICE)}</span>
-          <span className="rounded-full bg-ui-success/15 px-2 py-0.5 text-xs font-bold text-ui-success">
+          <span className="rounded-full bg-brand-gold/15 px-2 py-0.5 text-xs font-bold text-brand-gold">
             وفّري {formatSar(product.price - UPSELL_PRICE)}
           </span>
         </div>

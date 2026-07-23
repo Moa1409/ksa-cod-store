@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --brand-primary: #0e6b63;
-  --brand-plum: #142826;
-  --brand-cream: #f3f7f6;
+  --brand-primary: #8e3550;
+  --brand-plum: #161014;
+  --brand-cream: #fbf8f6;
+  --brand-gold: #c9a05a;
 }
 
 html {
@@ -14,7 +15,7 @@ html {
 
 body {
   background-color: var(--brand-cream);
-  color: #1c2b28;
+  color: #1f171a;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -85,8 +86,8 @@ body {
   }
   .bg-mesh {
     background-image:
-      radial-gradient(60% 50% at 100% 0%, rgba(14, 107, 99, 0.12) 0%, transparent 60%),
-      radial-gradient(50% 40% at 0% 20%, rgba(168, 137, 74, 0.1) 0%, transparent 60%);
+      radial-gradient(60% 50% at 100% 0%, rgba(142, 53, 80, 0.11) 0%, transparent 60%),
+      radial-gradient(50% 40% at 0% 20%, rgba(201, 160, 90, 0.14) 0%, transparent 60%);
   }
 }
 
