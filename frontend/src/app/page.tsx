@@ -86,7 +86,12 @@ export default function HomePage() {
         <span className="blob start-10 bottom-0 h-72 w-72 bg-brand-gold/25" />
         <div className="container-lg relative grid items-center gap-8 py-14 sm:py-20 md:grid-cols-2">
           <div className="order-1">
-            <Media label="لمسة توهج — دار العناية التجميلية" emoji="✨" aspect="hero" />
+            <Media
+              label="لمسة توهج — روتين دار العناية التجميلية"
+              src="/images/hero.png"
+              aspect="square"
+              className="shadow-soft"
+            />
           </div>
           <div className="order-2">
             <p className="font-display text-2xl font-bold tracking-tight text-brand-plum sm:text-3xl">
