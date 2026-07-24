@@ -29,7 +29,7 @@ export function GuaranteeBand() {
       <div className="container-lg">
         <div className="overflow-hidden rounded-3xl border border-brand-gold/30 bg-white p-6 shadow-card sm:p-10">
           <div className="mb-6 text-center">
-            <div className="eyebrow mx-auto">ثقة صيدلية تجميلية</div>
+            <div className="eyebrow mx-auto">ثقة دار العناية</div>
             <h2 className="text-2xl font-extrabold sm:text-3xl">
               خايفة من المنتجات الأونلاين؟ هويتنا اتنبنت ضد هالإحساس
             </h2>

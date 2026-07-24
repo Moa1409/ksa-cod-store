@@ -1,4 +1,4 @@
-import { Check, Minus, X } from "lucide-react";
+﻿import { Check, Minus, X } from "lucide-react";
 
 type Tone = "good" | "mid" | "bad";
 type Cell = { tone: Tone; text: string };
@@ -82,7 +82,7 @@ export function ComparisonTable() {
           <div className="grid grid-cols-[1.1fr_1.3fr_1fr_1fr] items-stretch">
             <div className="bg-brand-plum p-3" />
             <div className="bg-gradient-to-b from-brand-primary to-brand-primaryDark p-3 text-center text-white ring-2 ring-brand-gold/60">
-              <div className="pill-gold mx-auto mb-1 !bg-white/20 !text-white">الصيدلية التجميلية</div>
+              <div className="pill-gold mx-auto mb-1 !bg-white/20 !text-white">دار العناية المعتمدة</div>
               <div className="text-sm font-extrabold sm:text-base">لمسة توهج</div>
               <div className="text-[11px] text-white/85">شهادات · مكوّنات · COD</div>
             </div>
@@ -112,7 +112,7 @@ export function ComparisonTable() {
       </div>
 
       <p className="mt-3 text-center text-xs text-ui-muted">
-        مقارنة توضيحية — الصالون ممتاز للنتائج الفورية؛ لمسة توهج لكِ إذا تبين نفس الإحساس كروتين ملككِ، بشهادات ودفع عند الباب.
+        مقارنة توضيحية — الصالون ممتاز للنتائج الفورية؛ لمسة توهج لكِ إذا تبين نفس الإحساس كروتين من دار عناية تملكينه، بشهادات ودفع عند الباب.
       </p>
     </div>
   );

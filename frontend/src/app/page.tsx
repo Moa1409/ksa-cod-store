@@ -21,23 +21,23 @@ import { products } from "@/lib/products";
 const pillars = [
   {
     icon: ShieldCheck,
-    title: "معايير الصيدلية التجميلية",
-    body: "ISO 22716 · GMPC · MSDS · COA · GMP — شهادات قبل ما تدفعين، مو بعد ما تندمين.",
+    title: "معايير عالمية مثبتة",
+    body: "ISO 22716 · GMPC · MSDS · COA · GMP — نفس منطق العلامات الكبيرة: شهادة قبل ما تدفعين.",
   },
   {
     icon: FlaskConical,
-    title: "مكوّنات فعّالة مكتوبة بوضوح",
-    body: "كيراتين · كولاجين · أرغان · بيوتين — تشوفين الاسم والدور، بدون سحر فاضي.",
+    title: "مكوّنات فعّالة بالاسم",
+    body: "كيراتين · كولاجين · أرغان · بيوتين — وضوح علمي زي اللي تتوقعينه من دار عناية محترمة.",
   },
   {
     icon: Home,
     title: "عناية بخصوصيتكِ",
-    body: "تحت الحجاب، في بيتكِ، على وقتكِ — روتين صيدلية تجميلية مو حجز صالون كل أسبوع.",
+    body: "تحت الحجاب، في بيتكِ، على وقتكِ — روتين فاخر تملكينه، مو حجز صالون كل أسبوع.",
   },
   {
     icon: Banknote,
     title: "ثقة عند الباب",
-    body: "ادفعي بعد ما تستلمين وتفحصين + ضمان ٣٠ يوم — المخاطرة علينا.",
+    body: "ادفعي بعد ما تستلمين وتفحصين + ضمان ٣٠ يوم — المخاطرة علينا، والفخر لكِ.",
   },
 ];
 
@@ -57,8 +57,8 @@ const homeReviews = [
 
 const homeFaq = [
   {
-    q: "وش يعني «صيدلية تجميلية»؟ هل أنتم صيدلية طبية؟",
-    a: "لا — إحنا عناية تجميلية Dermocosmetic بأسلوب الصيدلية: مكوّنات فعّالة مكتوبة بوضوح، وشهادات اعتماد (مثل ISO وGMP) نقدر نثبتها. مو علاج طبي ولا وصفة دواء.",
+    q: "وش يعني «دار عناية تجميلية»؟ هل أنتم صيدلية طبية؟",
+    a: "لا — إحنا دار عناية تجميلية معتمدة: عناية موضعية + دعم جمال من الداخل، بمكوّنات مكتوبة بوضوح وشهادات نقدر نثبتها (ISO · GMP). مو علاج طبي ولا وصفة دواء.",
   },
   {
     q: "كيف أدفع؟ أبغى أتأكد إنه مو نصب",
@@ -66,7 +66,7 @@ const homeFaq = [
   },
   {
     q: "هل المنتجات معتمدة فعلًا؟",
-    a: "نعم — شهادات اعتماد ISO 22716/GMPC للتجميل، وGMP/ISO 22000/HACCP للعلكات، مع COA وMSDS. نعرض اللي نملكه فقط — بدون شارات وهميّة.",
+    a: "نعم — شهادات ISO 22716/GMPC للتجميل، وGMP/ISO 22000/HACCP للعلكات، مع COA وMSDS. نعرض اللي نملكه فقط — بدون شارات وهميّة.",
   },
   {
     q: "وش لو ما عجبني؟",
@@ -86,22 +86,22 @@ export default function HomePage() {
         <span className="blob start-10 bottom-0 h-72 w-72 bg-brand-gold/25" />
         <div className="container-lg relative grid items-center gap-8 py-14 sm:py-20 md:grid-cols-2">
           <div className="order-1">
-            <Media label="لمسة توهج — صيدليتكِ التجميلية" emoji="🌿" aspect="hero" />
+            <Media label="لمسة توهج — دار العناية التجميلية" emoji="✨" aspect="hero" />
           </div>
           <div className="order-2">
             <p className="font-display text-2xl font-bold tracking-tight text-brand-plum sm:text-3xl">
               لمسة توهج
             </p>
             <p className="mt-1 text-sm font-bold tracking-wide text-brand-primary">
-              صيدليتكِ التجميلية المعتمدة… في بيتكِ
+              دار العناية التجميلية المعتمدة… في بيتكِ
             </p>
             <h1 className="mt-3 text-3xl font-extrabold leading-tight sm:text-5xl">
-              عناية واضحة بمعايير تثقين فيها —{" "}
+              عناية بمعايير العلامات اللي تثقين فيها —{" "}
               <span className="gradient-text">مو برطمان تيك توك</span>
             </h1>
             <p className="mt-4 text-lg text-brand-ink/85">
-              ماسك كيراتين كولاجين · عطر شعر للحجاب · علكات جمال من الداخل — روتين عناية واحد: مكوّنات فعّالة مكتوبة
-              بوضوح، شهادات اعتماد (ISO · GMP)، والدفع عند الباب.
+              ماسك كيراتين كولاجين · عطر شعر للحجاب · علكات جمال من الداخل — روتين واحد من برا ومن جوّا: مكوّنات فعّالة
+              مكتوبة بوضوح، شهادات ISO · GMP، وهوية تستاهلين تفخرين فيها عند الباب.
             </p>
             <ul className="mt-5 grid gap-2 sm:grid-cols-2">
               {[
@@ -117,7 +117,7 @@ export default function HomePage() {
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/shop" className="btn-primary text-lg">
-                تسوّقي الروتين المعتمد
+                تسوّقي روتين الدار
               </Link>
               <Link href="#collection" className="btn-secondary text-lg">
                 اعرفي المنتجات
@@ -142,8 +142,8 @@ export default function HomePage() {
         <div className="container-lg">
           <SectionHeading
             eyebrow="ليش لمسة توهج؟"
-            title="لأن الجمال يستاهل سلطة… مو ضجّة"
-            subtitle="نفس وجع الحجاب والحرارة والصبغة — بس بإطار صيدلية تجميلية: دليل، مكوّن، وشهادة قبل أي ريال."
+            title="لأن جمالكِ يستاهل دار… مو ضجّة"
+            subtitle="نفس وجع الحجاب والحرارة والصبغة — بإطار علامة عناية كبيرة: مكوّن واضح، شهادة مثبتة، وهوية تفتخرين فيها."
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map(({ icon: Icon, title, body }) => (
@@ -164,7 +164,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="روتين لمسة توهج"
             title="ثلاث ركائز… عناية متكاملة"
-            subtitle="من برا (ترميم) · على الشعر (انتعاش) · من جوّا (دعم ٣٠ يوم) — اختاري قطعة أو خذي الروتين كامل."
+            subtitle="من برا (ترميم) · على الشعر (انتعاش) · من جوّا (دعم ٣٠ يوم) — اختاري قطعة أو خذي روتين الدار كامل."
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p) => (
@@ -190,11 +190,11 @@ export default function HomePage() {
       <section className="section">
         <div className="container-lg">
           <SectionHeading eyebrow="قصتنا" title="بدأنا من سؤال كل سعودية واعية" />
-          <Section imageLabel="قصتنا" emoji="🌿" reverse>
+          <Section imageLabel="قصتنا" emoji="✨" reverse>
             <p className="text-lg">
-              «ليش أدفع صالون كل شوي؟ وليش المنتجات الرخيصة أونلاين ما تطمْن؟» من هنا وُلدت لمسة توهج — صيدلية تجميلية
-              معتمدة في البيت: ماسك بشهادة ISO، عطر شعر مصمّم للحجاب، وعلكات بشهادة GMP. نكتب المكوّن الفعّال بوضوح، نعرض الشهادة،
-              وتدفعين بعد ما تستلمين.
+              «ليش أدفع صالون كل شوي؟ وليش المنتجات الرخيصة أونلاين ما تطمْن؟» من هنا وُلدت لمسة توهج — دار عناية تجميلية
+              معتمدة في البيت: ماسك بشهادة ISO، عطر شعر مصمّم للحجاب، وعلكات بشهادة GMP. نكتب المكوّن الفعّال بوضوح، نعرض
+              الشهادة، وتدفعين بعد ما تستلمين.
             </p>
             <Link href="/about" className="btn-secondary mt-5">
               اقرئي هويتنا
@@ -262,7 +262,7 @@ export default function HomePage() {
             <div className="relative">
               <p className="font-display text-xl font-bold text-brand-gold sm:text-2xl">لمسة توهج</p>
               <h2 className="mt-2 text-2xl font-extrabold text-brand-cream sm:text-4xl">
-                جاهزة لروتين عناية تستاهلين تثقين فيه؟
+                جاهزة لروتين عناية من دار تثقين فيها؟
               </h2>
               <p className="mt-3 text-brand-cream/85">
                 ابدئي بالماسك، أو خذي الروتين الكامل بـ ٤٩٩ ر.س — استلمي، افحصي، وادفعي عند الباب.

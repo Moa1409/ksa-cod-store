@@ -1,13 +1,14 @@
 # Lamsa Glow — Build Documentation (index)
 
-**Brand:** لمسة توهج / **Lamsa Glow** · **Positioning:** Certified at-home **dermocosmetic parapharmacy** · **Domain:** `lamsaglow.shop` · **API:** `api.lamsaglow.shop`
+**Brand:** لمسة توهج / **Lamsa Glow** · **Positioning:** Certified **beauty care house** (دار العناية التجميلية) · **Domain:** `lamsaglow.shop` · **API:** `api.lamsaglow.shop`
 **Model:** DTC, branded, KSA, Arabic-first RTL, COD-only, high-AOV (topicals + beauty gummies).
-**Goal:** look and feel like a trusted beauty cabinet (authority + certificates + named actives) so confirmation, delivery, and AOV stay high.
+**Goal:** Garnier-level clarity + prestige-house authority so confirmation, delivery, and AOV stay high. See `19-BRAND-SUMMARY.md`.
 
 ## How to use these docs (read in order)
 | # | File | What it defines |
 |---|---|---|
-| 01 | `01-BRAND-AND-POSITIONING.md` | Category design, positioning, pillars, voice |
+| 19 | `19-BRAND-SUMMARY.md` | **Short brand card:** name · identity · positioning · color |
+| 01 | `01-BRAND-AND-POSITIONING.md` | Full category design, pillars, voice |
 | 02 | `02-ICP-AND-COPYWRITING.md` | Personas, pain→emotion→desire, KSA-dialect copy, per-product copy |
 | 03 | `03-TRUST-AUTHORITY-PROOF.md` | Social proof, authority, science, "ingredients", certificates, risk reversal |
 | 04 | `04-PRODUCTS-OFFERS-AOV.md` | 3 products, offers 199/279/349, the 99 upsell, cross-sell/AOV engine |

@@ -28,17 +28,18 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
-    default: "لمسة توهج | Lamsa Glow — صيدليتكِ التجميلية المعتمدة في بيتكِ",
+    default: "لمسة توهج | Lamsa Glow — دار العناية التجميلية المعتمدة في بيتكِ",
     template: "%s | لمسة توهج",
   },
   description:
-    "لمسة توهج — عناية تجميلية بمعايير الصيدلية: ماسك كيراتين كولاجين، عطر شعر للحجاب، وعلكات الجمال. ISO 22716 · GMP · MSDS · COA · الدفع عند الاستلام.",
+    "لمسة توهج — دار عناية تجميلية بمعايير عالمية: ماسك كيراتين كولاجين، عطر شعر للحجاب، وعلكات الجمال. ISO 22716 · GMP · MSDS · COA · الدفع عند الاستلام.",
   openGraph: {
     type: "website",
     locale: "ar_SA",
     siteName: "لمسة توهج",
-    title: "لمسة توهج | صيدليتكِ التجميلية المعتمدة",
-    description: "مكوّنات فعّالة مكتوبة بوضوح · شهادات اعتماد ISO وGMP · ثقة عند الباب. Dermocosmetic care for the Saudi woman.",
+    title: "لمسة توهج | دار العناية التجميلية المعتمدة",
+    description:
+      "مكوّنات فعّالة مكتوبة بوضوح · شهادات ISO وGMP · ثقة عند الباب. Certified beauty care house for the Saudi woman.",
   },
   robots: { index: true, follow: true },
 };

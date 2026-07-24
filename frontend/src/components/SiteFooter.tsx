@@ -24,7 +24,7 @@ export function SiteFooter() {
             <Logo />
           </div>
           <p className="mt-4 text-sm text-brand-cream/80">
-            صيدليتكِ التجميلية المعتمدة في بيتكِ — عناية موضعية + دعم من الداخل. مكوّنات فعّالة مكتوبة بوضوح، شهادات اعتماد (ISO · GMP)، والدفع عند الباب.
+            دار العناية التجميلية المعتمدة في بيتكِ — عناية من برا ومن جوّا. مكوّنات فعّالة مكتوبة بوضوح، شهادات ISO · GMP، وهوية تفتخرين فيها عند الباب.
           </p>
           <div className="mt-4 flex flex-wrap gap-3 text-xs text-brand-cream/80">
             <span className="inline-flex items-center gap-1">

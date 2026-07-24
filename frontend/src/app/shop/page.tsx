@@ -13,9 +13,9 @@ import { TrustBar } from "@/components/TrustBar";
 import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "المتجر — روتين العناية المعتمد",
+  title: "المتجر — روتين دار العناية",
   description:
-    "ماسك كيراتين كولاجين · عطر شعر للحجاب · علكات الجمال. صيدلية تجميلية معتمدة: ISO 22716 · GMP · MSDS · COA · الدفع عند الاستلام.",
+    "ماسك كيراتين كولاجين · عطر شعر للحجاب · علكات الجمال. دار عناية تجميلية معتمدة: ISO 22716 · GMP · MSDS · COA · الدفع عند الاستلام.",
 };
 
 const brandStats = [
@@ -49,12 +49,12 @@ export default function ShopPage() {
         <span className="blob end-0 top-0 h-64 w-64 bg-brand-rose/50" />
         <div className="container-lg relative py-14 text-center sm:py-20">
           <p className="font-display text-2xl font-bold text-brand-plum sm:text-3xl">لمسة توهج</p>
-          <p className="mt-1 text-sm font-bold text-brand-primary">روتين الصيدلية التجميلية</p>
+          <p className="mt-1 text-sm font-bold text-brand-primary">روتين دار العناية التجميلية</p>
           <h1 className="mt-2 text-3xl font-extrabold sm:text-5xl">
             اختاري عنايتكِ… <span className="gradient-text">وادفعي لمّا تستلمين</span>
           </h1>
           <p className="mx-auto mt-3 max-w-2xl text-lg text-brand-ink/85">
-            ترميم موضعي · انتعاش تحت الحجاب · دعم من الداخل — بمعايير تثقين فيها، مو منتجات عشوائية.
+            ترميم موضعي · انتعاش تحت الحجاب · دعم من الداخل — بمعايير العلامات اللي تثقين فيها، مو منتجات عشوائية.
           </p>
         </div>
       </section>

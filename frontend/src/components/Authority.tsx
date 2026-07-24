@@ -5,7 +5,7 @@ const badges = [
   {
     icon: ShieldCheck,
     title: "ISO 22716 / GMPC",
-    body: "معيار تصنيع التجميل العالمي — نفس منطق رفّ الصيدلية التجميلية لماسك الكيراتين وعطر الشعر.",
+    body: "معيار تصنيع التجميل العالمي — نفس منطق دور العناية الكبيرة لماسك الكيراتين وعطر الشعر.",
   },
   {
     icon: BadgeCheck,
@@ -30,7 +30,7 @@ export function Authority() {
       <div className="container-lg">
         <SectionHeading
           eyebrow="سلطة ومعايير"
-          title="ليش تبدو لمسة توهج مثل رفّ صيدلية تجميلية؟"
+          title="ليش تبدو لمسة توهج مثل دار عناية عالمية؟"
           subtitle="لأن الثقة تُبنى على الشهادة والمكوّن والمعيار — مو على ضغط الإعلان. هذي هويتنا."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -46,7 +46,7 @@ export function Authority() {
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-ui-muted">
           نعرض الشهادات التي نملك نسخها من المصنع فقط. النتائج التجميلية قد تختلف. المكملات الغذائية ليست علاجًا طبيًا —
-          ولسنا صيدلية طبية مرخّصة لصرف الدواء.
+          ولسنا صيدلية طبية مرخّصة لصرف الدواء — إحنا دار عناية تجميلية معتمدة.
         </p>
       </div>
     </section>

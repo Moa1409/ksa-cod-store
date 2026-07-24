@@ -11,19 +11,19 @@ import { TrustBar } from "@/components/TrustBar";
 export const metadata: Metadata = {
   title: "من نحن",
   description:
-    "لمسة توهج — صيدليتكِ التجميلية المعتمدة في بيتكِ. مكوّنات فعّالة واضحة، شهادات اعتماد (ISO · GMP)، ودفع عند الاستلام.",
+    "لمسة توهج — دار العناية التجميلية المعتمدة في بيتكِ. مكوّنات فعّالة واضحة، شهادات ISO · GMP، ودفع عند الاستلام.",
 };
 
 const values = [
   {
     icon: BadgeCheck,
-    t: "سلطة الشهادة",
-    d: "ISO 22716 · GMPC · MSDS · COA · GMP — دليل قبل البيع، مو بعده.",
+    t: "سلطة المعايير",
+    d: "ISO 22716 · GMPC · MSDS · COA · GMP — دليل قبل البيع، مو بعده. زي العلامات اللي تثقين فيها.",
   },
   {
     icon: FlaskConical,
-    t: "علم المكوّن",
-    d: "نكتب اسم الكيراتين والكولاجين والأرغان والبيوتين — ونشرح الدور بصدق.",
+    t: "وضوح المكوّن",
+    d: "نكتب اسم الكيراتين والكولاجين والأرغان والبيوتين — ونشرح الدور بصدق، بدون سحر فاضي.",
   },
   {
     icon: Lock,
@@ -33,7 +33,7 @@ const values = [
   {
     icon: Heart,
     t: "ثقة طويلة",
-    d: "COD + ضمان ٣٠ يوم — نبغاكِ ترجعين لروتينكِ، مو بيعة وحدة.",
+    d: "COD + ضمان ٣٠ يوم — نبغاكِ ترجعين لروتين الدار، مو بيعة وحدة.",
   },
 ];
 
@@ -51,14 +51,15 @@ export default function AboutPage() {
         <span className="blob end-0 top-0 h-64 w-64 bg-brand-primary/20" />
         <div className="container-lg relative py-14 text-center sm:py-20">
           <p className="font-display text-2xl font-bold text-brand-plum sm:text-3xl">لمسة توهج</p>
-          <p className="mt-1 text-sm font-bold text-brand-primary">الصيدلية التجميلية المعتمدة في بيتكِ</p>
+          <p className="mt-1 text-sm font-bold text-brand-primary">دار العناية التجميلية المعتمدة في بيتكِ</p>
           <h1 className="mx-auto mt-3 max-w-3xl text-3xl font-extrabold sm:text-4xl">
-            هوية بُنيت على الثقة…{" "}
+            هوية بُنيت على الثقة والهيبة…{" "}
             <span className="gradient-text">مو على الضجّة</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-ink/85">
             بدأنا من وجع تعرفه كل سعودية: شعر تحت الحجاب يتعب، المناسبة تجي، والصالون غالي، والمنتجات الرخيصة أونلاين ما
-            تطمْن. لمسة توهج = روتين عناية Dermocosmetic: ترميم موضعي، انتعاش تحت الحجاب، ودعم من الداخل — بشهادات اعتماد واضحة.
+            تطمْن. لمسة توهج = دار عناية تجميلية: ترميم موضعي، انتعاش تحت الحجاب، ودعم من الداخل — بمعايير عالمية واضحة
+            وهوية تستاهلين تفخرين فيها.
           </p>
         </div>
       </section>
@@ -75,13 +76,14 @@ export default function AboutPage() {
         <div className="container-lg space-y-14">
           <Section
             imageLabel="رؤيتنا"
-            emoji="🌿"
+            emoji="✨"
             eyebrow="ليش موجودين؟"
-            title="نكون مرجع العناية التجميلية المعتمدة في السعودية"
+            title="نكون دار العناية التجميلية اللي تثقين ترجعين لها"
           >
             <p className="text-lg">
-              نبغى كل مرة تفكرين «أبغى شيء يرتّب شعري… بس أثق فيه» يكون جوابكِ لمسة توهج — مو حجز صالون مستعجل ولا برطمان
-              بدون شهادة. نجمع التجميل الموضعي والمكملات التجميلية تحت سقف واحد: معايير، مكوّنات، وصدق في الادّعاء.
+              نبغى كل مرة تفكرين «أبغى شيء يرتّب شعري… وأثق فيه زي العلامات الكبيرة» يكون جوابكِ لمسة توهج — مو حجز صالون
+              مستعجل ولا برطمان بدون شهادة. نجمع التجميل الموضعي والمكملات التجميلية تحت سقف واحد: معايير، مكوّنات، وصدق
+              في الادّعاء.
             </p>
           </Section>
           <Section
@@ -92,7 +94,7 @@ export default function AboutPage() {
             reverse
           >
             <p className="text-lg">
-              منتجات بشهادات اعتماد ISO 22716/GMPC للعناية الموضعية، وGMP/ISO 22000/HACCP للعلكات، مع COA وMSDS. نرفض وعود الصلع
+              منتجات بشهادات ISO 22716/GMPC للعناية الموضعية، وGMP/ISO 22000/HACCP للعلكات، مع COA وMSDS. نرفض وعود الصلع
               والإنبات والطب. نبيع نتيجة تجميلية صادقة — وأنتِ تدفعين بعد ما تشوفين الطلب عند الباب.
             </p>
           </Section>
@@ -122,7 +124,7 @@ export default function AboutPage() {
       <section className="section">
         <div className="container-lg text-center">
           <Link href="/shop" className="btn-primary text-lg">
-            تسوّقي الروتين — الدفع عند الاستلام
+            تسوّقي روتين الدار
           </Link>
         </div>
       </section>

@@ -1,35 +1,35 @@
 # 07 — Design System (colors, logo, type, imagery, RTL)
 
-Aesthetic: **dermocosmetic parapharmacy** — clinical clarity + feminine warmth. Clean whitespace, soft shadows, rounded corners. Feels like a trusted beauty cabinet, not a TikTok gadget shop. See `01-BRAND-AND-POSITIONING.md`.
+Aesthetic: **prestige beauty care house** — bordeaux drama + champagne authority. Clean whitespace, soft shadows, rounded corners. Feels like a certified beauty house at the door, not a TikTok gadget shop or cold pharmacy. See `19-BRAND-SUMMARY.md` and `01-BRAND-AND-POSITIONING.md`.
 
 ## Brand color system
-Signature = **Deep Teal** (authority / CTA). **Forest Ink** = headings & footer. **Soft Brass** = trust/ratings. **Sage Mist** = soft fills. **Cool Pearl** = background.
+Signature = **Bordeaux** (authority / CTA). **Near-black ink** = headings & footer. **Champagne** = trust/ratings. **Blush mist** = soft fills. **Rose pearl** = background.
 
 | Token | Hex | Use |
 |---|---|---|
-| `brand.primary` (Deep Teal) | `#0E6B63` | logo circle, primary CTA, links, active states |
-| `brand.primaryDark` | `#0A524C` | CTA hover/pressed |
-| `brand.plum` (Forest Ink) | `#142826` | headings, footer, dark sections |
-| `brand.gold` (Soft Brass) | `#A8894A` | ratings stars, badges, trust accents |
-| `brand.rose` (Sage Mist) | `#D7E5E2` | soft fills, tags, section washes |
-| `brand.cream` (Cool Pearl) | `#F3F7F6` | page background |
-| `brand.ink` | `#1C2B28` | body text |
+| `brand.primary` (Bordeaux) | `#6B2D3C` | logo circle, primary CTA, links, active states |
+| `brand.primaryDark` | `#4F2130` | CTA hover/pressed |
+| `brand.plum` (Ink) | `#1A1014` | headings, footer, dark sections |
+| `brand.gold` (Champagne) | `#C4A35A` | ratings stars, badges, trust accents |
+| `brand.rose` (Blush Mist) | `#F0E4E7` | soft fills, tags, section washes |
+| `brand.cream` (Rose Pearl) | `#F8F4F5` | page background |
+| `brand.ink` | `#2A1A1F` | body text |
 | `ui.success` | `#2E7D5B` | COD/validation success |
 | `ui.error` | `#C0392B` | form errors |
-| `ui.muted` | `#6B7C78` | secondary text |
+| `ui.muted` | `#7A6A6E` | secondary text |
 
-Semantic: bg=pearl, text=ink, headings=forest ink, primary action=deep teal, trust/rating=brass.
-Contrast: white/cream text on teal buttons; teal text only on light surfaces (WCAG AA).
+Semantic: bg=pearl, text=ink, headings=plum, primary action=bordeaux, trust/rating=champagne.
+Hierarchy: bordeaux = actions · gold = proof · cream/rose = atmosphere.
+Contrast: white/cream text on bordeaux buttons; bordeaux text only on light surfaces (WCAG AA).
 
 ## Logo lockup (header, RTL — on the right)
-- **Circle badge:** solid `brand.primary` (#0E6B63) filled circle, letter **"L"** centered in pearl (`#F3F7F6`). Size ~40px (mobile) / 48px (desktop).
-- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in forest ink; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
+- **Circle badge:** solid `brand.primary` (#6B2D3C) filled circle, letter **"L"** centered in pearl (`#F8F4F5`). Size ~40px (mobile) / 48px (desktop).
+- **Wordmark** next to it (to the left of circle in RTL): «لمسة توهج» in ink; beneath «LAMSA GLOW» letter-spaced, `ui.muted`.
 - Provide as an SVG React component `<Logo/>`. Include favicon + `apple-touch-icon` from the circle badge.
 ```
 [ ● L ]  لمسة توهج
          LAMSA GLOW
 ```
-
 ## Typography
 - **Arabic (primary):** `Tajawal` (or `IBM Plex Sans Arabic`) via `next/font`. Weights 400/500/700/800.
 - **Display/headings (optional flair):** `Reem Kufi` for the wordmark/hero, else Tajawal 800.

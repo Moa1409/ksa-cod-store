@@ -6,18 +6,19 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          primary: "#0E6B63", // deep teal — parapharmacy authority / CTA
-          primaryDark: "#0A524C",
-          plum: "#142826", // forest ink — headings, footer
-          gold: "#A8894A", // soft brass — ratings, cert accents
-          rose: "#D7E5E2", // sage mist — soft fills (token kept)
-          cream: "#F3F7F6", // cool pearl background
-          ink: "#1C2B28", // body text
+          // Bordeaux Prestige — beauty-house drama + champagne authority
+          primary: "#6B2D3C",
+          primaryDark: "#4F2130",
+          plum: "#1A1014",
+          gold: "#C4A35A",
+          rose: "#F0E4E7",
+          cream: "#F8F4F5",
+          ink: "#2A1A1F",
         },
         ui: {
           success: "#2E7D5B",
           error: "#C0392B",
-          muted: "#6B7C78",
+          muted: "#7A6A6E",
         },
       },
       fontFamily: {
@@ -30,8 +31,8 @@ const config: Config = {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 8px 30px rgba(20, 40, 38, 0.08)",
-        card: "0 4px 20px rgba(20, 40, 38, 0.06)",
+        soft: "0 8px 30px rgba(26, 16, 20, 0.08)",
+        card: "0 4px 20px rgba(26, 16, 20, 0.06)",
       },
       keyframes: {
         marquee: {
