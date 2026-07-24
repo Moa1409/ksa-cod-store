@@ -72,12 +72,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <span className="pill-gold absolute end-3 top-3 z-10 shadow-soft">
                 <Star className="h-4 w-4 fill-brand-gold" /> {product.rating.toFixed(1)}
               </span>
-              <Media label={product.gallery[0]} emoji={product.emoji} aspect="square" />
-            </div>
-            <div className="mt-3 grid grid-cols-3 gap-3">
-              {product.gallery.slice(1).map((g) => (
-                <Media key={g} label={g} aspect="square" />
-              ))}
+              <Media
+                label={product.gallery[0]}
+                emoji={product.emoji}
+                src={product.image}
+                aspect="square"
+              />
             </div>
           </div>
           <ProductBuyBox product={product} />
@@ -102,7 +102,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <SectionHeading eyebrow="ليش تحبينه" title={`مميزات ${product.name}`} subtitle={product.sub} />
           <div className="space-y-14">
             {product.benefits.map((b, i) => (
-              <Section key={b.title} imageLabel={b.imageLabel} emoji={product.emoji} reverse={i % 2 === 1} title={b.title}>
+              <Section
+                key={b.title}
+                imageLabel={b.imageLabel}
+                emoji={product.emoji}
+                imageSrc={product.image}
+                reverse={i % 2 === 1}
+                title={b.title}
+              >
                 <p className="text-lg">{b.body}</p>
                 <ul className="mt-4 space-y-2">
                   {product.bullets.slice(0, 3).map((x) => (

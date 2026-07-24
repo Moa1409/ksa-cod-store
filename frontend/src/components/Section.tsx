@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 export function Section({
   imageLabel,
   emoji,
+  imageSrc,
   reverse = false,
   eyebrow,
   title,
@@ -16,6 +17,7 @@ export function Section({
 }: {
   imageLabel: string;
   emoji?: string;
+  imageSrc?: string;
   reverse?: boolean;
   eyebrow?: string;
   title?: string;
@@ -33,7 +35,7 @@ export function Section({
       <div className={cn("relative order-1", reverse ? "md:order-2" : "md:order-1")}>
         <span className="blob -z-0 h-40 w-40 bg-brand-rose/40" style={reverse ? { right: "-1rem", top: "-1rem" } : { left: "-1rem", top: "-1rem" }} />
         <div className="relative rounded-3xl bg-white/40 p-2 shadow-card ring-1 ring-brand-rose/40">
-          <Media label={imageLabel} emoji={emoji} aspect={aspect} />
+          <Media label={imageLabel} emoji={emoji} src={imageSrc} aspect={aspect} />
         </div>
       </div>
       <div className={cn("order-2", reverse ? "md:order-1" : "md:order-2")}>

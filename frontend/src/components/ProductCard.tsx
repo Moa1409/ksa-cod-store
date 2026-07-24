@@ -28,7 +28,13 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <div className="card flex h-full flex-col overflow-hidden lift">
       <Link href={`/product/${product.slug}`} className="block">
-        <Media label={product.gallery[0]} emoji={product.emoji} aspect="square" className="rounded-none border-0" />
+        <Media
+          label={product.gallery[0]}
+          emoji={product.emoji}
+          src={product.image}
+          aspect="square"
+          className="rounded-none border-0"
+        />
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="inline-flex w-fit items-center gap-1 rounded-full bg-brand-gold/15 px-2.5 py-1 text-xs font-bold text-brand-gold">

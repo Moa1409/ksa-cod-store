@@ -36,6 +36,7 @@ export type Product = {
   heading: string;
   sub: string;
   emoji: string;
+  image: string;
   price: number;
   rating: number;
   reviewsCount: number;
@@ -70,6 +71,7 @@ export const products: Product[] = [
     heading: "من أول غسلة… شعركِ ينسرّح ويلمع كأنكِ طالعة من الصالون",
     sub: "ماسك الأرغان المغربي بالكولاجين والكيراتين — ٤٧٠غ بحجم الصالون. ترميم مظهري، تغذية، ولمعان تلمسينه بنفسكِ… بخصوصيتكِ في البيت.",
     emoji: "🧴",
+    image: "/images/products/keratin-collagen-mask.png",
     price: 219,
     rating: 4.9,
     reviewsCount: 2140,
@@ -249,6 +251,7 @@ export const products: Product[] = [
     heading: "قبل ما تطلعين… ريحة عسل وورد تخلّيكِ فخورة تحت الحجاب",
     sub: "مِست عطر شعر طويل الثبات — عسل وورد مع جوجوبا وأرغان. خفيف، ما يثقل، مصمّم لانتعاش الحجاب والثقة عند الباب.",
     emoji: "🌸",
+    image: "/images/products/hair-perfume-mist.png",
     price: 149,
     rating: 4.8,
     reviewsCount: 1860,
@@ -424,6 +427,7 @@ export const products: Product[] = [
     heading: "من جوّا… شعر وبشرة وأظافر تبان أقوى مع روتين ٣٠ يوم",
     sub: "علكات الكولاجين + الكيراتين + البيوتين — ٦٠ علكة لذيذة. دعم مظهري يومي يكمل الماسك، من مصنع GMP — مو علاج طبي.",
     emoji: "🍬",
+    image: "/images/products/hair-skin-nails-gummies.png",
     price: 199,
     rating: 4.8,
     reviewsCount: 1520,
