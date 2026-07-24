@@ -42,6 +42,14 @@ export const metadata: Metadata = {
       "مكوّنات فعّالة مكتوبة بوضوح · شهادات ISO وGMP · ثقة عند الباب. Certified beauty care house for the Saudi woman.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=3", sizes: "any" },
+      { url: "/favicon.png?v=3", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png?v=3", type: "image/png", sizes: "180x180" }],
+    shortcut: "/favicon.ico?v=3",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
