@@ -7,10 +7,8 @@ const nextConfig = {
     // Placeholder images are local SVG/inline; keep unoptimized until real assets arrive.
     unoptimized: true,
   },
-  // Never serve the legacy static admin shell — React /admin is canonical.
-  async redirects() {
-    return [{ source: "/admin.html", destination: "/admin", permanent: false }];
-  },
+  // Do NOT rewrite /admin → admin.html (that pinned the old Arabic shell in production).
+  // React App Router /admin is canonical; public/admin.html remains an English fallback only.
 };
 
 export default nextConfig;

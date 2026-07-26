@@ -4,10 +4,12 @@
 | Field | Value |
 |---|---|
 | Repository | `https://github.com/Moa1409/frontend` |
-| Branch | `main` |
+| Branch | `main` (must match `main` — **not** stale `master`) |
 | Build path | `/` (repo root — Dockerfile is at root) |
 
+> If EasyPanel still points at `master`, switch it to `main` or you will keep the old Arabic `/admin` shell.
 > If you use the monorepo `ksa-cod-store` instead, set **Build path** to `frontend`.
+> After admin UI changes: **Redeploy** with rebuild (disable Docker cache if the old `/admin` persists).
 
 ## Build settings
 | Field | Value |
