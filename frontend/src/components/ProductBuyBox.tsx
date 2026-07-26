@@ -23,7 +23,10 @@ export function ProductBuyBox({ product }: { product: Product }) {
   }, [product.slug, product.name, unitPrice]);
 
   function add() {
-    addItem({ slug: product.slug, name: product.name, emoji: product.emoji }, qty);
+    addItem(
+      { slug: product.slug, name: product.name, emoji: product.emoji, image: product.image },
+      qty,
+    );
     const offer = offers.find((o) => o.qty === qty);
     track("AddToCart", {
       value: offer?.total ?? unitPrice * qty,

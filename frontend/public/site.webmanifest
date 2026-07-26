@@ -1,0 +1,30 @@
+{
+  "name": "لمسة توهج | Lamsa Glow",
+  "short_name": "لمسة توهج",
+  "description": "دار العناية التجميلية المعتمدة — ماسك كيراتين كولاجين، عطر شعر للحجاب، وعلكات الجمال.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F4F5",
+  "theme_color": "#6B2D3C",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { BadgePercent, Banknote, Minus, Plus, ShieldCheck, ShoppingBag, Trash2, X } from "lucide-react";
 import { CrossSell } from "@/components/CrossSell";
 import { useCart } from "@/context/CartContext";
@@ -87,8 +88,12 @@ export function CartDrawer() {
               <div className="space-y-3">
                 {items.map((it, idx) => (
                   <div key={it.slug} className="flex items-center gap-3 rounded-2xl border border-brand-rose/50 bg-white p-3">
-                    <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand-rose/30 text-2xl">
-                      {it.emoji}
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-brand-rose/30">
+                      {it.image ? (
+                        <Image src={it.image} alt={it.name} fill className="object-cover" sizes="56px" />
+                      ) : (
+                        <span className="grid h-full w-full place-items-center text-2xl">{it.emoji}</span>
+                      )}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="truncate font-bold text-brand-plum">{it.name}</div>

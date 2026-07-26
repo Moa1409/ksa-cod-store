@@ -23,7 +23,7 @@ export function CrossSell({
   if (!items.length) return null;
 
   function add(p: Product) {
-    addItem({ slug: p.slug, name: p.name, emoji: p.emoji }, 1);
+    addItem({ slug: p.slug, name: p.name, emoji: p.emoji, image: p.image }, 1);
     track("AddToCart", {
       value: p.price,
       num_items: 1,

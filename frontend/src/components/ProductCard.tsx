@@ -14,7 +14,10 @@ export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
 
   function add() {
-    addItem({ slug: product.slug, name: product.name, emoji: product.emoji }, 1);
+    addItem(
+      { slug: product.slug, name: product.name, emoji: product.emoji, image: product.image },
+      1,
+    );
     track(
       "AddToCart",
       {

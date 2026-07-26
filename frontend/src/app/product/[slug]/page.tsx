@@ -31,7 +31,17 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: p.metaTitle,
     description: p.metaDescription,
-    openGraph: { title: p.metaTitle, description: p.metaDescription },
+    openGraph: {
+      title: p.metaTitle,
+      description: p.metaDescription,
+      images: [{ url: p.image, width: 1200, height: 1200, alt: p.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: p.metaTitle,
+      description: p.metaDescription,
+      images: [p.image],
+    },
   };
 }
 
@@ -44,6 +54,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     "@type": "Product",
     name: product.name,
     description: product.metaDescription,
+    image: [`${env.siteUrl}${product.image}`, `${env.siteUrl}${product.image.replace(/\.png$/, ".jpg")}`],
     brand: { "@type": "Brand", name: "Lamsa Glow" },
     aggregateRating: {
       "@type": "AggregateRating",

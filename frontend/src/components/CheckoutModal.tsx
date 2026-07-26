@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BadgeCheck, BadgePercent, Banknote, Clock, Loader2, Lock, ShieldCheck, Star, TrendingUp, X } from "lucide-react";
 import { Media } from "@/components/Media";
@@ -192,7 +193,7 @@ function FormView(props: {
   error: string | null;
   subtotal: number;
   savings: number;
-  items: { slug: string; name: string; qty: number; emoji: string }[];
+  items: { slug: string; name: string; qty: number; emoji: string; image: string }[];
   onName: (v: string) => void;
   onPhone: (v: string) => void;
   onCity: (v: string) => void;
@@ -238,11 +239,20 @@ function FormView(props: {
         {/* Order summary */}
         <div className="mb-4 rounded-2xl border border-brand-rose/50 bg-white p-3">
           <div className="mb-2 text-sm font-bold text-brand-plum">ملخّص الطلب</div>
-          <ul className="space-y-1.5 text-sm">
+          <ul className="space-y-2 text-sm">
             {items.map((it, idx) => (
-              <li key={it.slug} className="flex justify-between text-brand-ink/90">
-                <span>{it.emoji} {it.name} ×{it.qty}</span>
-                <span>{formatSar(lineTotals[idx] ?? 0)}</span>
+              <li key={it.slug} className="flex items-center justify-between gap-3 text-brand-ink/90">
+                <span className="flex min-w-0 items-center gap-2">
+                  <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-brand-rose/30">
+                    {it.image ? (
+                      <Image src={it.image} alt={it.name} fill className="object-cover" sizes="40px" />
+                    ) : (
+                      <span className="grid h-full w-full place-items-center text-lg">{it.emoji}</span>
+                    )}
+                  </span>
+                  <span className="truncate">{it.name} ×{it.qty}</span>
+                </span>
+                <span className="shrink-0">{formatSar(lineTotals[idx] ?? 0)}</span>
               </li>
             ))}
           </ul>

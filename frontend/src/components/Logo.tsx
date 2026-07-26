@@ -13,8 +13,8 @@ export function Logo({
   return (
     <Link href="/" className={cn("flex items-center gap-2.5", className)} aria-label="لمسة توهج">
       <Image
-        src="/icon-512.png"
-        alt=""
+        src="/logo.png"
+        alt="لمسة توهج"
         width={mark}
         height={mark}
         className="rounded-full shadow-soft"

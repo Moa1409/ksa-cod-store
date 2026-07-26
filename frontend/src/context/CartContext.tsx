@@ -9,13 +9,25 @@ import {
   type ReactNode,
 } from "react";
 import { cartSavings, cartSubtotal, type CartLine } from "@/lib/pricing";
+import { getProduct } from "@/lib/products";
 
 export type CartItem = {
   slug: string;
   name: string;
   emoji: string;
+  image: string;
   qty: number;
 };
+
+function enrichCartItem(item: CartItem): CartItem {
+  const product = getProduct(item.slug);
+  return {
+    ...item,
+    name: item.name || product?.name || item.slug,
+    emoji: item.emoji || product?.emoji || "✨",
+    image: item.image || product?.image || "",
+  };
+}
 
 type CartContextValue = {
   items: CartItem[];
@@ -47,7 +59,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setItems(JSON.parse(raw) as CartItem[]);
+      if (raw) {
+        const parsed = JSON.parse(raw) as CartItem[];
+        setItems(parsed.map(enrichCartItem));
+      }
     } catch {
       /* ignore */
     }
@@ -64,14 +79,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, hydrated]);
 
   function addItem(item: Omit<CartItem, "qty">, qty = 1) {
+    const next = enrichCartItem({ ...item, qty: 0 });
     setItems((prev) => {
-      const found = prev.find((p) => p.slug === item.slug);
+      const found = prev.find((p) => p.slug === next.slug);
       if (found) {
         return prev.map((p) =>
-          p.slug === item.slug ? { ...p, qty: p.qty + qty } : p,
+          p.slug === next.slug
+            ? { ...enrichCartItem(p), qty: p.qty + qty }
+            : p,
         );
       }
-      return [...prev, { ...item, qty }];
+      return [...prev, { ...next, qty }];
     });
     setIsCartOpen(true);
   }
