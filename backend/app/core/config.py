@@ -41,7 +41,10 @@ class Settings(BaseSettings):
         return v
 
     # Keep as str so EasyPanel comma-separated values never hit JSON list decoding
-    CORS_ORIGINS: str = "https://lamsaglow.shop,https://www.lamsaglow.shop"
+    CORS_ORIGINS: str = (
+        "https://lamsaglow.shop,https://www.lamsaglow.shop,"
+        "http://localhost:3000,http://127.0.0.1:3000"
+    )
 
     ADMIN_TOKEN: str = "change-me"
     ADMIN_USERNAME: str = "admin"

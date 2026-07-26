@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin",
+  title: "Admin · Lamsa Glow",
+  description: "Lamsa Glow COD admin dashboard",
   robots: { index: false, follow: false },
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <div lang="en" dir="ltr" className="min-h-screen bg-brand-cream">
+      {children}
+    </div>
+  );
 }

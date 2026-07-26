@@ -1,8 +1,9 @@
 "use client";
 
-import { env } from "@/lib/env";
-
 const TOKEN_KEY = "lg_admin_token";
+
+/** Same-origin Next proxy → backend /api/admin/* (avoids browser CORS on localhost). */
+const ADMIN_API_BASE = "/api/admin";
 
 export function getAdminToken(): string | null {
   if (typeof window === "undefined") return null;
@@ -28,7 +29,8 @@ async function adminFetch<T>(
   };
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  const res = await fetch(`${env.apiUrl}${path}`, { ...options, headers });
+  // path is like "/metrics?..." or we pass relative to ADMIN_API_BASE
+  const res = await fetch(`${ADMIN_API_BASE}${path}`, { ...options, headers });
   if (res.status === 401) {
     clearAdminToken();
     throw new Error("unauthorized");
@@ -102,19 +104,22 @@ export type AdminOrder = {
 };
 
 export async function adminLogin(username: string, password: string) {
-  const res = await fetch(`${env.apiUrl}/api/admin/login`, {
+  const res = await fetch(`${ADMIN_API_BASE}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.detail || "login failed");
-  setAdminToken(data.token);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const detail = (data as { detail?: string }).detail || "login failed";
+    throw new Error(typeof detail === "string" ? detail : "login failed");
+  }
+  setAdminToken((data as { token: string }).token);
   return data as { token: string; expires_in: number; username: string };
 }
 
 export function fetchMetrics(from: string, to: string) {
-  return adminFetch<Metrics>(`/api/admin/metrics?from=${from}&to=${to}`);
+  return adminFetch<Metrics>(`/metrics?from=${from}&to=${to}`);
 }
 
 export function fetchOrders(params: {
@@ -134,16 +139,16 @@ export function fetchOrders(params: {
   if (params.status) sp.set("status", params.status);
   if (params.q) sp.set("q", params.q);
   return adminFetch<{ total: number; page: number; page_size: number; orders: AdminOrder[] }>(
-    `/api/admin/orders?${sp}`,
+    `/orders?${sp}`,
   );
 }
 
 export function fetchOrder(orderNumber: string) {
-  return adminFetch<AdminOrder>(`/api/admin/orders/${encodeURIComponent(orderNumber)}`);
+  return adminFetch<AdminOrder>(`/orders/${encodeURIComponent(orderNumber)}`);
 }
 
 export function updateOrder(orderNumber: string, body: { status?: string; notes?: string }) {
-  return adminFetch<AdminOrder>(`/api/admin/orders/${encodeURIComponent(orderNumber)}`, {
+  return adminFetch<AdminOrder>(`/orders/${encodeURIComponent(orderNumber)}`, {
     method: "PATCH",
     body: JSON.stringify(body),
   });
