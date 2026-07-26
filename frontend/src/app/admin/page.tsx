@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import {
   Ban,
   BarChart3,
@@ -241,7 +240,8 @@ export default function AdminPage() {
       <div className="grid min-h-screen place-items-center bg-mesh px-4" dir="ltr" lang="en">
         <form onSubmit={onLogin} className="w-full max-w-md rounded-3xl border border-brand-rose/40 bg-white p-8 shadow-card">
           <div className="text-center">
-            <Image src="/logo.png" alt="Lamsa Glow" width={64} height={64} className="mx-auto rounded-full shadow-soft" />
+            {/* Native img: reliable on admin (Next/Image can break in standalone shells). */}
+            <img src="/logo.png" alt="Lamsa Glow" width={64} height={64} className="mx-auto rounded-full shadow-soft" />
             <div className="mt-3 font-display text-2xl font-bold text-brand-plum">Lamsa Glow</div>
             <div className="mt-1 text-sm font-bold text-brand-primary">COD Admin Dashboard</div>
             <p className="mt-2 text-sm text-ui-muted">
@@ -284,7 +284,7 @@ export default function AdminPage() {
       <header className="border-b border-brand-rose/40 bg-brand-plum text-brand-cream">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4">
           <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Lamsa Glow" width={44} height={44} className="rounded-full ring-2 ring-brand-gold/50" />
+            <img src="/logo.png" alt="Lamsa Glow" width={44} height={44} className="rounded-full ring-2 ring-brand-gold/50 object-cover" />
             <div>
               <div className="font-display text-xl font-bold">Lamsa Glow Admin</div>
               <div className="text-xs text-brand-cream/70">COD dashboard · KSA traffic only</div>

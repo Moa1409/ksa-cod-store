@@ -17,7 +17,10 @@ from app.core.logging import configure_logging
 configure_logging()
 log = logging.getLogger(__name__)
 
-ADMIN_HTML = Path(__file__).resolve().parent / "static" / "admin.html"
+STATIC_DIR = Path(__file__).resolve().parent / "static"
+ADMIN_HTML = STATIC_DIR / "admin.html"
+LOGO_PNG = STATIC_DIR / "logo.png"
+FAVICON_ICO = STATIC_DIR / "favicon.ico"
 
 app = FastAPI(title="Lamsa Glow API", version="1.1.0")
 
@@ -46,6 +49,20 @@ def admin_dashboard_page() -> FileResponse:
     if not ADMIN_HTML.is_file():
         raise HTTPException(status_code=404, detail="admin.html missing")
     return FileResponse(ADMIN_HTML, media_type="text/html; charset=utf-8")
+
+
+@app.get("/logo.png", include_in_schema=False)
+def admin_logo() -> FileResponse:
+    if not LOGO_PNG.is_file():
+        raise HTTPException(status_code=404, detail="logo missing")
+    return FileResponse(LOGO_PNG, media_type="image/png")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def admin_favicon() -> FileResponse:
+    if not FAVICON_ICO.is_file():
+        raise HTTPException(status_code=404, detail="favicon missing")
+    return FileResponse(FAVICON_ICO, media_type="image/x-icon")
 
 
 @app.exception_handler(Exception)
