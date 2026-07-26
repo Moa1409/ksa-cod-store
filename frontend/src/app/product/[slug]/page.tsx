@@ -88,6 +88,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 emoji={product.emoji}
                 src={product.image}
                 aspect="square"
+                fit="contain"
               />
             </div>
           </div>
@@ -117,7 +118,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 key={b.title}
                 imageLabel={b.imageLabel}
                 emoji={product.emoji}
-                imageSrc={product.image}
+                imageSrc={b.image || product.image}
+                aspect={b.imageAspect || "wide"}
+                imageFit={b.imageFit || (b.image ? "contain" : "cover")}
                 reverse={i % 2 === 1}
                 title={b.title}
               >

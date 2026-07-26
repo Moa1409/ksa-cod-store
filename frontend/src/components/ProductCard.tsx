@@ -36,6 +36,7 @@ export function ProductCard({ product }: { product: Product }) {
           emoji={product.emoji}
           src={product.image}
           aspect="square"
+          fit="contain"
           className="rounded-none border-0"
         />
       </Link>

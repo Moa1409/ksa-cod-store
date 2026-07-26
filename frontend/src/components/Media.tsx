@@ -16,12 +16,14 @@ export function Media({
   className,
   emoji,
   src,
+  fit = "cover",
 }: {
   label: string;
   aspect?: Aspect;
   className?: string;
   emoji?: string;
   src?: string;
+  fit?: "cover" | "contain";
 }) {
   return (
     <div
@@ -38,7 +40,7 @@ export function Media({
           src={src}
           alt={label}
           fill
-          className="object-cover"
+          className={fit === "contain" ? "object-contain p-1" : "object-cover"}
           sizes="(max-width: 768px) 100vw, 480px"
         />
       ) : (

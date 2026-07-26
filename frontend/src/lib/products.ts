@@ -10,6 +10,10 @@ export type Benefit = {
   title: string;
   body: string;
   imageLabel: string;
+  /** Optional section image; falls back to product.image */
+  image?: string;
+  imageAspect?: "square" | "wide" | "portrait";
+  imageFit?: "cover" | "contain";
 };
 
 export type ScienceBlock = { title: string; body: string; stat?: string };
@@ -71,7 +75,7 @@ export const products: Product[] = [
     heading: "من أول غسلة… شعركِ ينسرّح ويلمع كأنكِ طالعة من الصالون",
     sub: "ماسك الأرغان المغربي بالكولاجين والكيراتين — ٤٧٠غ بحجم الصالون. ترميم مظهري، تغذية، ولمعان تلمسينه بنفسكِ… بخصوصيتكِ في البيت.",
     emoji: "🧴",
-    image: "/images/products/keratin-collagen-mask.png",
+    image: "/images/products/keratin-collagen-mask.jpg?v=4",
     price: 219,
     rating: 4.9,
     reviewsCount: 2140,
@@ -140,16 +144,25 @@ export const products: Product[] = [
         title: "ترميم يُحسّ… مو بس يُقال",
         body: "الكيراتين والكولاجين يدعمون مظهر الشعرة التالفة ويقلّلون الإحساس بالتقصّف مع الترطيب العميق.",
         imageLabel: "ترميم",
+        image: "/images/products/keratin-collagen-mask-repair-section.jpg?v=3",
+        imageAspect: "portrait",
+        imageFit: "contain",
       },
       {
         title: "لمعان الأرغان المغربي",
         body: "زيت الأرغان يحبس الرطوبة ويمنح لمعان صالون — بدون ما تطلعين من بيتكِ.",
         imageLabel: "لمعان",
+        image: "/images/products/keratin-collagen-mask-shine.png?v=3",
+        imageAspect: "portrait",
+        imageFit: "contain",
       },
       {
         title: "تركيبة نظيفة تثقين فيها",
         body: "بدون سلفات وبارابين · لطيف على الصبغة · مدعوم بـ ISO 22716 وMSDS وCOA.",
         imageLabel: "شهادات",
+        image: "/images/products/keratin-collagen-mask-clean-section.jpg?v=4",
+        imageAspect: "portrait",
+        imageFit: "contain",
       },
     ],
     science: [
