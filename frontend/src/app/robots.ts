@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
   const base = env.siteUrl.replace(/\/$/, "");
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/admin", "/api/"] },
+      { userAgent: "*", allow: "/", disallow: ["/admin", "/cod", "/api/"] },
     ],
     sitemap: `${base}/sitemap.xml`,
   };

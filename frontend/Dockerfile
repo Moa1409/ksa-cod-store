@@ -14,8 +14,13 @@ RUN npm config set maxsockets 1 \
 COPY . .
 
 # Bust EasyPanel/BuildKit stale layers when admin/config changes
-ARG CACHEBUST=1
-RUN echo "cachebust=$CACHEBUST"
+ARG CACHEBUST=admin-cod-v3
+RUN echo "cachebust=$CACHEBUST" \
+  && test -f public/DEPLOY_STAMP.txt \
+  && ! grep -q "0e6b63" public/admin.html \
+  && ! grep -q 'lang="ar"' public/admin.html \
+  && test -d src/app/admin \
+  && test -d src/app/cod
 
 # NEXT_PUBLIC_* must be present at build time — set in EasyPanel env before deploy.
 ARG NEXT_PUBLIC_SITE_URL=https://lamsaglow.shop

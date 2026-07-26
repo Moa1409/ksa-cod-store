@@ -14,7 +14,7 @@ function FooterLinks({ children }: { children: React.ReactNode }) {
 
 export function SiteFooter() {
   const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/admin") || pathname?.startsWith("/cod")) return null;
 
   return (
     <footer className="mt-8 bg-brand-plum text-brand-cream">

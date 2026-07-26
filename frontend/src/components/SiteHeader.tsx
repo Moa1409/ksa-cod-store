@@ -22,7 +22,7 @@ export function SiteHeader() {
   const { count, openCart, hydrated } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/admin") || pathname?.startsWith("/cod")) return null;
 
   function closeMenu() {
     setMenuOpen(false);

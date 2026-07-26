@@ -59,12 +59,12 @@ export function SiteAnalytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!pathname || pathname.startsWith("/admin")) return;
+    if (!pathname || pathname.startsWith("/admin") || pathname.startsWith("/cod")) return;
     void trackSiteEvent({ event_type: "page_view", path: pathname });
   }, [pathname]);
 
   useEffect(() => {
-    if (pathname?.startsWith("/admin")) return;
+    if (pathname?.startsWith("/admin") || pathname?.startsWith("/cod")) return;
 
     function onClick(e: MouseEvent) {
       const el = (e.target as HTMLElement | null)?.closest?.(

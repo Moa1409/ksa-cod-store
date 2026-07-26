@@ -247,6 +247,7 @@ export default function AdminPage() {
             <p className="mt-2 text-sm text-ui-muted">
               Metrics count Saudi Arabia traffic only (MaxMind · no VPN).
             </p>
+            <p className="mt-1 text-[10px] uppercase tracking-wider text-ui-muted/70">build admin-cod-v3</p>
           </div>
           <label className="mt-6 block text-sm font-bold text-brand-plum">
             Username
