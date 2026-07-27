@@ -89,6 +89,8 @@ export default function HomePage() {
               label="لمسة توهج — روتين دار العناية التجميلية"
               src="/images/hero.png"
               aspect="square"
+              fit="cover"
+              priority
               className="shadow-soft"
             />
           </div>
@@ -196,9 +198,9 @@ export default function HomePage() {
           <SectionHeading eyebrow="قصتنا" title="بدأنا من سؤال كل سعودية واعية" />
           <Section
             imageLabel="قصتنا"
-            imageSrc="/images/brand-story.jpg?v=1"
+            imageSrc="/images/brand-story.jpg?v=2"
             aspect="wide"
-            imageFit="contain"
+            imageFit="cover"
             reverse
           >
             <p className="text-lg">

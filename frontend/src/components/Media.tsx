@@ -1,12 +1,20 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-type Aspect = "square" | "wide" | "portrait" | "hero";
+export type MediaAspect = "square" | "wide" | "portrait" | "hero";
 
-const aspectClass: Record<Aspect, string> = {
+/**
+ * Ratios match the store’s real product assets so photos fill the frame
+ * edge-to-edge (no letterboxing / no awkward crop).
+ * - square: 1:1 catalog & hero
+ * - wide: 1024×764 lifestyle / brand shots
+ * - portrait: 764×1024 benefit portraits
+ * - hero: 16:9 cinematic
+ */
+const aspectClass: Record<MediaAspect, string> = {
   square: "aspect-square",
-  wide: "aspect-[4/3]",
-  portrait: "aspect-[3/4]",
+  wide: "aspect-[1024/764]",
+  portrait: "aspect-[764/1024]",
   hero: "aspect-video",
 };
 
@@ -17,18 +25,20 @@ export function Media({
   emoji,
   src,
   fit = "cover",
+  priority = false,
 }: {
   label: string;
-  aspect?: Aspect;
+  aspect?: MediaAspect;
   className?: string;
   emoji?: string;
   src?: string;
   fit?: "cover" | "contain";
+  priority?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-brand-rose/50 bg-brand-cream",
+        "relative overflow-hidden rounded-2xl border border-brand-rose/40 bg-[#F3EDEF]",
         aspectClass[aspect],
         className,
       )}
@@ -40,8 +50,12 @@ export function Media({
           src={src}
           alt={label}
           fill
-          className={fit === "contain" ? "object-contain p-1" : "object-cover"}
-          sizes="(max-width: 768px) 100vw, 480px"
+          priority={priority}
+          className={cn(
+            "transition-transform duration-500",
+            fit === "contain" ? "object-contain" : "object-cover object-center",
+          )}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
         />
       ) : (
         <>

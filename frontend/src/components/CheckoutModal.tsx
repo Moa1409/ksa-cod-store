@@ -381,7 +381,7 @@ function UpsellView({
 
         <div className="mx-auto my-4 max-w-[200px]">
           <div className="rounded-3xl bg-white/50 p-2 ring-1 ring-brand-rose/40">
-            <Media label={product.gallery[0]} emoji={product.emoji} src={product.image} aspect="square" />
+            <Media label={product.gallery[0]} emoji={product.emoji} src={product.image} aspect="square" fit="cover" />
           </div>
         </div>
 
