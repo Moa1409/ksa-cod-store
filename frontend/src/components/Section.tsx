@@ -34,8 +34,15 @@ export function Section({
           className="blob -z-0 h-40 w-40 bg-brand-rose/40"
           style={reverse ? { right: "-1rem", top: "-1rem" } : { left: "-1rem", top: "-1rem" }}
         />
-        <div className="relative overflow-hidden rounded-3xl bg-white/50 p-1.5 shadow-card ring-1 ring-brand-rose/40">
-          <Media label={imageLabel} emoji={emoji} src={imageSrc} aspect={aspect} fit={imageFit} />
+        <div className="relative overflow-hidden rounded-3xl shadow-card ring-1 ring-brand-rose/40">
+          <Media
+            label={imageLabel}
+            emoji={emoji}
+            src={imageSrc}
+            aspect={aspect}
+            fit={imageFit}
+            className="rounded-3xl border-0"
+          />
         </div>
       </div>
       <div className={cn("order-2", reverse ? "md:order-1" : "md:order-2")}>

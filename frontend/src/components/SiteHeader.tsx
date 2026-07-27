@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mail, Menu, ShoppingBag, X } from "lucide-react";
@@ -41,14 +42,17 @@ export function SiteHeader() {
           ))}
           <div className="group relative">
             <button className="btn-ghost text-sm">منتجاتنا</button>
-            <div className="invisible absolute end-0 top-full z-50 w-56 rounded-2xl border border-brand-rose/50 bg-white p-2 opacity-0 shadow-soft transition group-hover:visible group-hover:opacity-100">
+            <div className="invisible absolute end-0 top-full z-50 w-64 rounded-2xl border border-brand-rose/50 bg-white p-2 opacity-0 shadow-soft transition group-hover:visible group-hover:opacity-100">
               {products.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/product/${p.slug}`}
-                  className="block rounded-xl px-3 py-2 text-sm font-semibold text-brand-plum hover:bg-brand-rose/30"
+                  className="flex items-center gap-3 rounded-xl px-2 py-2 text-sm font-semibold text-brand-plum hover:bg-brand-rose/30"
                 >
-                  {p.name}
+                  <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-brand-rose/20 ring-1 ring-brand-rose/40">
+                    <Image src={p.image} alt={p.name} fill className="object-cover" sizes="40px" />
+                  </span>
+                  <span className="leading-snug">{p.name}</span>
                 </Link>
               ))}
             </div>
@@ -111,9 +115,12 @@ export function SiteHeader() {
                   key={p.slug}
                   href={`/product/${p.slug}`}
                   onClick={closeMenu}
-                  className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-plum hover:bg-brand-rose/30"
+                  className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-plum hover:bg-brand-rose/30"
                 >
-                  {p.emoji} {p.name}
+                  <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-brand-rose/20 ring-1 ring-brand-rose/40">
+                    <Image src={p.image} alt={p.name} fill className="object-cover" sizes="48px" />
+                  </span>
+                  <span className="leading-snug">{p.name}</span>
                 </Link>
               ))}
             </div>
