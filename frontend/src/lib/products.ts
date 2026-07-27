@@ -349,7 +349,7 @@ export const products: Product[] = [
         title: "عناية خفيفة مع العطر",
         body: "جوجوبا + أرغان بتركيز لطيف يضيفان لمعانًا ناعمًا مع ثبات العطر.",
         imageLabel: "MSDS",
-        image: "/images/products/hair-perfume-mist-care-section.jpg?v=2",
+        image: "/images/products/hair-perfume-mist-care-section.jpg?v=3",
         imageAspect: "wide",
         imageFit: "cover",
       },

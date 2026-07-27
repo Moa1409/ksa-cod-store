@@ -76,7 +76,9 @@ export default function AboutPage() {
         <div className="container-lg space-y-14">
           <Section
             imageLabel="رؤيتنا"
-            emoji="✨"
+            imageSrc="/images/about-vision.jpg?v=2"
+            aspect="wide"
+            imageFit="cover"
             eyebrow="ليش موجودين؟"
             title="نكون دار العناية التجميلية اللي تثقين ترجعين لها"
           >
@@ -88,7 +90,9 @@ export default function AboutPage() {
           </Section>
           <Section
             imageLabel="معايير الاختيار"
-            emoji="🔬"
+            imageSrc="/images/about-standards.jpg?v=1"
+            aspect="wide"
+            imageFit="cover"
             eyebrow="كيف نختار؟"
             title="ما نبيع إلا اللي نقدر نثبت جودته"
             reverse
