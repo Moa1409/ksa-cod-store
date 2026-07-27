@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Banknote, Check, FlaskConical, Home, ShieldCheck, Star } from "lucide-react";
 import { Authority } from "@/components/Authority";
 import { ComparisonTable } from "@/components/ComparisonTable";
-import { CreatorWall } from "@/components/CreatorWall";
 import { DeliveryPromise } from "@/components/DeliveryPromise";
 import { ExpertQuote } from "@/components/ExpertQuote";
 import { FAQ } from "@/components/FAQ";
@@ -195,7 +194,13 @@ export default function HomePage() {
       <section className="section">
         <div className="container-lg">
           <SectionHeading eyebrow="قصتنا" title="بدأنا من سؤال كل سعودية واعية" />
-          <Section imageLabel="قصتنا" emoji="✨" reverse>
+          <Section
+            imageLabel="قصتنا"
+            imageSrc="/images/brand-story.jpg?v=1"
+            aspect="wide"
+            imageFit="contain"
+            reverse
+          >
             <p className="text-lg">
               «ليش أدفع صالون كل شوي؟ وليش المنتجات الرخيصة أونلاين ما تطمْن؟» من هنا وُلدت لمسة توهج — دار عناية تجميلية
               معتمدة في البيت: ماسك بشهادة ISO، عطر شعر مصمّم للحجاب، وعلكات بشهادة GMP. نكتب المكوّن الفعّال بوضوح، نعرض
@@ -245,10 +250,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <div className="bg-white/50">
-        <CreatorWall />
-      </div>
 
       <DeliveryPromise />
       <GuaranteeBand />

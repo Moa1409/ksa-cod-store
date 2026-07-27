@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Award, BadgeCheck, Check, Star } from "lucide-react";
 import { Authority } from "@/components/Authority";
 import { ComparisonTable } from "@/components/ComparisonTable";
-import { CreatorWall } from "@/components/CreatorWall";
 import { CrossSell } from "@/components/CrossSell";
 import { DeliveryPromise } from "@/components/DeliveryPromise";
 import { ExpertQuote } from "@/components/ExpertQuote";
@@ -241,9 +240,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
-
-      {/* UGC / creators */}
-      <CreatorWall />
 
       {/* Delivery promise (confirmation/delivery boost) */}
       <DeliveryPromise />

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Authority } from "@/components/Authority";
-import { CreatorWall } from "@/components/CreatorWall";
 import { DeliveryPromise } from "@/components/DeliveryPromise";
 import { FAQ } from "@/components/FAQ";
 import { GuaranteeBand } from "@/components/GuaranteeBand";
@@ -117,7 +116,6 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <CreatorWall />
       <DeliveryPromise />
       <GuaranteeBand />
 
