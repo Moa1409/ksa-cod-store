@@ -7,7 +7,7 @@ const aspectClass: Record<Aspect, string> = {
   square: "aspect-square",
   wide: "aspect-[4/3]",
   portrait: "aspect-[3/4]",
-  hero: "aspect-[16/10]",
+  hero: "aspect-video",
 };
 
 export function Media({

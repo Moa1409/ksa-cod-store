@@ -12,7 +12,7 @@ export type Benefit = {
   imageLabel: string;
   /** Optional section image; falls back to product.image */
   image?: string;
-  imageAspect?: "square" | "wide" | "portrait";
+  imageAspect?: "square" | "wide" | "portrait" | "hero";
   imageFit?: "cover" | "contain";
 };
 
@@ -518,16 +518,25 @@ export const products: Product[] = [
         title: "يكمل الماسك… مش بديل عنه",
         body: "الماسك يرمّم من برا، والعلكات تدعم من جوّا — روتين متكامل لشعركِ وبشرتكِ وأظافركِ.",
         imageLabel: "من الداخل",
+        image: "/images/products/hair-skin-nails-gummies-complete-section.jpg?v=2",
+        imageAspect: "wide",
+        imageFit: "contain",
       },
       {
         title: "سهلة تخلّصين الشهر",
         body: "علكات بطعم لطيف — الالتزام ٣٠ يوم يصير عادة مو عذاب.",
         imageLabel: "سهولة",
+        image: "/images/products/hair-skin-nails-gummies-habit-section.jpg?v=2",
+        imageAspect: "wide",
+        imageFit: "contain",
       },
       {
         title: "شهادات قبل ما تبلعين",
         body: "GMP + ISO 22000/HACCP + COA — ما نبيع «علكات تيك توك» مجهولة المصدر.",
         imageLabel: "GMP",
+        image: "/images/products/hair-skin-nails-gummies-certs-section.jpg?v=1",
+        imageAspect: "hero",
+        imageFit: "contain",
       },
     ],
     science: [

@@ -23,7 +23,7 @@ export function Section({
   eyebrow?: string;
   title?: string;
   children?: ReactNode;
-  aspect?: "square" | "wide" | "portrait";
+  aspect?: "square" | "wide" | "portrait" | "hero";
   imageFit?: "cover" | "contain";
   className?: string;
 }) {
