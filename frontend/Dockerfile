@@ -14,7 +14,7 @@ RUN npm config set maxsockets 1 \
 COPY . .
 
 # Bust EasyPanel/BuildKit stale layers when admin/config changes
-ARG CACHEBUST=admin-cod-v3
+ARG CACHEBUST=checkout-emergency-2026-07-31b
 RUN echo "cachebust=$CACHEBUST" \
   && test -f public/DEPLOY_STAMP.txt \
   && ! grep -q "0e6b63" public/admin.html \
