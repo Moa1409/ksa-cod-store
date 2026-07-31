@@ -1,7 +1,8 @@
 /** Turn FastAPI / proxy error payloads into a user-facing Arabic string. */
 export function formatApiErrorDetail(detail: unknown): string {
   if (typeof detail === "string" && detail.trim()) {
-    if (detail.includes("Field required")) {
+    const lower = detail.toLowerCase();
+    if (detail.includes("Field required") || lower.includes("internal server error")) {
       return "خدمة الطلبات غير متاحة حاليًا. جرّبي بعد قليل.";
     }
     return detail;

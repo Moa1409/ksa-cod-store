@@ -108,7 +108,7 @@ def check_order_ip(ip: str | None) -> GeoCheckResult:
 
     try:
         data = _fetch_insights(ip)
-    except httpx.HTTPError as exc:
+    except Exception as exc:  # noqa: BLE001 — httpx + tenacity.RetryError must never 500 checkout
         log.error("geoip lookup failed for %s: %s", ip, exc)
         if settings.is_prod:
             return GeoCheckResult(allowed=False, reason="geoip_unavailable")

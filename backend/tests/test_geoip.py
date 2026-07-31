@@ -117,3 +117,14 @@ def test_api_failure_blocked_in_prod():
         result = check_order_ip("1.2.3.4")
     assert result.allowed is False
     assert result.reason == "geoip_unavailable"
+
+
+def test_unexpected_lookup_error_does_not_raise():
+    """tenacity RetryError / random failures must return a GeoCheckResult, never 500."""
+    with patch(
+        "app.services.geoip._fetch_insights",
+        side_effect=RuntimeError("retry exploded"),
+    ):
+        result = check_order_ip("1.2.3.4")
+    assert result.allowed is False
+    assert result.reason == "geoip_unavailable"

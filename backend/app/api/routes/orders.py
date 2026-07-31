@@ -7,7 +7,7 @@ from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session, selectinload
 
 from app.api.deps import client_ip, user_agent
@@ -134,17 +134,16 @@ def create_order(
         raise HTTPException(status_code=422, detail="\u0631\u0642\u0645 \u062c\u0648\u0627\u0644 \u0633\u0639\u0648\u062f\u064a \u063a\u064a\u0631 \u0635\u062d\u064a\u062d")
     phone_e164 = to_e164(payload.phone) or ("+" + phone)
 
-    # 1b) geo / VPN gate (skipped for whitelisted test numbers)
+    # 1b) geo / VPN gate — whitelist skips MaxMind entirely (no 500 on lookup failure)
     ip = client_ip(request)
-    geo = check_order_ip(ip)
     if is_whitelisted_phone(phone):
-        # Still snapshot geo for admin, but never block whitelist phones
-        geo_country = geo.country
+        geo_country = None
         geo_allowed = True
-        geo_vpn = bool(geo.blocked_vpn)
+        geo_vpn = False
         geo_reason = "whitelist"
-        geo_trait = geo.trait
+        geo_trait = None
     else:
+        geo = check_order_ip(ip)
         if not geo.allowed:
             log.warning(
                 "order blocked by geoip ip=%s reason=%s country=%s vpn=%s phone=%s",
@@ -278,9 +277,16 @@ def create_order(
         except IntegrityError:
             db.rollback()
             continue
+        except SQLAlchemyError as exc:
+            db.rollback()
+            log.exception("order persist failed: %s", exc)
+            raise HTTPException(
+                status_code=500,
+                detail="تعذّر حفظ الطلب حاليًا. حاولي مرة أخرى.",
+            ) from exc
 
     if order is None:
-        raise HTTPException(status_code=500, detail="could not create order")
+        raise HTTPException(status_code=500, detail="تعذّر إنشاء الطلب. حاولي مرة أخرى.")
 
     log.info(
         "order %s created (%s items, total %s, phone %s)",
