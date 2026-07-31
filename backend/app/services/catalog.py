@@ -20,17 +20,17 @@ CATALOG: dict[str, dict] = {
     "keratin-collagen-mask": {
         "slug": "keratin-collagen-mask",
         "name": "لمسة كيراتين كولاجين",
-        "sku": "LAM-7K4M92",
+        "sku": "lam-KCM7429",
     },
     "hair-perfume-mist": {
         "slug": "hair-perfume-mist",
         "name": "لمسة عطر الشعر",
-        "sku": "LAM-3N8P41",
+        "sku": "lam-HMP3841",
     },
     "hair-skin-nails-gummies": {
         "slug": "hair-skin-nails-gummies",
         "name": "لمسة علكات الجمال",
-        "sku": "LAM-9Q2R58",
+        "sku": "lam-HSN9258",
     },
 }
 

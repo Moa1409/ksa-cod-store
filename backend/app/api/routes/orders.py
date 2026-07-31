@@ -230,7 +230,7 @@ def create_order(
     order: Order | None = None
     for _ in range(5):
         candidate = Order(
-            order_number=generate_order_number(),
+            order_number=generate_order_number([item["slug"] for item in items]),
             status="new",
             customer_name=payload.customer_name.strip(),
             phone=phone,

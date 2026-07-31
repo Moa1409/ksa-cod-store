@@ -11,13 +11,18 @@ def test_format_sheet_date():
     assert format_sheet_date(dt) == "01/05/2026"
 
 
-def test_order_number_starts_with_lamsa():
-    assert generate_order_number().startswith("lamsa-")
+def test_order_number_includes_sku_codes():
+    single = generate_order_number(["keratin-collagen-mask"])
+    assert single.startswith("lam-KCM7429-")
+    multi = generate_order_number(
+        ["keratin-collagen-mask", "hair-perfume-mist", "hair-skin-nails-gummies"]
+    )
+    assert multi.startswith("lam-KCM7429_HMP3841_HSN9258-")
 
 
 def test_build_sheet_payload_multi_product():
     order = Order(
-        order_number="lamsa-20260501-a1b2",
+        order_number="lam-KCM7429_HMP3841-20260501-a1b2",
         customer_name="Sara",
         phone="966504752333",
         phone_e164="+966504752333",
@@ -44,7 +49,7 @@ def test_build_sheet_payload_multi_product():
     payload = build_sheet_payload(order)
     row = payload["order"]
     assert row["date"] == "01/05/2026"
-    assert row["order"] == "lamsa-20260501-a1b2"
+    assert row["order"] == "lam-KCM7429_HMP3841-20260501-a1b2"
     assert row["country"] == "KSA"
     assert row["name"] == "Sara"
     assert row["phone"] == "966504752333"
@@ -67,6 +72,6 @@ def test_build_sheet_payload_multi_product():
 
 
 def test_catalog_skus_are_set():
-    assert product_sku("keratin-collagen-mask") == "LAM-7K4M92"
-    assert product_sku("hair-perfume-mist") == "LAM-3N8P41"
-    assert product_sku("hair-skin-nails-gummies") == "LAM-9Q2R58"
+    assert product_sku("keratin-collagen-mask") == "lam-KCM7429"
+    assert product_sku("hair-perfume-mist") == "lam-HMP3841"
+    assert product_sku("hair-skin-nails-gummies") == "lam-HSN9258"

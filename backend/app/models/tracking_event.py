@@ -34,6 +34,6 @@ class TrackingEvent(Base):
     ttp: Mapped[str | None] = mapped_column(String(255), nullable=True)
     sc_click_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
     utm: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
-    order_number: Mapped[str | None] = mapped_column(String(32), nullable=True, index=True)
+    order_number: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
     dispatched: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     capi_result: Mapped[dict | None] = mapped_column(JSONB, nullable=True)

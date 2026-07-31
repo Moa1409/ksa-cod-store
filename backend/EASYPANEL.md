@@ -116,7 +116,7 @@ Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection st
 `date, order, country, name, phone, product, sku, quantity, totalprice, currency, status`
 
 Example row:
-`01/05/2026, lamsa-20260501-a1b2, KSA, Sara, 966504752333, لمسة كيراتين كولاجين/لمسة عطر الشعر, LAM-7K4M92/LAM-3N8P41, 1/2, 329, SAR, (empty)`
+`01/05/2026, lam-KCM7429_HMP3841-20260501-a1b2, KSA, Sara, 966504752333, لمسة كيراتين كولاجين/لمسة عطر الشعر, lam-KCM7429/lam-HMP3841, 1/2, 329, SAR, (empty)`
 
 Paste `docs/assets/google-apps-script.gs` into Apps Script. Set `SHEET_NAME` to your tab (`Feuille 1`) and `SHARED_SECRET` to match backend.
 
