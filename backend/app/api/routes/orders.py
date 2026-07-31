@@ -128,6 +128,24 @@ def create_order(
     background: BackgroundTasks,
     db: Session = Depends(get_db),
 ) -> OrderOut:
+    try:
+        return _create_order(request, payload, background, db)
+    except HTTPException:
+        raise
+    except Exception as exc:  # noqa: BLE001
+        log.exception("create_order crashed: %s", exc)
+        raise HTTPException(
+            status_code=500,
+            detail="تعذّر إرسال الطلب حاليًا. حاولي مرة أخرى.",
+        ) from exc
+
+
+def _create_order(
+    request: Request,
+    payload: OrderIn,
+    background: BackgroundTasks,
+    db: Session,
+) -> OrderOut:
     # 1) validate + normalize phone (never trust client)
     phone = normalize_ksa(payload.phone)
     if not phone:
