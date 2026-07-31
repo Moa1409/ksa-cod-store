@@ -2,7 +2,7 @@
 set -eu
 
 echo "=== Lamsa Glow API startup ==="
-echo "Build target: checkout-fix-2026-07-31a"
+echo "Build target: checkout-fix-2026-07-31b"
 
 # If alembic_version was manually seeded with BOTH 0001 and 0002 rows,
 # Alembic fails with "overlaps". Keep a single head revision.

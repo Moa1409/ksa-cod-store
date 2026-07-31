@@ -11,7 +11,7 @@ from app.services.sheets import ping_sheet_webhook
 
 router = APIRouter()
 
-BUILD_ID = "checkout-fix-2026-07-31a"
+BUILD_ID = "checkout-fix-2026-07-31b"
 
 
 @router.get("/")

@@ -7,6 +7,17 @@
 | Branch | `main` |
 | Build path | `/` |
 
+## Checkout stuck / old build ID?
+Live `/health` must show `build: checkout-fix-2026-07-31b` (or newer).
+
+If it still shows `admin-2026-07-23c`, EasyPanel reused a **cached Docker image**.
+
+1. EasyPanel → **backend** → set env `CACHEBUST=checkout-fix-2026-07-31b`
+2. Click **Rebuild** (not Restart) — wait for new image
+3. Confirm https://api.lamsaglow.shop/health shows the new build id
+
+`0550000000` skips MaxMind entirely after this deploy (any IP).
+
 ## Service settings
 | Field | Value |
 |---|---|

@@ -87,35 +87,40 @@ def _fetch_insights(ip: str) -> dict:
 
 
 def check_order_ip(ip: str | None) -> GeoCheckResult:
-    """Validate order IP via MaxMind Insights: KSA only, block VPN/proxy/hosting."""
+    """Validate order IP via MaxMind Insights: KSA only, block VPN/proxy/hosting.
+
+    Lookup failures fail OPEN (allow) so MaxMind outages never 500 checkout.
+    Confirmed VPN / non-KSA still block.
+    """
     if not settings.MAXMIND_ORDER_CHECK_ENABLED:
         return GeoCheckResult(allowed=True, reason="disabled")
 
     if not ip:
-        return GeoCheckResult(allowed=False, reason="missing_ip")
+        # Missing IP must not crash checkout — allow and flag for admin review.
+        log.warning("geoip: missing client IP — allowing order")
+        return GeoCheckResult(allowed=True, reason="missing_ip_allow")
 
     if _is_private_ip(ip):
         if settings.is_prod:
-            return GeoCheckResult(allowed=False, reason="private_ip")
+            # Behind some proxies IP can look private; don't 500 — allow with flag.
+            log.warning("geoip: private/reserved IP %s in prod — allowing", ip)
+            return GeoCheckResult(allowed=True, reason="private_ip_allow")
         log.info("geoip: allowing private IP %s in non-prod", ip)
         return GeoCheckResult(allowed=True, reason="private_dev")
 
     if not maxmind_configured():
-        log.warning("geoip: MaxMind credentials missing — set MAXMIND_ACCOUNT_ID and MAXMIND_LICENSE_KEY")
-        if settings.is_prod:
-            return GeoCheckResult(allowed=False, reason="geoip_unconfigured")
-        return GeoCheckResult(allowed=True, reason="geoip_skipped_dev")
+        log.warning("geoip: MaxMind credentials missing — allowing orders")
+        return GeoCheckResult(allowed=True, reason="geoip_unconfigured_allow")
 
     try:
         data = _fetch_insights(ip)
-    except Exception as exc:  # noqa: BLE001 — httpx + tenacity.RetryError must never 500 checkout
-        log.error("geoip lookup failed for %s: %s", ip, exc)
-        if settings.is_prod:
-            return GeoCheckResult(allowed=False, reason="geoip_unavailable")
-        return GeoCheckResult(allowed=True, reason="geoip_error_dev")
+    except Exception as exc:  # noqa: BLE001 — httpx + tenacity.RetryError must never 500
+        log.error("geoip lookup failed for %s: %s — allowing order", ip, exc)
+        return GeoCheckResult(allowed=True, reason="geoip_unavailable_allow")
 
     if data.get("_not_found"):
-        return GeoCheckResult(allowed=False, reason="ip_unknown")
+        log.warning("geoip: unknown IP %s — allowing order", ip)
+        return GeoCheckResult(allowed=True, reason="ip_unknown_allow", country=None)
 
     country = (data.get("country") or {}).get("iso_code")
     traits = data.get("traits") or {}
@@ -146,10 +151,6 @@ def check_order_ip(ip: str | None) -> GeoCheckResult:
 def geo_block_message(result: GeoCheckResult) -> str:
     if result.reason == "not_ksa":
         return "الطلب متاح داخل السعودية فقط."
-    if result.reason in {"vpn_or_proxy", "suspicious_ip", "ip_unknown", "private_ip"}:
+    if result.reason in {"vpn_or_proxy", "suspicious_ip"}:
         return "تعذّر إتمام الطلب من هذا الاتصال. أوقفي VPN أو البروكسي وحاولي مرة أخرى."
-    if result.reason in {"geoip_unavailable", "geoip_unconfigured"}:
-        return "تعذّر التحقق من الطلب حاليًا. حاولي بعد قليل."
-    if result.reason == "missing_ip":
-        return "تعذّر التحقق من الطلب. حاولي مرة أخرى."
     return "تعذّر إتمام الطلب. حاولي مرة أخرى."

@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import httpx
 import pytest
@@ -68,11 +68,11 @@ def test_blocks_hosting_provider():
     assert result.reason == "suspicious_ip"
 
 
-def test_blocks_unknown_ip():
+def test_unknown_ip_fail_open():
     with patch("app.services.geoip._fetch_insights", return_value={"_not_found": True}):
         result = check_order_ip("1.2.3.4")
-    assert result.allowed is False
-    assert result.reason == "ip_unknown"
+    assert result.allowed is True
+    assert result.reason == "ip_unknown_allow"
 
 
 def test_disabled_check():
@@ -87,9 +87,10 @@ def test_private_ip_allowed_in_dev(monkeypatch):
     assert result.allowed is True
 
 
-def test_private_ip_blocked_in_prod():
+def test_private_ip_fail_open_in_prod():
     result = check_order_ip("127.0.0.1")
-    assert result.allowed is False
+    assert result.allowed is True
+    assert result.reason == "private_ip_allow"
 
 
 def test_blocks_public_proxy():
@@ -109,22 +110,22 @@ def test_geo_block_messages():
     assert "VPN" in geo_block_message(GeoCheckResult(False, "vpn_or_proxy"))
 
 
-def test_api_failure_blocked_in_prod():
+def test_api_failure_fail_open_in_prod():
     with patch(
         "app.services.geoip._fetch_insights",
         side_effect=httpx.TimeoutException("timeout"),
     ):
         result = check_order_ip("1.2.3.4")
-    assert result.allowed is False
-    assert result.reason == "geoip_unavailable"
+    assert result.allowed is True
+    assert result.reason == "geoip_unavailable_allow"
 
 
-def test_unexpected_lookup_error_does_not_raise():
-    """tenacity RetryError / random failures must return a GeoCheckResult, never 500."""
+def test_unexpected_lookup_error_fail_open():
+    """tenacity RetryError / random failures must allow, never 500."""
     with patch(
         "app.services.geoip._fetch_insights",
         side_effect=RuntimeError("retry exploded"),
     ):
         result = check_order_ip("1.2.3.4")
-    assert result.allowed is False
-    assert result.reason == "geoip_unavailable"
+    assert result.allowed is True
+    assert result.reason == "geoip_unavailable_allow"
