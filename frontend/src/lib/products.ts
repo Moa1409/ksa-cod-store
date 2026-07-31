@@ -232,7 +232,7 @@ export const products: Product[] = [
       {
         name: "ريم",
         city: "جدة",
-        stars: 5,
+        stars: 4.5,
         verified: true,
         text: "الصبغة خرّبت شعري وكنت خايفة من أي منتج أونلاين. لمّا شفت ISO وMSDS أكّدت. اللمعان رجّع والخشونة خفّت — أدفع عند الباب مرتاحة.",
       },
@@ -410,7 +410,7 @@ export const products: Product[] = [
       {
         name: "دانة",
         city: "الخبر",
-        stars: 5,
+        stars: 4.5,
         verified: true,
         text: "صرت أرذّه قبل كل دوام. ريحة العسل والورد راقية ومو ثقيلة تحت الحجاب — أحس إني «جاهزة» مو مستعجلة.",
       },
@@ -424,7 +424,7 @@ export const products: Product[] = [
       {
         name: "ميرا",
         city: "جدة",
-        stars: 5,
+        stars: 4.5,
         verified: true,
         text: "أخذته مع الماسك — الروتين كامل. زوجي قال «ريحتكِ حلوة» وأنا للحين أضحك من الفرحة.",
       },
@@ -595,7 +595,7 @@ export const products: Product[] = [
       {
         name: "العنود",
         city: "الرياض",
-        stars: 5,
+        stars: 4.5,
         verified: true,
         text: "بعد شهر تقريبًا أظافري صارت أقل تكسرًا. اللي خلّاني أثق: GMP وCOA والدفع عند الباب — مو كلام فاضي.",
       },
@@ -616,7 +616,7 @@ export const products: Product[] = [
       {
         name: "لمى",
         city: "الخبر",
-        stars: 5,
+        stars: 4.5,
         verified: true,
         text: "طلبت الثاني قبل ما يخلص الأول. لما الشهادات واضحة، الولاء يصير طبيعي.",
       },
