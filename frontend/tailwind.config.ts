@@ -24,7 +24,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-tajawal)", "system-ui", "sans-serif"],
         display: ["var(--font-reem)", "var(--font-tajawal)", "serif"],
-        latin: ["var(--font-poppins)", "system-ui", "sans-serif"],
+        latin: ["var(--font-tajawal)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         "2xl": "1rem",

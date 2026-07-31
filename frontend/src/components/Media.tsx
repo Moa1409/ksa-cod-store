@@ -26,6 +26,7 @@ export function Media({
   src,
   fit = "cover",
   priority = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px",
 }: {
   label: string;
   aspect?: MediaAspect;
@@ -34,6 +35,7 @@ export function Media({
   src?: string;
   fit?: "cover" | "contain";
   priority?: boolean;
+  sizes?: string;
 }) {
   return (
     <div
@@ -51,11 +53,12 @@ export function Media({
           alt={label}
           fill
           priority={priority}
+          loading={priority ? undefined : "lazy"}
+          decoding="async"
           className={cn(
-            "transition-transform duration-500",
             fit === "contain" ? "object-contain" : "object-cover object-center",
           )}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
+          sizes={sizes}
         />
       ) : (
         <>

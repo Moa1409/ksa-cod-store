@@ -51,19 +51,17 @@ export function CartDrawer() {
     openCheckout();
   }
 
+  if (!isCartOpen) return null;
+
   return (
     <>
       <div
-        className={`fixed inset-0 z-50 bg-brand-plum/40 transition-opacity ${
-          isCartOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className="fixed inset-0 z-50 bg-brand-plum/40"
         onClick={closeCart}
         aria-hidden
       />
       <aside
-        className={`fixed inset-y-0 start-0 z-50 flex w-full max-w-md flex-col bg-brand-cream shadow-soft transition-transform ${
-          isCartOpen ? "translate-x-0" : "-translate-x-full rtl:translate-x-full"
-        }`}
+        className="fixed inset-y-0 start-0 z-50 flex w-full max-w-md flex-col bg-brand-cream shadow-soft"
         role="dialog"
         aria-modal="true"
         aria-label="سلة التسوق"

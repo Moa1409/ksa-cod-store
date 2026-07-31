@@ -123,7 +123,7 @@ export default function ThankYouPage() {
   return (
     <>
       {/* Confirmation banner — highest priority */}
-      <div className="sticky top-[3.75rem] z-30 border-b border-brand-gold/40 bg-brand-primary text-white shadow-soft">
+      <div className="border-b border-brand-gold/40 bg-brand-primary text-white">
         <div className="container-lg flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <div className="flex items-start gap-3">
             <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15">

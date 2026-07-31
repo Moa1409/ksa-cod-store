@@ -8,15 +8,10 @@
   --brand-cream: #f8f4f5;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--brand-cream);
   color: #2a1a1f;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
 @layer base {
@@ -53,6 +48,8 @@ body {
   }
   .section {
     @apply py-14 sm:py-20;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 640px;
   }
   .lift {
     @apply transition duration-300 hover:-translate-y-1 hover:shadow-soft;
@@ -69,19 +66,18 @@ body {
   .hairline {
     @apply h-px w-full bg-gradient-to-l from-transparent via-brand-gold/40 to-transparent;
   }
-  .glass {
-    @apply border border-white/60 bg-white/70 backdrop-blur;
-  }
 }
 
 @layer utilities {
+  /* Cheap atmosphere — soft mask instead of filter:blur(60px) (mobile scroll killer). */
   .blob {
     position: absolute;
     border-radius: 9999px;
-    filter: blur(60px);
-    opacity: 0.5;
+    opacity: 0.45;
     z-index: 0;
     pointer-events: none;
+    -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 72%);
+    mask-image: radial-gradient(circle, #000 25%, transparent 72%);
   }
   .bg-mesh {
     background-image:

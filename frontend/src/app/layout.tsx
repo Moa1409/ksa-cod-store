@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Reem_Kufi, Tajawal } from "next/font/google";
+import { Reem_Kufi, Tajawal } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -8,21 +8,17 @@ import { env } from "@/lib/env";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
-  weight: ["400", "500", "700", "800"],
+  weight: ["400", "700"],
   variable: "--font-tajawal",
   display: "swap",
+  preload: true,
 });
 const reem = Reem_Kufi({
-  subsets: ["arabic", "latin"],
-  weight: ["500", "700"],
+  subsets: ["arabic"],
+  weight: ["700"],
   variable: "--font-reem",
   display: "swap",
-});
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
+  preload: false,
 });
 
 const siteName = "لمسة توهج";
@@ -130,7 +126,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${reem.variable} ${poppins.variable}`}>
+    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${reem.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

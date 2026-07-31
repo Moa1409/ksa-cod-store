@@ -38,7 +38,7 @@ export function CrossSell({
         <div className="space-y-2">
           {items.map((p) => (
             <div key={p.slug} className="flex items-center gap-3 rounded-2xl border border-brand-rose/50 bg-white p-2">
-              <Media label={p.gallery[0]} emoji={p.emoji} src={p.image} aspect="square" fit="cover" className="h-14 w-14 shrink-0 rounded-xl" />
+              <Media label={p.gallery[0]} emoji={p.emoji} src={p.image} aspect="square" fit="cover" className="h-14 w-14 shrink-0 rounded-xl" sizes="56px" />
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm font-bold text-brand-plum">{p.name}</div>
                 <div className="text-xs text-ui-muted">{formatSar(p.price)}</div>
@@ -63,7 +63,7 @@ export function CrossSell({
       {items.map((p) => (
         <div key={p.slug} className="card flex items-center gap-4 p-3">
           <Link href={`/product/${p.slug}`}>
-            <Media label={p.gallery[0]} emoji={p.emoji} src={p.image} aspect="square" fit="cover" className="h-20 w-20 rounded-xl" />
+            <Media label={p.gallery[0]} emoji={p.emoji} src={p.image} aspect="square" fit="cover" className="h-20 w-20 rounded-xl" sizes="80px" />
           </Link>
           <div className="min-w-0 flex-1">
             <Link href={`/product/${p.slug}`} className="block truncate font-bold text-brand-plum">

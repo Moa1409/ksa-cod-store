@@ -89,6 +89,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 aspect="square"
                 fit="cover"
                 priority
+                sizes="(max-width: 768px) 100vw, 480px"
               />
             </div>
           </div>

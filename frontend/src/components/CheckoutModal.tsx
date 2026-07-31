@@ -156,7 +156,7 @@ export function CheckoutModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-brand-plum/60 p-0 backdrop-blur-sm sm:items-center sm:p-4">
+    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-brand-plum/60 p-0 sm:items-center sm:p-4">
       <div className="relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-brand-cream shadow-soft ring-1 ring-brand-gold/20 sm:rounded-3xl">
         <div className="h-1.5 w-full bg-gradient-to-l from-brand-primary via-brand-gold to-brand-primary" />
         {stage === "upsell" && upsellProduct ? (

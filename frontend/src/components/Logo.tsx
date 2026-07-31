@@ -19,6 +19,7 @@ export function Logo({
         height={mark}
         className="rounded-full shadow-soft"
         priority
+        sizes={`${mark}px`}
       />
       <span className="flex flex-col leading-none">
         <span className="font-display text-lg font-bold text-brand-plum sm:text-xl">

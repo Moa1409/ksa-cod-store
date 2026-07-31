@@ -30,7 +30,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-rose/50 bg-brand-cream/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-brand-rose/50 bg-brand-cream">
       <div className="container-lg flex items-center justify-between gap-3 py-3">
         <Logo />
 

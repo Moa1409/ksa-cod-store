@@ -92,6 +92,7 @@ export default function HomePage() {
               fit="cover"
               priority
               className="shadow-soft"
+              sizes="(max-width: 768px) 100vw, 560px"
             />
           </div>
           <div className="order-2">

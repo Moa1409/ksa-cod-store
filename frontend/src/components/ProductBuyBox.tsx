@@ -148,7 +148,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
 
 function StickyBar({ price, onAdd }: { price: number; onAdd: () => void }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-brand-rose/50 bg-brand-cream/95 p-3 backdrop-blur md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-brand-rose/50 bg-brand-cream p-3 md:hidden">
       <div className="container-lg flex items-center gap-3">
         <div className="shrink-0">
           <div className="text-xs text-ui-muted">الإجمالي</div>

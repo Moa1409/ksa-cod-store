@@ -38,6 +38,7 @@ export function ProductCard({ product }: { product: Product }) {
           aspect="square"
           fit="cover"
           className="rounded-none border-0"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-4">
