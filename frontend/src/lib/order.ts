@@ -9,8 +9,11 @@ export type LastOrder = {
   total: number;
   currency: string;
   event_id: string;
-  items: { slug: string; name: string; qty: number }[];
-  upsell?: { slug: string; name: string; price: number };
+  customer_name: string;
+  phone: string;
+  city: string;
+  items: { slug: string; name: string; qty: number; image?: string }[];
+  upsell?: { slug: string; name: string; price: number; image?: string };
 };
 
 const LAST_ORDER_KEY = "lamsa_last_order";

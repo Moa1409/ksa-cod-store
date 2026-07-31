@@ -122,8 +122,24 @@ export function CheckoutModal() {
         total,
         currency: res.currency,
         event_id: eventId,
-        items: items.map((i) => ({ slug: i.slug, name: i.name, qty: i.qty })),
-        upsell: upsell && upsellProduct ? { slug: upsellProduct.slug, name: upsellProduct.name, price: UPSELL_PRICE } : undefined,
+        customer_name: name.trim(),
+        phone,
+        city: city.trim(),
+        items: items.map((i) => ({
+          slug: i.slug,
+          name: i.name,
+          qty: i.qty,
+          image: i.image || getProduct(i.slug)?.image,
+        })),
+        upsell:
+          upsell && upsellProduct
+            ? {
+                slug: upsellProduct.slug,
+                name: upsellProduct.name,
+                price: UPSELL_PRICE,
+                image: upsellProduct.image,
+              }
+            : undefined,
       });
 
       clear();
