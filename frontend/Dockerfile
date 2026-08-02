@@ -14,7 +14,7 @@ RUN npm config set maxsockets 1 \
 COPY . .
 
 # Bust EasyPanel/BuildKit stale layers when admin/config changes
-ARG CACHEBUST=checkout-emergency-2026-07-31b
+ARG CACHEBUST=tiktok-pixel-2026-08-02
 RUN echo "cachebust=$CACHEBUST" \
   && test -f public/DEPLOY_STAMP.txt \
   && ! grep -q "0e6b63" public/admin.html \
@@ -23,11 +23,12 @@ RUN echo "cachebust=$CACHEBUST" \
   && test -d src/app/cod
 
 # NEXT_PUBLIC_* must be present at build time — set in EasyPanel env before deploy.
+# Pixel IDs are public (ship in client JS). Override in EasyPanel if needed.
 ARG NEXT_PUBLIC_SITE_URL=https://lamsaglow.shop
 ARG NEXT_PUBLIC_API_URL=https://api.lamsaglow.shop
-ARG NEXT_PUBLIC_ENABLE_PIXELS=false
+ARG NEXT_PUBLIC_ENABLE_PIXELS=true
 ARG NEXT_PUBLIC_META_PIXEL_ID=
-ARG NEXT_PUBLIC_TIKTOK_PIXEL_ID=
+ARG NEXT_PUBLIC_TIKTOK_PIXEL_ID=D9NPS13C77U1NSLT1RRG
 ARG NEXT_PUBLIC_SNAP_PIXEL_ID=
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
     NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
