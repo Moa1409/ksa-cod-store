@@ -2,7 +2,7 @@
 
 > **One-line brand promise:** *"صالونكِ الخاص… في بيتكِ."* — Your private salon, at home. Salon-grade results with clinical-grade technology, without the salon's cost, wait, or lost privacy.
 
-> 🔒 **BRAND LOCKED: `Lamsa Glow` / `لمسة جلو`** — domain **lamsaglow.shop** (bought). Short form: **Lamsa / لمسة**. Product line: **Lamsa AirGlow · Lamsa SilkPro · Lamsa GlowLift** (لمسة إيرغلو · لمسة سيلك برو · لمسة غلو ليفت). Support email: `care@lamsaglow.shop`. The `storefront/` app is fully branded as Lamsa Glow. *Any remaining "NOORA / نورة" mentions below were the earlier working name and are superseded by Lamsa Glow.*
+> 🔒 **BRAND LOCKED: `Lamsa Glow` / `لمسة جلو`** — domain **lamsaglow.shop** (bought). Short form: **Lamsa / لمسة**. Product line: **Lamsa AirGlow · Lamsa SilkPro · Lamsa GlowLift** (لمسة إيرغلو · لمسة سيلك برو · لمسة غلو ليفت). Support email: `contactus@lamsaglow.shop`. The `storefront/` app is fully branded as Lamsa Glow. *Any remaining "NOORA / نورة" mentions below were the earlier working name and are superseded by Lamsa Glow.*
 
 This is the full build + positioning + CRO doc for a **custom Next.js/React, COD-first, Arabic-first** premium beauty-tech store designed to become **#1 in KSA** in the at-home beauty device niche.
 

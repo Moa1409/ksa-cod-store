@@ -26,10 +26,10 @@ export default function ContactPage() {
                 البريد الإلكتروني
               </div>
               <a
-                href="mailto:care@lamsaglow.shop"
+                href="mailto:contactus@lamsaglow.shop"
                 className="text-noora-rose hover:underline"
               >
-                care@lamsaglow.shop
+                contactus@lamsaglow.shop
               </a>
             </div>
             <div className="card">
@@ -40,7 +40,7 @@ export default function ContactPage() {
           </div>
 
           <form
-            action="mailto:care@lamsaglow.shop"
+            action="mailto:contactus@lamsaglow.shop"
             method="post"
             encType="text/plain"
             className="card mt-6 space-y-4"

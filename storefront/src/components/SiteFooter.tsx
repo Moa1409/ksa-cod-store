@@ -74,7 +74,7 @@ export default function SiteFooter() {
                 صفحة التواصل
               </Link>
             </li>
-            <li>البريد: care@lamsaglow.shop</li>
+            <li>البريد: contactus@lamsaglow.shop</li>
           </ul>
           <div className="mt-4 flex flex-wrap gap-2 text-xs">
             <span className="badge">✅ CE / RoHS</span>

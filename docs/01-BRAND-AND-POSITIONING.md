@@ -12,7 +12,7 @@
 | **English** | Lamsa Glow |
 | **Meaning** | *Lamsa* = a touch · *توهج / Glow* = radiance → “a touch of glow” |
 | **Domain** | `lamsaglow.shop` |
-| **Care** | `care@lamsaglow.shop` |
+| **Care** | `contactus@lamsaglow.shop` |
 
 **Tagline (AR):** «صيدليتكِ التجميلية المعتمدة… في بيتكِ.»  
 **Tagline (EN):** Certified dermocosmetic care — at home.

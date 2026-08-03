@@ -44,7 +44,7 @@ This is the money page — full landing page:
 Mission/founder story, values (privacy, quality, results), certifications, "why we built Lamsa Glow", social proof, CTA to shop. Alternating image/text.
 
 ## CONTACT `/contact`
-Support email `care@lamsaglow.shop`, working hours, response time, order-tracking note, simple message form (optional; can mailto). COD/returns reassurance. Social links.
+Support email `contactus@lamsaglow.shop`, working hours, response time, order-tracking note, simple message form (optional; can mailto). COD/returns reassurance. Social links.
 
 ## POLICIES `/policies/[slug]`
 `shipping` (2–4 days, coverage, COD), `returns` (30-day, how-to, conditions, "results may vary"), `privacy` (data, pixels/consent, contact), `terms`. MSA acceptable; clear, trustworthy. Static-generated.

@@ -1,4 +1,4 @@
-export const CONTACT_EMAIL = "contact@lamsaglow.shop";
+export const CONTACT_EMAIL = "contactus@lamsaglow.shop";
 
 /**
  * Optional caller ID shown on the thank-you confirmation banner.

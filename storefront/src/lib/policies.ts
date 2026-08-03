@@ -59,7 +59,7 @@ export const policies: Policy[] = [
       {
         heading: "كيفية طلب الاسترجاع",
         body: [
-          "تواصلي معنا عبر care@lamsaglow.shop مع رقم الطلب وسبب الإرجاع.",
+          "تواصلي معنا عبر contactus@lamsaglow.shop مع رقم الطلب وسبب الإرجاع.",
           "سنرشدكِ لخطوات الإرجاع وطريقة استرداد المبلغ.",
         ],
       },
@@ -97,7 +97,7 @@ export const policies: Policy[] = [
       },
       {
         heading: "التواصل",
-        body: ["لأي استفسار عن خصوصيتكِ، راسلينا على care@lamsaglow.shop."],
+        body: ["لأي استفسار عن خصوصيتكِ، راسلينا على contactus@lamsaglow.shop."],
       },
     ],
   },
