@@ -14,7 +14,7 @@ RUN npm config set maxsockets 1 \
 COPY . .
 
 # Bust EasyPanel/BuildKit stale layers when admin/config changes
-ARG CACHEBUST=contactus-email-2026-08-03
+ARG CACHEBUST=snap-pixel-2026-08-04
 RUN echo "cachebust=$CACHEBUST" \
   && test -f public/DEPLOY_STAMP.txt \
   && ! grep -q "0e6b63" public/admin.html \
@@ -29,7 +29,7 @@ ARG NEXT_PUBLIC_API_URL=https://api.lamsaglow.shop
 ARG NEXT_PUBLIC_ENABLE_PIXELS=true
 ARG NEXT_PUBLIC_META_PIXEL_ID=
 ARG NEXT_PUBLIC_TIKTOK_PIXEL_ID=D9NPS13C77U1NSLT1RRG
-ARG NEXT_PUBLIC_SNAP_PIXEL_ID=
+ARG NEXT_PUBLIC_SNAP_PIXEL_ID=df328e90-b942-4e26-8b36-1e90da17865b
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
     NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
     NEXT_PUBLIC_ENABLE_PIXELS=$NEXT_PUBLIC_ENABLE_PIXELS \
