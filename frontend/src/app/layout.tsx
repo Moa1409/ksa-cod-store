@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Reem_Kufi, Tajawal } from "next/font/google";
 import "./globals.css";
+import { HeadPixels } from "@/components/HeadPixels";
 import { Providers } from "@/components/Providers";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -139,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans">
+        <HeadPixels />
         <Providers>
           <SiteHeader />
           <main className="min-h-[60vh]">{children}</main>

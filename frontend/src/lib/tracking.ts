@@ -138,9 +138,22 @@ export function initPixels() {
   if (!env.enablePixels) return;
   loaded = true;
   window.__lamsaPixels = true;
-  if (env.metaPixelId) loadMeta(env.metaPixelId);
-  if (env.tiktokPixelId) loadTikTok(env.tiktokPixelId);
-  if (env.snapPixelId) loadSnap(env.snapPixelId);
+  // Isolate each network so a bad Meta ID cannot block TikTok/Snap.
+  try {
+    if (env.metaPixelId) loadMeta(env.metaPixelId);
+  } catch {
+    /* ignore */
+  }
+  try {
+    if (env.tiktokPixelId) loadTikTok(env.tiktokPixelId);
+  } catch {
+    /* ignore */
+  }
+  try {
+    if (env.snapPixelId) loadSnap(env.snapPixelId);
+  } catch {
+    /* ignore */
+  }
 }
 
 const SNAP_EVENTS: Record<EventName, string> = {

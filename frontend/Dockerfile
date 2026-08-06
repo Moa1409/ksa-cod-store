@@ -23,7 +23,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Declared LATE on purpose: changing CACHEBUST / pixel IDs must NOT invalidate npm ci.
-ARG CACHEBUST=tiktok-pixel-2026-08-06
+ARG CACHEBUST=tiktok-head-2026-08-06
 RUN echo "cachebust=$CACHEBUST" \
   && test -f public/DEPLOY_STAMP.txt \
   && test -d src/app/admin \
