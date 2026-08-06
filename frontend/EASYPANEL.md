@@ -32,7 +32,7 @@ NEXT_PUBLIC_ENABLE_PIXELS=true
 NEXT_PUBLIC_META_PIXEL_ID=
 NEXT_PUBLIC_TIKTOK_PIXEL_ID=D9QCPGRC77U97D5QCMK0
 NEXT_PUBLIC_SNAP_PIXEL_ID=df328e90-b942-4e26-8b36-1e90da17865b
-CACHEBUST=tiktok-head-2026-08-06
+CACHEBUST=tiktok-before-2026-08-06
 ```
 
 Runtime:
@@ -41,16 +41,16 @@ API_URL=https://api.lamsaglow.shop
 ```
 
 > **Never put `TIKTOK_CAPI_TOKEN` / access tokens on the frontend.**  
-> Tokens belong only on **backend** env. A token was previously pasted into `NEXT_PUBLIC_META_PIXEL_ID` by mistake — delete that.
+> Tokens belong only on **backend** env. Delete any token from `NEXT_PUBLIC_META_PIXEL_ID`.
 
 ## Redeploy checklist
 1. Source: `Moa1409/frontend`, branch **`main`**.
-2. Paste the env block above **exactly** (clear any wrong Meta ID / tokens).
+2. Paste the env block above **exactly** (clear wrong Meta ID / tokens).
 3. Keep **Build cache ON** — click normal **Deploy** (not Force Rebuild).
 4. Wait until **Running**.
-5. Open `https://lamsaglow.shop/DEPLOY_STAMP.txt` → must say `tiktok-head-2026-08-06`.
-6. Test Pixel Helper with **VPN / ad-block OFF** (ExpressVPN blocks TikTok).
-7. Hard-refresh (`Ctrl+Shift+R`).
+5. Open `https://lamsaglow.shop/DEPLOY_STAMP.txt` → must say `tiktok-before-2026-08-06`.
+6. Test Pixel Helper with **ad-block / VPN OFF**.
+7. Hard-refresh (`Ctrl+Shift+R`) or use a private window.
 
 Only turn cache **OFF** if the stamp refuses to change after a successful rebuild (stale image bug). Then rebuild once with cache off, and turn cache **back ON**.
 
