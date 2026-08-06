@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # EasyPanel "Deploy" can reuse a cached image. Bump CACHEBUST to force a real rebuild.
-ARG CACHEBUST=checkout-fix-2026-07-31b
+ARG CACHEBUST=tiktok-capi-2026-08-06
 RUN echo "cachebust=$CACHEBUST"
 
 COPY . .

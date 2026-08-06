@@ -30,9 +30,9 @@ NEXT_PUBLIC_SITE_URL=https://lamsaglow.shop
 NEXT_PUBLIC_API_URL=https://api.lamsaglow.shop
 NEXT_PUBLIC_ENABLE_PIXELS=true
 NEXT_PUBLIC_META_PIXEL_ID=
-NEXT_PUBLIC_TIKTOK_PIXEL_ID=D9NPS13C77U1NSLT1RRG
+NEXT_PUBLIC_TIKTOK_PIXEL_ID=D9QCPGRC77U97D5QCMK0
 NEXT_PUBLIC_SNAP_PIXEL_ID=df328e90-b942-4e26-8b36-1e90da17865b
-CACHEBUST=deploy-faster-2026-08-04
+CACHEBUST=tiktok-pixel-2026-08-06
 ```
 
 Runtime:
@@ -42,10 +42,10 @@ API_URL=https://api.lamsaglow.shop
 
 ## Redeploy checklist
 1. Source: `Moa1409/frontend`, branch **`main`**.
-2. Bump `CACHEBUST` to a new value when you need the new image (e.g. today’s stamp).
-3. Keep **Build cache / BuildKit = ON** (do not turn it off).
-4. Click **Rebuild** — wait until **Running**.
-5. Open `https://lamsaglow.shop/DEPLOY_STAMP.txt` → must match the new stamp (`deploy-faster-2026-08-04` for this release).
+2. Set `CACHEBUST=tiktok-pixel-2026-08-06` (and the pixel IDs above).
+3. Keep **Build cache ON** — click normal **Deploy** (not Force Rebuild).
+4. Wait until **Running**.
+5. Open `https://lamsaglow.shop/DEPLOY_STAMP.txt` → must say `tiktok-pixel-2026-08-06`.
 6. Hard-refresh the site (`Ctrl+Shift+R`).
 
 Only turn cache **OFF** if the stamp refuses to change after a successful rebuild (stale image bug). Then rebuild once with cache off, and turn cache **back ON**.

@@ -8,13 +8,13 @@
 | Build path | `/` |
 
 ## Checkout stuck / old build ID?
-Live `/health` must show `build: checkout-fix-2026-07-31b` (or newer).
+Live `/health` must show `build: tiktok-capi-2026-08-06` (or newer).
 
-If it still shows `admin-2026-07-23c`, EasyPanel reused a **cached Docker image**.
+If it shows an older build id, EasyPanel reused a **cached Docker image**.
 
-1. EasyPanel → **backend** → set env `CACHEBUST=checkout-fix-2026-07-31b`
-2. Click **Rebuild** (not Restart) — wait for new image
-3. Confirm https://api.lamsaglow.shop/health shows the new build id
+1. EasyPanel → **backend** → set env `CACHEBUST=tiktok-capi-2026-08-06`
+2. Click **Deploy** — wait for new image
+3. Confirm https://api.lamsaglow.shop/health shows `"build":"tiktok-capi-2026-08-06"`
 
 `0550000000` skips MaxMind entirely after this deploy (any IP).
 
@@ -46,9 +46,23 @@ MAXMIND_BLOCK_VPN_PROXY=true
 # Test phone bypasses geo/VPN check (0550000000 only)
 ORDER_WHITELIST_PHONES=0550000000
 TEST_ORDER_PHONES=0550000000
+
+# CAPI (server) — runtime env. Tokens never go in GitHub.
+ENABLE_CAPI=true
+CACHEBUST=tiktok-capi-2026-08-06
+
+# TikTok Events API
+TIKTOK_PIXEL_ID=D9QCPGRC77U97D5QCMK0
+TIKTOK_CAPI_TOKEN=paste-access-token-from-TikTok-Events-Manager
+
+# Snapchat Conversions API
+SNAP_PIXEL_ID=df328e90-b942-4e26-8b36-1e90da17865b
+SNAP_CAPI_TOKEN=paste-token-from-Snap-Ads-Events-Manager
 ```
 
 Copy `DATABASE_URL` from EasyPanel → your Postgres service → **Connection string** (internal). Paste as-is.
+
+> **Never commit CAPI tokens** (`TIKTOK_CAPI_TOKEN`, `SNAP_CAPI_TOKEN`, etc.) to GitHub. Set them only in EasyPanel → backend → Environment.
 
 ---
 
